@@ -146,6 +146,7 @@ figure {
 
 .section {
   padding-block: var(--section-y);
+  scroll-margin-top: var(--header-h);
 }
 
 .section--hero {
