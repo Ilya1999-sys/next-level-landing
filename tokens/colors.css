@@ -1,0 +1,16 @@
+/* Nostalgia palette from Ilya-NextLevel Figma mode `design`.
+   Restyle the landing by editing these values. */
+
+:root {
+  --color-page: #d6d6d6;
+  --color-cards: #c1c1c1;
+  --color-cards-elements: #aeaeae;
+  --color-cards-glass: #00000066;
+  --color-accent-primary: #012fff;
+  --color-accent-secondary: #181818;
+  --color-accent-tertiary: #e1fb5c;
+  --color-text-primary: #5e5e5e;
+  --color-text-secondary: #ffffff;
+  --color-icons: #ffffff;
+  --color-success: #4ecc91;
+}

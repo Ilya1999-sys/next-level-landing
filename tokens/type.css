@@ -1,0 +1,33 @@
+/* Product type: Cartograph Mono CF + Geneva.
+   Landing uses Plex stand-ins until those files are dropped into /public/fonts. */
+
+:root {
+  --font-family-primary: var(--font-plex-mono), "Cartograph Mono CF", ui-monospace, monospace;
+  --font-family-secondary: var(--font-plex-sans), Geneva, system-ui, sans-serif;
+
+  --size-display-1: clamp(40px, 7vw, 88px);
+  --size-display-2: clamp(28px, 4.2vw, 56px);
+  --size-h1: 24px;
+  --size-h2: 28px;
+  --size-h3: 20px;
+  --size-t1: 15px;
+  --size-t2: 13px;
+  --size-t3: 12px;
+  --size-button: 18px;
+
+  --weight-regular: 400;
+
+  --leading-display-1: 0.95;
+  --leading-display-2: 1.05;
+  --leading-h1: 28px;
+  --leading-h2: 40px;
+  --leading-h3: 28px;
+  --leading-t1: 20px;
+  --leading-t2: 16px;
+  --leading-t3: 15px;
+  --leading-button: 24px;
+
+  --tracking-display: -0.03em;
+  --tracking-tight: 0.01px;
+  --tracking-label: 0.08em;
+}

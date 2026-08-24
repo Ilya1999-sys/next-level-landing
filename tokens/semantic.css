@@ -1,0 +1,18 @@
+:root {
+  --bg-page: var(--color-page);
+  --bg-surface: var(--color-cards);
+  --bg-muted: var(--color-cards-elements);
+  --bg-glass: var(--color-cards-glass);
+  --bg-ink: var(--color-accent-secondary);
+  --bg-accent: var(--color-accent-primary);
+  --bg-mark: var(--color-accent-tertiary);
+
+  --text: var(--color-text-primary);
+  --text-on-dark: var(--color-text-secondary);
+  --text-on-accent: var(--color-text-secondary);
+  --icon: var(--color-icons);
+  --success: var(--color-success);
+
+  --font-display: var(--font-family-secondary);
+  --font-ui: var(--font-family-primary);
+}

@@ -1,0 +1,22 @@
+:root {
+  --space-xs: 4px;
+  --space-s: 8px;
+  --space-m: 12px;
+  --space-l: 20px;
+  --space-xl: 28px;
+  --space-2xl: 48px;
+  --space-3xl: 80px;
+  --space-4xl: 120px;
+
+  --radius-xs: 12px;
+  --radius-s: 20px;
+  --radius-m: 32px;
+  --radius-l: 40px;
+  --radius-xl: 999px;
+
+  --blur-glass: 20px;
+  --page-max: 1240px;
+  --page-gutter: clamp(20px, 4vw, 48px);
+  --section-y: clamp(72px, 10vw, 128px);
+  --header-h: 72px;
+}
