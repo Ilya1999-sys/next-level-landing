@@ -1,33 +1,47 @@
-/* Product type: Cartograph Mono CF + Geneva.
-   Landing uses Plex stand-ins until those files are dropped into /public/fonts. */
+/* Figma type: Cartograph Mono CF (primary) + Geneva (secondary). */
 
 :root {
-  --font-family-primary: var(--font-plex-mono), "Cartograph Mono CF", ui-monospace, monospace;
-  --font-family-secondary: var(--font-plex-sans), Geneva, system-ui, sans-serif;
+  --font-family-primary: "Cartograph Mono CF", ui-monospace, monospace;
+  --font-family-secondary: Geneva, system-ui, sans-serif;
 
-  --size-display-1: clamp(40px, 7vw, 88px);
-  --size-display-2: clamp(28px, 4.2vw, 56px);
-  --size-h1: 24px;
-  --size-h2: 28px;
-  --size-h3: 20px;
-  --size-t1: 15px;
-  --size-t2: 13px;
+  --size-hero: clamp(39px, 9vw, 152px);
+  --size-display: clamp(32px, 7.5vw, 120px);
+  --size-h1: clamp(28px, 4vw, 64px);
+  --size-h2: clamp(28px, 2.4vw, 36px);
+  --size-h3: 24px;
+  --size-t1: 18px;
+  --size-t2: 15px;
   --size-t3: 12px;
-  --size-button: 18px;
+  --size-button: 20px;
 
   --weight-regular: 400;
 
-  --leading-display-1: 0.95;
-  --leading-display-2: 1.05;
-  --leading-h1: 28px;
-  --leading-h2: 40px;
-  --leading-h3: 28px;
-  --leading-t1: 20px;
-  --leading-t2: 16px;
+  --leading-hero: 0.9;
+  --leading-display: 0.9;
+  --leading-h3: 32px;
+  --leading-t1: 27px;
+  --leading-t2: 22px;
   --leading-t3: 15px;
-  --leading-button: 24px;
+  --leading-button: 28px;
 
-  --tracking-display: -0.03em;
-  --tracking-tight: 0.01px;
-  --tracking-label: 0.08em;
+  --tracking-display: 0.01px;
+  --tracking-label: 0.01px;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --size-hero: 56px;
+    --size-display: 56px;
+    --size-h1: 32px;
+    --size-t1: 16px;
+    --size-button: 18px;
+  }
+}
+
+@media (max-width: 449px) {
+  :root {
+    --size-hero: 39px;
+    --size-display: 39px;
+    --size-h1: 28px;
+  }
 }

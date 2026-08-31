@@ -1,27 +1,25 @@
 import {
-  ArchiveSection,
-  CtaSection,
+  ConceptSection,
+  ExperienceSection,
   HeroSection,
-  HowSection,
-  LiveSection,
-  MatchSection,
-  MoodsSection,
-  ProductSection,
-  StatsSection,
+  MatchViewSection,
+  ModesSection,
+  MomentsSection,
+  PlayerFactsSection,
+  StorySection,
 } from "@/components/sections/landing";
 
 export default function HomePage() {
   return (
     <main>
       <HeroSection />
-      <StatsSection />
-      <ProductSection />
-      <MoodsSection />
-      <ArchiveSection />
-      <HowSection />
-      <MatchSection />
-      <LiveSection />
-      <CtaSection />
+      <ConceptSection />
+      <ModesSection />
+      <StorySection />
+      <MomentsSection />
+      <MatchViewSection />
+      <PlayerFactsSection />
+      <ExperienceSection />
     </main>
   );
 }

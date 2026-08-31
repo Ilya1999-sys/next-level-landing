@@ -1,175 +1,473 @@
-import { Button, MediaSlot, Section } from "@/components/ui/primitives";
-import { FeedMock, ForumMock, HudMock } from "@/components/mocks/product-mocks";
-import { cta, features, hero, how, live, matchCase, moods, product, stats } from "@/lib/content";
+import {
+  ArrowLink,
+  Bars,
+  CircleStat,
+  Dots,
+  FactCard,
+  YearCard,
+} from "@/components/ui/cards";
+import { concept, matchView, modes, playerFacts, site, story } from "@/lib/content";
+
+const DOT_PATTERN: Array<"accent" | "muted"> = [
+  "accent",
+  "accent",
+  "muted",
+  "accent",
+  "muted",
+  "accent",
+  "accent",
+  "accent",
+  "muted",
+  "muted",
+  "muted",
+  "accent",
+  "muted",
+  "accent",
+  "accent",
+  "accent",
+  "accent",
+  "accent",
+  "accent",
+  "accent",
+  "accent",
+  "accent",
+  "accent",
+  "muted",
+];
+
+const BAR_PAIRS: Array<[number, number]> = [
+  [144, 60],
+  [120, 24],
+  [24, 24],
+  [48, 4],
+];
+
+function ModeStack() {
+  return (
+    <>
+      <YearCard year="/2009" title="Path to the final: “Barcelona”.">
+        <Bars pairs={BAR_PAIRS} />
+      </YearCard>
+      <YearCard year="/2006" title="The incredible Zidane at the World Cup and the tragedy in the final.">
+        <div className="circle-row">
+          <CircleStat value="3" label="Zidane goals" accent />
+          <CircleStat value="0" label="France defeats" />
+        </div>
+      </YearCard>
+      <FactCard label="Favorite player fact" value="5" text="Killian Mbappe scored goals in one match" />
+    </>
+  );
+}
 
 export function HeroSection() {
   return (
-    <section id="top" className="section section--hero" data-block="hero">
-      <div className="shell hero">
-        <div className="hero__copy">
-          <p className="eyebrow">{hero.eyebrow}</p>
-          <h1 className="display">
-            {hero.title[0]}
-            <br />
-            {hero.title[1]}
-          </h1>
-          <p className="hero__body">{hero.body}</p>
-          <div className="hero__actions">
-            <Button href={hero.primary.href}>{hero.primary.label}</Button>
-            <Button href={hero.secondary.href} variant="ghost">
-              {hero.secondary.label}
-            </Button>
+    <section id="top" className="section section--cover">
+      <div className="shell hero-collage">
+        <div className="hero-block">
+          <div className="hero-row">
+            <YearCard year="/2006" title="The incredible Zidane">
+              <div className="circle-row">
+                <CircleStat value="3" label="Zidane goals" accent />
+                <CircleStat value="0" label="France defeats" />
+              </div>
+            </YearCard>
+            <div className="hero-stack">
+              <p className="display-word">Football</p>
+              <div className="hero-row hero-row--tight">
+                <p className="display-word">is</p>
+                <FactCard label="Favorite player fact" value="5" text="Killian Mbappe scored goals in one match" />
+              </div>
+            </div>
+          </div>
+          <div className="hero-row hero-row--icons">
+            <p className="display-word">more</p>
+            <div className="icon-pills">
+              <span className="icon-pill">
+                <img src="/figma/landing/icon-games.svg" alt="" width={56} height={56} />
+              </span>
+              <span className="icon-pill icon-pill--ink">
+                <img src="/figma/landing/icon-screen.svg" alt="" width={56} height={56} />
+              </span>
+              <span className="icon-pill">
+                <img src="/figma/landing/icon-stats.svg" alt="" width={56} height={56} />
+              </span>
+              <span className="icon-pill">
+                <img src="/figma/landing/icon-club.svg" alt="" width={56} height={56} />
+              </span>
+            </div>
+            <p className="display-word">than</p>
+          </div>
+          <div className="hero-row">
+            <p className="display-word">a</p>
+            <i className="blob blob--accent" />
+            <i className="blob blob--accent" />
+            <p className="display-word">match</p>
+            <FactCard label="Nostalgia fact" value="18" text="years ago, you watched your first match" tag="EURO—2008" />
           </div>
         </div>
-        <MediaSlot label="Slot · Home feed">
-          <FeedMock />
-        </MediaSlot>
-      </div>
-    </section>
-  );
-}
 
-export function StatsSection() {
-  return (
-    <section className="stats-band" data-block="stats">
-      <div className="shell stats-band__row">
-        {stats.map((item) => (
-          <article key={item.label} className="stat">
-            <p className="stat__value">{item.value}</p>
-            <p className="stat__label">{item.label}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-export function ProductSection() {
-  return (
-    <Section id="product" eyebrow={product.eyebrow} title={product.title} body={product.body}>
-      <div className="split">
-        <MediaSlot label="Slot · Editorial cards">
-          <FeedMock />
-        </MediaSlot>
-        <ol className="feature-list">
-          {features.items.slice(0, 3).map((item, index) => (
-            <li key={item.id}>
-              <span>0{index + 1}</span>
+        <div className="hero-block hero-block--verbs">
+          <div className="hero-verbs">
+            <p className="display-word">Choose</p>
+            <p className="display-word">control</p>
+            <p className="display-word">discover</p>
+            <p className="display-word">Change</p>
+          </div>
+          <article className="year-card year-card--accent">
+            <header className="year-card__top">
               <div>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
+                <p className="fact-card__label">Match review</p>
+                <p className="year-card__title">1-0 France</p>
               </div>
-            </li>
-          ))}
-        </ol>
-      </div>
-    </Section>
-  );
-}
-
-export function MoodsSection() {
-  return (
-    <Section id="moods" eyebrow={moods.eyebrow} title={moods.title}>
-      <div className="mood-grid">
-        {moods.items.map((mood) => (
-          <article key={mood.id} className={`mood-card ${mood.id === "nostalgia" ? "is-current" : ""}`}>
-            <i className="mood-card__swatch" style={{ background: mood.accent }} />
-            <h3>{mood.name}</h3>
-            <p>{mood.text}</p>
+              <ArrowLink />
+            </header>
+            <div className="timeline" aria-hidden="true">
+              <span className="timeline__col">
+                {Array.from({ length: 10 }, (_, index) => (
+                  <i key={index} className={index === 4 ? "dot dot--lg" : "dot"} />
+                ))}
+                <small>France</small>
+              </span>
+              <span className="timeline__col">
+                {Array.from({ length: 8 }, (_, index) => (
+                  <i key={index} className={index === 3 ? "dot dot--lg" : "dot"} />
+                ))}
+                <small>Portugal</small>
+              </span>
+            </div>
           </article>
-        ))}
-      </div>
-    </Section>
-  );
-}
-
-export function ArchiveSection() {
-  return (
-    <Section id="archive" eyebrow={features.eyebrow} title={features.title}>
-      <div className="bento">
-        {features.items.map((item) => (
-          <article key={item.id} className={`bento__cell bento__cell--${item.id}`}>
-            <p className="eyebrow">{item.slot}</p>
-            <h3>{item.title}</h3>
-            <p>{item.text}</p>
-          </article>
-        ))}
-      </div>
-    </Section>
-  );
-}
-
-export function HowSection() {
-  return (
-    <Section id="how" eyebrow={how.eyebrow} title={how.title}>
-      <ol className="steps">
-        {how.steps.map((step) => (
-          <li key={step.n} className="steps__item">
-            <span>{step.n}</span>
-            <h3>{step.title}</h3>
-            <p>{step.text}</p>
-          </li>
-        ))}
-      </ol>
-    </Section>
-  );
-}
-
-export function MatchSection() {
-  return (
-    <section id="match" className="section section--ink" data-block="match">
-      <div className="shell split split--ink">
-        <div>
-          <p className="eyebrow eyebrow--on-dark">{matchCase.eyebrow}</p>
-          <p className="kicker">{matchCase.kicker}</p>
-          <h2 className="section__title section__title--on-dark">{matchCase.title}</h2>
-          <p className="section__body section__body--on-dark">{matchCase.body}</p>
-          <ul className="case-facts">
-            {matchCase.facts.map((fact) => (
-              <li key={fact.label}>
-                <b>{fact.value}</b>
-                <span>{fact.label}</span>
-              </li>
-            ))}
-          </ul>
         </div>
-        <MediaSlot label="Slot · Match HUD">
-          <HudMock />
-        </MediaSlot>
+
+        <div className="hero-block hero-block--story">
+          <YearCard year="/2016" title="Portugal’s first victory in a major tournament.">
+            <div className="line-chart" aria-hidden="true" />
+          </YearCard>
+          <div className="hero-verbs hero-verbs--left">
+            <p className="display-kicker">the</p>
+            <p className="display-word">story</p>
+            <p className="display-word">behind</p>
+            <p className="display-word">every</p>
+            <p className="display-word">moment</p>
+          </div>
+          <div className="hero-stack">
+            <article className="year-card">
+              <header className="year-card__top">
+                <div>
+                  <p className="fact-card__label">Match review</p>
+                  <p className="year-card__title">2-1 Croatia</p>
+                </div>
+                <ArrowLink />
+              </header>
+              <ul className="stat-rows">
+                <li>
+                  <span>Passes</span>
+                  <b>676</b>
+                  <b>460</b>
+                </li>
+                <li>
+                  <span>Distance</span>
+                  <b>142km</b>
+                  <b>148km</b>
+                </li>
+                <li>
+                  <span>Possession</span>
+                  <b>59%</b>
+                  <b>41%</b>
+                </li>
+              </ul>
+            </article>
+            <article className="year-card">
+              <header className="year-card__top">
+                <div>
+                  <p className="fact-card__label">Match review</p>
+                  <p className="year-card__title">3-3 Hungary</p>
+                </div>
+                <ArrowLink />
+              </header>
+              <div className="circle-row">
+                <CircleStat value="19" label="shots on goal" accent />
+                <CircleStat value="90%" label="pass accuracy" />
+                <CircleStat value="9" label="corners" />
+              </div>
+            </article>
+          </div>
+        </div>
       </div>
     </section>
   );
 }
 
-export function LiveSection() {
+export function ConceptSection() {
   return (
-    <Section id="room" eyebrow={live.eyebrow} title={live.title}>
-      <div className="split">
-        <MediaSlot label="Slot · Live discussion">
-          <ForumMock />
-        </MediaSlot>
-        <div className="chip-stack">
-          {live.chips.map((chip) => (
-            <span key={chip} className="chip">
-              {chip}
-            </span>
-          ))}
-          <p className="live-dot">{live.fans}</p>
+    <section className="section" data-block="concept">
+      <div className="shell">
+        <header className="concept-head">
+          <h2 className="section-title">{concept.title}</h2>
+          <p className="section-body">{concept.body}</p>
+        </header>
+        <div className="concept-grid">
+          <FactCard tall label="Wins fact" value="1" text="regular-time victory over Wales in the entire tournament">
+            <Bars pairs={[[24, 24], [72, 72], [24, 24]]} />
+          </FactCard>
+          <div className="concept-stack">
+            <FactCard label="Final fact" value="109" text="Eder’s extra-time goal beat host nation France in the final." />
+            <FactCard
+              label="Ronaldo fact"
+              value="25"
+              text="Cristiano Ronaldo played for a few minutes in the final of the tournament and then watched the match from the sidelines"
+            />
+          </div>
+          <FactCard tall label="Goals scored and missed" value="9—5" text="The total difference between goals scored and conceded by the Portuguese national team">
+            <Dots items={DOT_PATTERN} />
+          </FactCard>
+          <YearCard year="Match review" title="2:0 Wales">
+            <div className="circle-row">
+              <CircleStat value="17" label="shots on goal" accent />
+              <CircleStat value="46%" label="ball possession" />
+            </div>
+          </YearCard>
         </div>
       </div>
-    </Section>
+    </section>
   );
 }
 
-export function CtaSection() {
+export function ModesSection() {
   return (
-    <section className="section section--accent" data-block="cta">
-      <div className="shell cta">
-        <h2 className="section__title section__title--on-dark">{cta.title}</h2>
-        <p className="section__body section__body--on-dark">{cta.body}</p>
-        <Button href={cta.action.href} variant="on-dark">
-          {cta.action.label}
-        </Button>
+    <section id={modes.id} className="section">
+      <div className="shell">
+        <h2 className="section-title section-title--center">{modes.title}</h2>
+        <div className="mode-grid">
+          {modes.items.map((item) => (
+            <article key={item.name} className={`mode-col mode-col--${item.theme}`} style={{ ["--mode-accent" as string]: item.accent }}>
+              <h3>{item.name}</h3>
+              <div className="mode-col__cards">
+                <ModeStack />
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function StorySection() {
+  return (
+    <section id={story.id} className="section">
+      <div className="shell">
+        <div className="story-stage">
+          <p className="story-caption">{story.title}</p>
+          <div className="hud">
+            <div className="hud__nav" aria-hidden="true">
+              <span className="icon-btn">
+                <img src="/figma/landing/icon-arrow.svg" alt="" width={32} height={32} />
+              </span>
+            </div>
+            <div className="hud__score">
+              <img className="crest" src="/figma/landing/crest-portugal.png" alt="" width={72} height={72} />
+              <p>Por</p>
+              <div>
+                <b>0 — 0</b>
+                <span>18:45</span>
+              </div>
+              <p>Fra</p>
+              <img className="crest" src="/figma/landing/crest-france.png" alt="" width={72} height={72} />
+            </div>
+          </div>
+          <div className="story-orbit">
+            <article className="hud-card">
+              <p>Rate players</p>
+            </article>
+            <article className="view-mode">
+              <p>View mode</p>
+              <span className="is-on">Player</span>
+              <span>Referee</span>
+              <span>Behind goal</span>
+              <span>Drone</span>
+            </article>
+            <div className="story-orbit__center">
+              <CircleStat value="77" label="goals scored" accent />
+            </div>
+            <article className="smart-facts">
+              <p>smart facts</p>
+              <div>
+                <p className="fact-card__tag">
+                  <i className="status-dot" />
+                  EURO—2008
+                </p>
+                <b>France: the home favorite</b>
+                <span>Five wins, 13 goals and a 10-match winning streak against Portugal.</span>
+              </div>
+            </article>
+            <article className="hud-card">
+              <p>Health players</p>
+            </article>
+          </div>
+          <p className="story-caption">{story.footer}</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function MomentsSection() {
+  return (
+    <section className="section">
+      <div className="shell">
+        <div className="moments-type">
+          <div className="moments-row">
+            <i className="pill" />
+            <p className="display-word">Watch</p>
+            <i className="pill pill--accent" />
+          </div>
+          <div className="moments-row">
+            <span className="icon-pill icon-pill--wide">
+              <img src="/figma/landing/icon-games.svg" alt="" width={40} height={40} />
+              <b>2</b>
+            </span>
+            <p className="display-kicker">the</p>
+            <p className="display-word">match</p>
+          </div>
+          <p className="display-word display-word--center">Understand</p>
+          <div className="moments-row">
+            <i className="pill pill--accent" />
+            <p className="display-kicker">the</p>
+            <p className="display-word">moment</p>
+            <p className="moments-chip">How Germany went to the championship in 2014</p>
+          </div>
+        </div>
+        <div className="moments-grid">
+          <FactCard tall label="Nostalgia fact" value="15" text="Champions League Cups won by Real Madrid">
+            <Dots items={DOT_PATTERN} />
+          </FactCard>
+          <div className="concept-stack">
+            <FactCard
+              label="Nostalgia fact"
+              value="18"
+              text="years ago, you watched your first Switzerland — Turkey match"
+              tag="EURO—2008"
+            />
+            <FactCard label="Favorite player fact" value="976" text="Cristiano Ronaldo has scored the most goals in his career so far" />
+          </div>
+          <article className="year-card year-card--wide">
+            <header className="year-card__top">
+              <div>
+                <p className="fact-card__tag">
+                  <i className="status-dot" />
+                  Live
+                </p>
+                <p className="year-card__title">Barcelona</p>
+              </div>
+              <ArrowLink />
+            </header>
+            <div className="chip-row">
+              <p className="moments-chip">The Benzema Extravaganza in 2021</p>
+              <p className="moments-chip">How Germany went to the championship in 2014</p>
+              <p className="fact-card__tag">324 fans discussions</p>
+            </div>
+          </article>
+          <YearCard year="/2008" title="Russia, incredible comebacks and golden Spain">
+            <div className="circle-row">
+              <CircleStat value="77" label="goals scored" accent />
+              <CircleStat value="31" label="matches played" />
+              <CircleStat value="12" label="Spain scored" />
+            </div>
+          </YearCard>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function MatchViewSection() {
+  return (
+    <section id={matchView.id} className="section">
+      <div className="shell">
+        <h2 className="section-title section-title--center">{matchView.title}</h2>
+        <div className="camera-grid">
+          {matchView.cameras.map((camera) => (
+            <figure key={camera.label}>
+              <img src={camera.src} alt="" />
+              <figcaption>{camera.label}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function PlayerFactsSection() {
+  return (
+    <section id={playerFacts.id} className="section section--player">
+      <div className="shell player-facts">
+        <h2 className="section-title section-title--center">{playerFacts.title}</h2>
+        <img className="player-facts__photo" src="/figma/landing/ronaldo.png" alt="Cristiano Ronaldo" />
+        <article className="player-note player-note--career">
+          <p className="fact-card__tag">
+            <i className="status-dot" />
+            {playerFacts.career.label}
+          </p>
+          <h3>{playerFacts.career.title}</h3>
+          <p>{playerFacts.career.body}</p>
+        </article>
+        <article className="player-note player-note--life">
+          <p className="fact-card__tag">
+            <i className="status-dot" />
+            {playerFacts.life.label}
+          </p>
+          <h3>{playerFacts.life.title}</h3>
+          <p>{playerFacts.life.body}</p>
+        </article>
+        {playerFacts.stats.map((stat) => (
+          <article key={stat.label} className={`player-stat player-stat--${stat.label}`}>
+            <b>{stat.value}</b>
+            <span>{stat.label}</span>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function ExperienceSection() {
+  return (
+    <section className="section section--experience">
+      <div className="shell experience">
+        <div className="experience__row">
+          <div className="hero-verbs hero-verbs--end">
+            <p className="display-word">Choose</p>
+            <p className="display-word">how</p>
+          </div>
+          <FactCard
+            tall
+            label="Goals scored and missed"
+            value="9—5"
+            text="The total difference between goals scored and conceded by the Portuguese national team"
+          >
+            <Dots items={DOT_PATTERN} />
+          </FactCard>
+        </div>
+        <div className="experience__row">
+          <FactCard tall label="Wins fact" value="1" text="regular-time victory over Wales in the entire tournament">
+            <Bars pairs={[[24, 24], [72, 72], [24, 24]]} />
+          </FactCard>
+          <div className="hero-verbs">
+            <p className="display-word">you</p>
+            <p className="display-word">experience</p>
+          </div>
+        </div>
+        <div className="experience__it">
+          <i className="blob" />
+          <i className="blob blob--accent" />
+          <p className="display-word">it.</p>
+          <i className="blob" />
+          <i className="blob blob--accent" />
+        </div>
+        <p className="sr-only">
+          Open the prototype at {site.productUrl}
+        </p>
       </div>
     </section>
   );

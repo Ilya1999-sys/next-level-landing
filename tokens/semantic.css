@@ -13,6 +13,9 @@
   --icon: var(--color-icons);
   --success: var(--color-success);
 
-  --font-display: var(--font-family-secondary);
-  --font-ui: var(--font-family-primary);
+  --font-display: var(--font-family-primary);
+  --font-ui: var(--font-family-secondary);
+
+  --mode-legends: #ff9e01;
+  --mode-drama: #ff0901;
 }

@@ -15,8 +15,16 @@
   --radius-xl: 999px;
 
   --blur-glass: 20px;
-  --page-max: 1240px;
-  --page-gutter: clamp(20px, 4vw, 48px);
-  --section-y: clamp(72px, 10vw, 128px);
-  --header-h: 72px;
+  --page-max: 1520px;
+  --page-gutter: 40px;
+  --section-y: 80px;
+  --header-h: 80px;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --page-gutter: 20px;
+    --section-y: 40px;
+    --header-h: 70px;
+  }
 }
