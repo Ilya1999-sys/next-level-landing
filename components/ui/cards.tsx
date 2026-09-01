@@ -95,13 +95,15 @@ export function YearCard({
   year,
   title,
   children,
+  className = "",
 }: {
   year: string;
   title: string;
   children?: ReactNode;
+  className?: string;
 }) {
   return (
-    <article className="year-card">
+    <article className={`year-card ${className}`.trim()}>
       <header className="year-card__top">
         <div>
           <p className="fact-card__label">{year}</p>

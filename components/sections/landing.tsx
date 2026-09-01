@@ -139,7 +139,7 @@ export function HeroSection() {
         </div>
 
         <div className="hero-block hero-block--story">
-          <YearCard year="/2016" title="Portugal’s first victory in a major tournament.">
+          <YearCard className="year-card--accent year-card--chart" year="/2016" title="Portugal’s first victory in a major tournament.">
             <div className="line-chart" aria-hidden="true" />
           </YearCard>
           <div className="hero-verbs hero-verbs--left">
