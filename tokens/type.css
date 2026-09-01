@@ -40,40 +40,52 @@
 @media (max-width: 1599px) {
   :root {
     --size-hero: 120px;
-    --size-display: 96px;
-    --size-h1: 48px;
+    --size-display: 120px;
+    --size-h1: 56px;
     --size-kicker: 28px;
     --size-stat: 48px;
     --size-note: 28px;
+    --leading-hero: 0.9;
+    --leading-display: 0.9;
+    --size-lede: 24px;
   }
 }
 
 @media (max-width: 1139px) {
   :root {
-    --size-hero: 80px;
-    --size-display: 64px;
-    --size-h1: 36px;
+    --size-hero: 96px;
+    --size-display: 96px;
+    --size-h1: 48px;
     --size-kicker: 24px;
     --size-stat: 40px;
+    --size-lede: 20px;
+    --leading-hero: 0.9;
+    --leading-display: 0.9;
   }
 }
 
 @media (max-width: 767px) {
   :root {
-    --size-hero: 56px;
-    --size-display: 56px;
+    --size-hero: 80px;
+    --size-display: 80px;
     --size-h1: 32px;
-    --size-lede: 20px;
+    --size-lede: 18px;
     --size-button: 18px;
-    --size-nav: 16px;
-    --size-kicker: 17px;
+    --size-nav: 14px;
+    --size-kicker: 24px;
+    --leading-hero: 0.9;
+    --leading-display: 0.9;
   }
 }
 
 @media (max-width: 449px) {
   :root {
-    --size-hero: 39px;
-    --size-display: 39px;
+    --size-hero: 56px;
+    --size-display: 56px;
     --size-h1: 28px;
+    --size-lede: 16px;
+    --size-kicker: 24px;
+    --leading-hero: 0.9;
+    --leading-display: 0.9;
   }
 }

@@ -24,21 +24,31 @@
 
 @media (max-width: 1599px) {
   :root {
+    --section-y: 72px;
     --hero-line: 84px;
   }
 }
 
 @media (max-width: 1139px) {
   :root {
-    --hero-line: 80px;
+    --page-gutter: 32px;
+    --section-y: 64px;
+    --header-h: 64px;
+    --hero-line: 67px;
   }
 }
 
 @media (max-width: 767px) {
   :root {
-    --page-gutter: 20px;
-    --section-y: 40px;
-    --header-h: 70px;
-    --hero-line: 56px;
+    --page-gutter: 24px;
+    --section-y: 48px;
+    --header-h: 56px;
+    --hero-line: 72px;
+  }
+}
+
+@media (max-width: 449px) {
+  :root {
+    --hero-line: 50px;
   }
 }
