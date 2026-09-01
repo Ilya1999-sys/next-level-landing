@@ -42,6 +42,10 @@ const BAR_PAIRS: Array<[number, number]> = [
   [48, 4],
 ];
 
+const MATCH_REVIEW_MINUTES = ["120", "105", "90", "75", "60", "45", "30", "15", "1"];
+const MATCH_REVIEW_FRANCE = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+const MATCH_REVIEW_PORTUGAL = [0, 1, 4, 5, 6, 7, 8];
+
 function ModeStack() {
   return (
     <>
@@ -121,26 +125,70 @@ export function HeroSection() {
               </div>
               <ArrowLink />
             </header>
-            <div className="timeline" aria-hidden="true">
-              <span className="timeline__col">
-                {Array.from({ length: 10 }, (_, index) => (
-                  <i key={index} className={index === 4 ? "dot dot--lg" : "dot"} />
+            <div className="match-review-graph" aria-hidden="true">
+              <div className="match-review-graph__axis">
+                {MATCH_REVIEW_MINUTES.map((minute) => (
+                  <span key={minute}>{minute}</span>
                 ))}
-                <small>France</small>
-              </span>
-              <span className="timeline__col">
-                {Array.from({ length: 8 }, (_, index) => (
-                  <i key={index} className={index === 3 ? "dot dot--lg" : "dot"} />
-                ))}
-                <small>Portugal</small>
-              </span>
+              </div>
+              <div className="match-review-graph__cols">
+                <div className="match-review-graph__col">
+                  {MATCH_REVIEW_FRANCE.map((index) => (
+                    <i key={`fr-${index}`} className="dot dot--soft" style={{ ["--row" as string]: index + 1 }} />
+                  ))}
+                  <small>France</small>
+                </div>
+                <div className="match-review-graph__col">
+                  {MATCH_REVIEW_PORTUGAL.map((index) => (
+                    <i
+                      key={`pt-${index}`}
+                      className={`dot dot--soft${index === 0 ? " dot--lg dot--white" : ""}`}
+                      style={{ ["--row" as string]: index + 1 }}
+                    />
+                  ))}
+                  <small>Portugal</small>
+                </div>
+              </div>
             </div>
           </article>
         </div>
 
         <div className="hero-block hero-block--story">
           <YearCard className="year-card--accent year-card--chart" year="/2016" title="Portugal’s first victory in a major tournament.">
-            <div className="line-chart" aria-hidden="true" />
+            <div className="victory-graph" aria-hidden="true">
+              <div className="victory-graph__axis-y">
+                {["13", "12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1"].map((value) => (
+                  <span key={value}>{value}</span>
+                ))}
+              </div>
+              <div className="victory-graph__plot">
+                <svg viewBox="0 0 340 340" preserveAspectRatio="none">
+                  <polyline points="20,300 70,250 120,250 170,210 220,170 270,60 320,60" className="victory-line victory-line--faded" />
+                  <polyline points="20,320 70,320 120,250 170,230 220,210 270,170 320,150" className="victory-line victory-line--main" />
+                  {[["20", "320"], ["70", "320"], ["120", "250"], ["170", "230"], ["220", "210"], ["270", "170"], ["320", "150"]].map(([x, y]) => (
+                    <circle key={`pt-main-${x}`} cx={x} cy={y} r="5" className="victory-dot victory-dot--main" />
+                  ))}
+                  {[["20", "300"], ["70", "250"], ["120", "250"], ["170", "210"], ["220", "170"], ["270", "60"], ["320", "60"]].map(([x, y]) => (
+                    <circle key={`pt-fade-${x}`} cx={x} cy={y} r="5" className="victory-dot victory-dot--faded" />
+                  ))}
+                </svg>
+                <div className="victory-graph__axis-x">
+                  {["1", "2", "3", "4", "5", "6", "7"].map((value) => (
+                    <span key={value}>{value}</span>
+                  ))}
+                </div>
+              </div>
+              <div className="victory-graph__legend">
+                <p>
+                  <i className="dot dot--white" />
+                  Portugal goals
+                </p>
+                <p>
+                  <i className="dot dot--soft" />
+                  France goals
+                </p>
+              </div>
+            </div>
           </YearCard>
           <div className="hero-verbs hero-verbs--left">
             <div className="hero-row hero-row--tight hero-row--kicker">
@@ -260,6 +308,22 @@ export function StorySection() {
       <div className="shell">
         <div className="story-stage">
           <p className="story-caption story-caption--top">{story.title}</p>
+          <div className="story-circle story-circle--left">
+            <CircleStat value="31" label="goals scored" accent />
+          </div>
+          <article className="story-match-card">
+            <header className="year-card__top">
+              <div>
+                <p className="fact-card__label">Match review</p>
+                <p className="year-card__title">2:0 Wales</p>
+              </div>
+              <ArrowLink />
+            </header>
+            <div className="circle-row">
+              <CircleStat value="17" label="shots on goal" accent />
+              <CircleStat value="46%" label="ball possession" />
+            </div>
+          </article>
           <div className="hud">
             <span className="icon-btn">
               <img src="/figma/landing/icon-arrow.svg" alt="" width={32} height={32} />
@@ -278,10 +342,7 @@ export function StorySection() {
               <img src="/figma/landing/icon-arrow.svg" alt="" width={32} height={32} />
             </span>
           </div>
-          <article className="hud-card hud-card--rate">
-            <p>Rate players</p>
-          </article>
-          <div className="story-orbit__center">
+          <div className="story-circle story-circle--right">
             <CircleStat value="77" label="goals scored" accent />
           </div>
           <article className="smart-facts">
@@ -304,9 +365,6 @@ export function StorySection() {
             <span>Behind goal</span>
             <span>Drone</span>
             <small>mode</small>
-          </article>
-          <article className="hud-card hud-card--health">
-            <p>Health players</p>
           </article>
           <p className="story-caption story-caption--bottom">{story.footer}</p>
         </div>
@@ -371,7 +429,7 @@ export function MomentsSection() {
               <p className="fact-card__tag">324 fans discussions</p>
             </div>
           </article>
-          <YearCard year="/2008" title="Russia, incredible comebacks and golden Spain">
+          <YearCard className="year-card--wide" year="/2008" title="Russia, incredible comebacks and golden Spain">
             <div className="circle-row">
               <CircleStat value="77" label="goals scored" accent />
               <CircleStat value="31" label="matches played" />
