@@ -13,9 +13,11 @@ export default function HomePage() {
   return (
     <main>
       <HeroSection />
-      <ConceptSection />
-      <ModesSection />
-      <StorySection />
+      <div className="band band--white">
+        <ConceptSection />
+        <ModesSection />
+        <StorySection />
+      </div>
       <MomentsSection />
       <MatchViewSection />
       <PlayerFactsSection />

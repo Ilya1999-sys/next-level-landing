@@ -64,7 +64,7 @@ export function HeroSection() {
     <section id="top" className="section section--cover">
       <div className="shell hero-collage">
         <div className="hero-block">
-          <div className="hero-row">
+          <div className="hero-row hero-row--lead">
             <YearCard year="/2006" title="The incredible Zidane">
               <div className="circle-row">
                 <CircleStat value="3" label="Zidane goals" accent />
@@ -100,7 +100,7 @@ export function HeroSection() {
           <div className="hero-row">
             <p className="display-word">a</p>
             <i className="blob blob--accent" />
-            <i className="blob blob--accent" />
+            <i className="blob blob--light" />
             <p className="display-word">match</p>
             <FactCard label="Nostalgia fact" value="18" text="years ago, you watched your first match" tag="EURO—2008" />
           </div>
@@ -143,8 +143,10 @@ export function HeroSection() {
             <div className="line-chart" aria-hidden="true" />
           </YearCard>
           <div className="hero-verbs hero-verbs--left">
-            <p className="display-kicker">the</p>
-            <p className="display-word">story</p>
+            <div className="hero-row hero-row--tight hero-row--kicker">
+              <p className="display-kicker">the</p>
+              <p className="display-word">story</p>
+            </div>
             <p className="display-word">behind</p>
             <p className="display-word">every</p>
             <p className="display-word">moment</p>
@@ -236,7 +238,7 @@ export function ModesSection() {
   return (
     <section id={modes.id} className="section">
       <div className="shell">
-        <h2 className="section-title section-title--center">{modes.title}</h2>
+        <h2 className="section-title section-title--center section-title--display">{modes.title}</h2>
         <div className="mode-grid">
           {modes.items.map((item) => (
             <article key={item.name} className={`mode-col mode-col--${item.theme}`} style={{ ["--mode-accent" as string]: item.accent }}>
@@ -257,13 +259,11 @@ export function StorySection() {
     <section id={story.id} className="section">
       <div className="shell">
         <div className="story-stage">
-          <p className="story-caption">{story.title}</p>
+          <p className="story-caption story-caption--top">{story.title}</p>
           <div className="hud">
-            <div className="hud__nav" aria-hidden="true">
-              <span className="icon-btn">
-                <img src="/figma/landing/icon-arrow.svg" alt="" width={32} height={32} />
-              </span>
-            </div>
+            <span className="icon-btn">
+              <img src="/figma/landing/icon-arrow.svg" alt="" width={32} height={32} />
+            </span>
             <div className="hud__score">
               <img className="crest" src="/figma/landing/crest-portugal.png" alt="" width={72} height={72} />
               <p>Por</p>
@@ -274,24 +274,20 @@ export function StorySection() {
               <p>Fra</p>
               <img className="crest" src="/figma/landing/crest-france.png" alt="" width={72} height={72} />
             </div>
+            <span className="icon-btn icon-btn--ghost">
+              <img src="/figma/landing/icon-arrow.svg" alt="" width={32} height={32} />
+            </span>
           </div>
-          <div className="story-orbit">
-            <article className="hud-card">
-              <p>Rate players</p>
-            </article>
-            <article className="view-mode">
-              <p>View mode</p>
-              <span className="is-on">Player</span>
-              <span>Referee</span>
-              <span>Behind goal</span>
-              <span>Drone</span>
-            </article>
-            <div className="story-orbit__center">
-              <CircleStat value="77" label="goals scored" accent />
-            </div>
-            <article className="smart-facts">
-              <p>smart facts</p>
-              <div>
+          <article className="hud-card hud-card--rate">
+            <p>Rate players</p>
+          </article>
+          <div className="story-orbit__center">
+            <CircleStat value="77" label="goals scored" accent />
+          </div>
+          <article className="smart-facts">
+            <p>smart facts</p>
+            {Array.from({ length: 3 }, (_, index) => (
+              <div key={index}>
                 <p className="fact-card__tag">
                   <i className="status-dot" />
                   EURO—2008
@@ -299,12 +295,20 @@ export function StorySection() {
                 <b>France: the home favorite</b>
                 <span>Five wins, 13 goals and a 10-match winning streak against Portugal.</span>
               </div>
-            </article>
-            <article className="hud-card">
-              <p>Health players</p>
-            </article>
-          </div>
-          <p className="story-caption">{story.footer}</p>
+            ))}
+          </article>
+          <article className="view-mode">
+            <p>View mode</p>
+            <span className="is-on">Player</span>
+            <span>Referee</span>
+            <span>Behind goal</span>
+            <span>Drone</span>
+            <small>mode</small>
+          </article>
+          <article className="hud-card hud-card--health">
+            <p>Health players</p>
+          </article>
+          <p className="story-caption story-caption--bottom">{story.footer}</p>
         </div>
       </div>
     </section>
@@ -401,8 +405,8 @@ export function MatchViewSection() {
 export function PlayerFactsSection() {
   return (
     <section id={playerFacts.id} className="section section--player">
-      <div className="shell player-facts">
-        <h2 className="section-title section-title--center">{playerFacts.title}</h2>
+      <div className="player-facts">
+        <h2 className="section-title section-title--center section-title--display">{playerFacts.title}</h2>
         <img className="player-facts__photo" src="/figma/landing/ronaldo.png" alt="Cristiano Ronaldo" />
         <article className="player-note player-note--career">
           <p className="fact-card__tag">
@@ -435,13 +439,12 @@ export function ExperienceSection() {
   return (
     <section className="section section--experience">
       <div className="shell experience">
-        <div className="experience__row">
+        <div className="experience__row experience__row--choose">
           <div className="hero-verbs hero-verbs--end">
             <p className="display-word">Choose</p>
             <p className="display-word">how</p>
           </div>
           <FactCard
-            tall
             label="Goals scored and missed"
             value="9—5"
             text="The total difference between goals scored and conceded by the Portuguese national team"
@@ -449,8 +452,8 @@ export function ExperienceSection() {
             <Dots items={DOT_PATTERN} />
           </FactCard>
         </div>
-        <div className="experience__row">
-          <FactCard tall label="Wins fact" value="1" text="regular-time victory over Wales in the entire tournament">
+        <div className="experience__row experience__row--you">
+          <FactCard label="Wins fact" value="1" text="regular-time victory over Wales in the entire tournament">
             <Bars pairs={[[24, 24], [72, 72], [24, 24]]} />
           </FactCard>
           <div className="hero-verbs">

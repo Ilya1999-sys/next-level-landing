@@ -6,6 +6,7 @@
   --bg-ink: var(--color-accent-secondary);
   --bg-accent: var(--color-accent-primary);
   --bg-mark: var(--color-accent-tertiary);
+  --bg-white: var(--color-white);
 
   --text: var(--color-text-primary);
   --text-on-dark: var(--color-text-secondary);

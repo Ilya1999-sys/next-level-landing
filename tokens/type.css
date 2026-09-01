@@ -1,31 +1,61 @@
-/* Figma type: Cartograph Mono CF (primary) + Geneva (secondary). */
+/* Figma design-mode type: Cartograph Mono CF + Geneva. */
 
 :root {
-  --font-family-primary: "Cartograph Mono CF", ui-monospace, monospace;
-  --font-family-secondary: Geneva, system-ui, sans-serif;
+  --font-family-primary: "Cartograph Mono CF", Geneva, ui-monospace, monospace;
+  --font-family-secondary: Geneva, "Cartograph Mono CF", ui-monospace, monospace;
 
-  --size-hero: clamp(39px, 9vw, 152px);
-  --size-display: clamp(32px, 7.5vw, 120px);
-  --size-h1: clamp(28px, 4vw, 64px);
-  --size-h2: clamp(28px, 2.4vw, 36px);
-  --size-h3: 24px;
-  --size-t1: 18px;
-  --size-t2: 15px;
+  --size-hero: 180px;
+  --size-display: 120px;
+  --size-h1: 64px;
+  --size-h2: 28px;
+  --size-h3: 20px;
+  --size-lede: 24px;
+  --size-note: 36px;
+  --size-stat: 64px;
+  --size-kicker: 40px;
+  --size-t1: 15px;
+  --size-t2: 13px;
   --size-t3: 12px;
-  --size-button: 20px;
+  --size-button: 24px;
+  --size-nav: 18px;
 
   --weight-regular: 400;
+  --weight-h3: 700;
+  --weight-h2: 900;
 
   --leading-hero: 0.9;
   --leading-display: 0.9;
-  --leading-h3: 32px;
-  --leading-t1: 27px;
-  --leading-t2: 22px;
+  --leading-h2: 40px;
+  --leading-h3: 28px;
+  --leading-lede: 28px;
+  --leading-t1: 20px;
+  --leading-t2: 16px;
   --leading-t3: 15px;
-  --leading-button: 28px;
+  --leading-button: 24px;
 
   --tracking-display: 0.01px;
   --tracking-label: 0.01px;
+}
+
+@media (max-width: 1599px) {
+  :root {
+    --size-hero: 120px;
+    --size-display: 96px;
+    --size-h1: 48px;
+    --size-kicker: 28px;
+    --size-stat: 48px;
+    --size-note: 28px;
+  }
+}
+
+@media (max-width: 1139px) {
+  :root {
+    --size-hero: 80px;
+    --size-display: 64px;
+    --size-h1: 36px;
+    --size-kicker: 24px;
+    --size-stat: 40px;
+  }
 }
 
 @media (max-width: 767px) {
@@ -33,8 +63,10 @@
     --size-hero: 56px;
     --size-display: 56px;
     --size-h1: 32px;
-    --size-t1: 16px;
+    --size-lede: 20px;
     --size-button: 18px;
+    --size-nav: 16px;
+    --size-kicker: 17px;
   }
 }
 

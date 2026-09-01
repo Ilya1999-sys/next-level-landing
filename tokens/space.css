@@ -19,6 +19,19 @@
   --page-gutter: 40px;
   --section-y: 80px;
   --header-h: 80px;
+  --hero-line: 126px;
+}
+
+@media (max-width: 1599px) {
+  :root {
+    --hero-line: 84px;
+  }
+}
+
+@media (max-width: 1139px) {
+  :root {
+    --hero-line: 80px;
+  }
 }
 
 @media (max-width: 767px) {
@@ -26,5 +39,6 @@
     --page-gutter: 20px;
     --section-y: 40px;
     --header-h: 70px;
+    --hero-line: 56px;
   }
 }
