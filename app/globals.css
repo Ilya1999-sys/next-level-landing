@@ -104,7 +104,7 @@ button {
   z-index: 1;
   background: var(--bg-white);
   padding-top: 160px;
-  padding-bottom: 0;
+  padding-bottom: 40px;
 }
 
 .display-word {
@@ -568,6 +568,7 @@ button {
 }
 
 .year-card--accent .icon-btn {
+  position: relative;
   background: #fff;
 }
 
@@ -577,6 +578,10 @@ button {
 
 .year-card--accent .icon-btn::before {
   content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  display: block;
   width: 32px;
   height: 32px;
   background: var(--bg-accent);
@@ -644,6 +649,8 @@ button {
 }
 
 .match-review-graph__col small {
+  grid-row: 10;
+  align-self: end;
   margin-top: 10px;
   font-family: var(--font-ui);
   font-size: var(--size-t2);
@@ -843,7 +850,7 @@ button {
   position: relative;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  grid-template-rows: 148px 345px 345px 464px 148px;
+  grid-template-rows: 148px auto auto auto 148px;
   gap: 20px;
   background: var(--bg-page);
   overflow: hidden;
@@ -868,6 +875,11 @@ button {
   text-align: center;
   text-transform: uppercase;
   color: var(--text);
+}
+
+.story-caption--top,
+.story-caption--bottom {
+  width: 100%;
 }
 
 .story-caption--top {
@@ -906,6 +918,9 @@ button {
   grid-column: 2;
   grid-row: 3;
   z-index: 3;
+  align-self: start;
+  width: 100%;
+  min-width: 0;
 }
 
 .hud {
@@ -921,6 +936,8 @@ button {
   background: var(--bg-glass);
   color: var(--text-on-dark);
   backdrop-filter: blur(var(--blur-glass));
+  width: 100%;
+  min-width: 0;
 }
 
 .hud .icon-btn {
@@ -990,6 +1007,8 @@ button {
   gap: 12px;
   text-align: center;
   text-transform: uppercase;
+  width: 100%;
+  min-width: 0;
 }
 
 .view-mode span {
@@ -1017,6 +1036,8 @@ button {
   width: 100%;
   display: grid;
   gap: 20px;
+  align-self: start;
+  min-width: 0;
 }
 
 .smart-facts b {
@@ -1051,6 +1072,10 @@ button {
   height: var(--hero-line);
   border-radius: var(--radius-xl);
   background: var(--bg-muted);
+}
+
+.pill--accent {
+  background: var(--bg-accent);
 }
 
 .display-word--center {
@@ -1111,7 +1136,7 @@ button {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-template-rows: repeat(5, min-content);
   gap: 40px;
-  overflow: visible;
+  overflow: clip;
   clip-path: inset(0 -50% -12px -50%);
 }
 
@@ -1257,6 +1282,8 @@ button {
   align-items: center;
   justify-content: center;
   gap: 8px;
+  padding-bottom: 12px;
+  overflow: visible;
 }
 
 .site-footer {
@@ -1302,7 +1329,23 @@ button {
   }
 
   .hero-block--story {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(300px, 0.9fr) minmax(0, 1.1fr);
+    align-items: stretch;
+  }
+
+  .hero-block--story > .year-card--chart {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+  }
+
+  .hero-block--story > .hero-verbs {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .hero-block--story > .hero-stack {
+    grid-column: 2;
+    grid-row: 2;
   }
 
   .experience__row--you {
@@ -1333,6 +1376,7 @@ button {
 
   .section--experience {
     padding-top: 120px;
+    padding-bottom: 32px;
   }
 }
 
@@ -1385,7 +1429,7 @@ button {
   }
 
   .story-stage {
-    grid-template-rows: 118px 230px 260px 464px 118px;
+    grid-template-rows: 118px auto auto auto 118px;
     padding-inline: 32px;
   }
 
