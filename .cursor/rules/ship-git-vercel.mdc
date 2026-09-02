@@ -9,8 +9,8 @@ When landing work is done (layout, styles, assets, copy, or rules), ship it in t
 
 1. Commit the relevant files to Git. Do not wait for “запушь” / “собери”.
 2. Push the current branch to `origin`.
-3. Deploy production with `npx vercel --prod --yes`.
-4. Return the production URL.
+3. Deploy production with `npx vercel --prod --yes --scope next-level-1999`.
+4. Return the production URL: https://next-level-landing.vercel.app
 
 Do not commit `tsconfig.tsbuildinfo`, `.env`, or other generated/secret files.
 Do not amend a pushed commit. Create a new commit instead.
