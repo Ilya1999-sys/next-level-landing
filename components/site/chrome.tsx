@@ -9,7 +9,7 @@ export function SiteHeader() {
 
   useEffect(() => {
     const onResize = () => {
-      if (window.innerWidth > 767) setOpen(false);
+      if (window.innerWidth > 1023) setOpen(false);
     };
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);

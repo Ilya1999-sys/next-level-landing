@@ -96,7 +96,7 @@ button {
   position: relative;
   z-index: 2;
   padding: 0;
-  overflow: visible;
+  overflow: clip;
 }
 
 .section--experience {
@@ -200,6 +200,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: nowrap;
   gap: var(--space-l);
   min-height: var(--header-h);
   padding-block: 10px;
@@ -212,10 +213,16 @@ button {
 
 .site-nav {
   display: flex;
+  flex-wrap: nowrap;
   gap: 40px;
   font-size: var(--size-nav);
   line-height: var(--leading-lede);
   color: var(--text);
+}
+
+.site-nav a {
+  flex: none;
+  white-space: nowrap;
 }
 
 .site-nav a,
@@ -1166,7 +1173,7 @@ button {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-template-rows: repeat(5, min-content);
   gap: 40px;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .player-facts .section-title {
@@ -1600,7 +1607,7 @@ button {
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   .site-nav {
     display: none;
   }
@@ -1611,6 +1618,23 @@ button {
     width: 40px;
     height: 40px;
   }
+
+  .site-nav-mobile {
+    display: grid;
+    gap: 8px;
+    padding: 12px var(--page-gutter) 20px;
+  }
+
+  .site-nav-mobile a {
+    padding: 16px 20px;
+    border-radius: 16px;
+    background: var(--bg-surface);
+    font-size: var(--size-t1);
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 767px) {
 
   .site-header__cta {
     min-height: 50px;
