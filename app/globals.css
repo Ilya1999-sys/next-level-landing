@@ -123,10 +123,13 @@ button {
 .display-kicker {
   font-family: var(--font-display);
   font-size: var(--size-kicker);
-  line-height: var(--leading-hero);
+  line-height: 1;
   font-weight: var(--weight-regular);
   text-transform: uppercase;
-  color: var(--text);
+  color: var(--text-on-dark);
+  white-space: nowrap;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
 }
 
 .section-title {
@@ -174,6 +177,15 @@ button {
 .btn--primary {
   background: var(--bg-accent);
   color: var(--text-on-accent);
+  box-shadow: inset 0 0 0 2px var(--bg-accent);
+  transition: background-color 150ms ease, color 150ms ease, box-shadow 150ms ease;
+}
+
+.btn--primary:hover,
+.btn--primary:focus-visible {
+  background: transparent;
+  color: #012fff;
+  box-shadow: inset 0 0 0 2px #012fff;
 }
 
 .site-header {
@@ -247,11 +259,14 @@ button {
   gap: 8px;
 }
 
-.hero-row .display-word,
-.hero-row .display-kicker {
+.hero-row .display-word {
   display: flex;
   align-items: center;
   height: var(--hero-line);
+}
+
+.hero-row .display-kicker {
+  align-self: flex-start;
 }
 
 .hero-row .fact-card,
@@ -280,7 +295,7 @@ button {
 }
 
 .hero-row--kicker {
-  align-items: flex-end;
+  align-items: flex-start;
   width: auto;
 }
 
@@ -863,14 +878,15 @@ button {
   z-index: 4;
   grid-column: 2 / span 2;
   margin: 0;
-  padding: 40px;
+  padding: 40px 90px;
+  min-height: 148px;
   display: grid;
   place-items: center;
   border-radius: 40px;
   background: var(--bg-surface);
   font-family: var(--font-display);
-  font-size: var(--size-h1);
-  line-height: 1;
+  font-size: var(--size-h2);
+  line-height: var(--leading-h2);
   font-weight: var(--weight-regular);
   text-align: center;
   text-transform: uppercase;
@@ -921,6 +937,8 @@ button {
   align-self: start;
   width: 100%;
   min-width: 0;
+  min-height: 260px;
+  background: var(--bg-surface);
 }
 
 .hud {
@@ -1067,6 +1085,18 @@ button {
   gap: 8px;
 }
 
+.moments-row--end {
+  align-items: flex-end;
+}
+
+.moments-row .display-kicker {
+  align-self: flex-start;
+}
+
+.moments-row--end .display-kicker {
+  align-self: flex-end;
+}
+
 .pill {
   flex: 1;
   height: var(--hero-line);
@@ -1136,8 +1166,7 @@ button {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-template-rows: repeat(5, min-content);
   gap: 40px;
-  overflow: clip;
-  clip-path: inset(0 -50% -12px -50%);
+  overflow: visible;
 }
 
 .player-facts .section-title {
@@ -1153,15 +1182,14 @@ button {
 
 .player-facts__photo {
   position: absolute;
-  left: calc(50% + 42px);
-  top: -381px;
+  left: 50%;
+  top: 0;
   z-index: 2;
-  width: 144.7%;
+  width: min(1320px, 88%);
   max-width: none;
-  aspect-ratio: 1 / 1;
   height: auto;
-  object-fit: cover;
-  object-position: 50% 34%;
+  object-fit: contain;
+  object-position: top center;
   transform: translateX(-50%);
   pointer-events: none;
 }
@@ -1320,6 +1348,14 @@ button {
 .site-footer__grid .btn {
   background: var(--bg-accent);
   color: #fff;
+  box-shadow: inset 0 0 0 2px var(--bg-accent);
+}
+
+.site-footer__grid .btn:hover,
+.site-footer__grid .btn:focus-visible {
+  background: transparent;
+  color: #012fff;
+  box-shadow: inset 0 0 0 2px #012fff;
 }
 
 @media (max-width: 1599px) {
@@ -1348,6 +1384,18 @@ button {
     grid-row: 2;
   }
 
+  .year-card--xl-only,
+  .hero-block--story > .hero-stack > .year-card:first-child {
+    display: none;
+  }
+
+  .story-caption {
+    font-size: var(--size-h2);
+    line-height: var(--leading-h2);
+    padding: 40px;
+    min-height: 166px;
+  }
+
   .experience__row--you {
     grid-template-columns: minmax(180px, 1fr) max-content;
   }
@@ -1362,8 +1410,8 @@ button {
   }
 
   .player-facts__photo {
-    width: 193%;
-    top: -381px;
+    width: min(1100px, 96%);
+    top: 0;
   }
 
   .year-card--chart {
@@ -1403,9 +1451,26 @@ button {
   }
 
   .concept-head,
-  .hero-block--verbs {
+  .hero-block--verbs,
+  .hero-block--story {
     grid-template-columns: 1fr;
     display: grid;
+  }
+
+  .hero-block--story > .year-card--chart,
+  .hero-block--story > .hero-verbs,
+  .hero-block--story > .hero-stack {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .year-card--xl-only,
+  .hero-block--story > .hero-stack > .year-card:first-child {
+    display: none;
+  }
+
+  .hud {
+    display: none;
   }
 
   .experience__row--choose,
@@ -1447,18 +1512,25 @@ button {
 
   .player-facts .section-title {
     padding-top: 0;
-    text-align: left;
+    text-align: center;
+  }
+
+  .story-caption {
+    font-size: var(--size-h2);
+    line-height: var(--leading-h2);
+    padding: 32px;
+    min-height: 118px;
   }
 
   .player-facts__photo {
     position: absolute;
     left: 50%;
-    top: -252px;
-    width: 190%;
+    top: 0;
+    width: min(720px, 100%);
     max-width: none;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    object-position: 50% 34%;
+    height: auto;
+    object-fit: contain;
+    object-position: top center;
     transform: translateX(-50%);
     z-index: 2;
   }
@@ -1629,8 +1701,12 @@ button {
   }
 
   .player-facts__photo {
-    top: -252px;
-    width: 190%;
+    top: 0;
+    width: min(640px, 100%);
+  }
+
+  .hud {
+    display: none;
   }
 
   .player-note--career {

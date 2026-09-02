@@ -200,7 +200,7 @@ export function HeroSection() {
             <p className="display-word">moment</p>
           </div>
           <div className="hero-stack">
-            <article className="year-card">
+            <article className="year-card year-card--xl-only">
               <header className="year-card__top">
                 <div>
                   <p className="fact-card__label">Match review</p>
@@ -311,7 +311,7 @@ export function StorySection() {
           <div className="story-circle story-circle--left">
             <CircleStat value="31" label="goals scored" accent />
           </div>
-          <article className="story-match-card">
+          <article className="year-card story-match-card">
             <header className="year-card__top">
               <div>
                 <p className="fact-card__label">Match review</p>
@@ -383,7 +383,7 @@ export function MomentsSection() {
             <p className="display-word">Watch</p>
             <i className="pill pill--accent" />
           </div>
-          <div className="moments-row">
+          <div className="moments-row moments-row--end">
             <span className="icon-pill icon-pill--wide">
               <img src="/figma/landing/icon-games.svg" alt="" width={40} height={40} />
               <b>2</b>
