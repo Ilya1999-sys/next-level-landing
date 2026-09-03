@@ -833,7 +833,6 @@ button {
 .mode-col__cards {
   display: grid;
   gap: 8px;
-  perspective: 900px;
 }
 
 .mode-col--legends {
@@ -1847,54 +1846,7 @@ button {
     transition: transform 220ms ease;
   }
 
-  .card-motion--tilt:hover {
+  .card-motion--tilt.card-motion--in:hover {
     transform: rotate(var(--card-tilt, 0deg));
-  }
-
-  .card-motion--gsap {
-    position: relative;
-    transform-style: preserve-3d;
-    transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
-    transition: transform 160ms ease-out;
-  }
-
-  .card-motion--gsap.card-motion--slide-left:not(.card-motion--in),
-  .card-motion--gsap.card-motion--slide-right:not(.card-motion--in) {
-    transform: translate3d(var(--slide-x, 0), 0, 0);
-    transition:
-      opacity var(--card-enter, 1800ms) cubic-bezier(0.22, 1, 0.36, 1),
-      transform var(--card-enter, 1800ms) cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .card-motion--gsap.card-motion--slide-left:not(.card-motion--in) {
-    --slide-x: -80px;
-  }
-
-  .card-motion--gsap.card-motion--slide-right:not(.card-motion--in) {
-    --slide-x: 80px;
-  }
-
-  .card-motion--gsap.card-motion--in {
-    transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
-  }
-
-  .card-motion--gsap::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    pointer-events: none;
-    opacity: 0;
-    background: radial-gradient(
-      circle at var(--mx, 50%) var(--my, 50%),
-      color-mix(in srgb, #fff 38%, transparent),
-      transparent 55%
-    );
-    mix-blend-mode: overlay;
-    transition: opacity 160ms ease;
-  }
-
-  .card-motion--gsap:hover::after {
-    opacity: 1;
   }
 }

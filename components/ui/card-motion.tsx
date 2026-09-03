@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 
 const CARD_SELECTOR = [
+  ".mode-col",
   ".fact-card",
   ".year-card",
   ".player-note",
@@ -11,8 +12,7 @@ const CARD_SELECTOR = [
   ".smart-facts",
 ].join(", ");
 
-const TILTS = [-5, -10, 5, 10] as const;
-const MODE_CARD_SELECTOR = ".mode-col .fact-card, .mode-col .year-card";
+const TILTS = [-5, -4, -3, 3, 4, 5] as const;
 
 function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -22,11 +22,16 @@ function sectionOf(card: HTMLElement) {
   return card.closest("section") ?? card.parentElement ?? document.body;
 }
 
+function isInnerModeCard(card: HTMLElement) {
+  return Boolean(card.closest(".mode-col")) && !card.classList.contains("mode-col");
+}
+
 function pickSlideCards(cards: HTMLElement[]) {
   const bySection = new Map<Element, HTMLElement[]>();
 
   for (const card of cards) {
     if (card.classList.contains("player-stat")) continue;
+    if (card.classList.contains("mode-col--nostalgia")) continue;
     const section = sectionOf(card);
     const list = bySection.get(section) ?? [];
     list.push(card);
@@ -54,53 +59,19 @@ function slideSide(card: HTMLElement) {
   return cardMid <= sectionMid ? "left" : "right";
 }
 
-function attachGsapTilt(card: HTMLElement) {
-  const reset = () => {
-    card.style.setProperty("--rx", "0deg");
-    card.style.setProperty("--ry", "0deg");
-    card.style.setProperty("--mx", "50%");
-    card.style.setProperty("--my", "50%");
-  };
-
-  const onMove = (event: MouseEvent) => {
-    const box = card.getBoundingClientRect();
-    const px = (event.clientX - box.left) / box.width;
-    const py = (event.clientY - box.top) / box.height;
-    card.style.setProperty("--rx", `${((0.5 - py) * 14).toFixed(2)}deg`);
-    card.style.setProperty("--ry", `${((px - 0.5) * 18).toFixed(2)}deg`);
-    card.style.setProperty("--mx", `${(px * 100).toFixed(1)}%`);
-    card.style.setProperty("--my", `${(py * 100).toFixed(1)}%`);
-  };
-
-  reset();
-  card.addEventListener("mousemove", onMove);
-  card.addEventListener("mouseleave", reset);
-
-  return () => {
-    card.removeEventListener("mousemove", onMove);
-    card.removeEventListener("mouseleave", reset);
-  };
-}
-
 export function CardMotion() {
   useEffect(() => {
     if (prefersReducedMotion()) return;
 
-    const cards = Array.from(document.querySelectorAll<HTMLElement>(CARD_SELECTOR));
+    const cards = Array.from(document.querySelectorAll<HTMLElement>(CARD_SELECTOR)).filter(
+      (card) => !isInnerModeCard(card),
+    );
     const slideCards = pickSlideCards(cards);
-    const cleanups: Array<() => void> = [];
 
     cards.forEach((card, index) => {
-      card.classList.add("card-motion");
+      card.classList.add("card-motion", "card-motion--tilt");
       const chaotic = (card.textContent?.length ?? 0) * 13 + index * 7;
       card.style.setProperty("--card-tilt", `${TILTS[chaotic % TILTS.length]}deg`);
-
-      if (card.matches(MODE_CARD_SELECTOR)) {
-        card.classList.add("card-motion--gsap");
-        cleanups.push(attachGsapTilt(card));
-      } else {
-        card.classList.add("card-motion--tilt");
-      }
 
       if (card.classList.contains("player-stat")) {
         card.classList.add("card-motion--fade");
@@ -122,7 +93,7 @@ export function CardMotion() {
       ),
     );
 
-    const triggerOffset = () => (window.innerWidth < 768 ? 80 : 200);
+    const triggerOffset = () => (window.innerWidth < 768 ? 180 : 400);
 
     const crossedLine = (card: HTMLElement) => {
       const rect = card.getBoundingClientRect();
@@ -168,7 +139,6 @@ export function CardMotion() {
 
     return () => {
       teardown();
-      cleanups.forEach((fn) => fn());
     };
   }, []);
 
