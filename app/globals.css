@@ -1803,3 +1803,33 @@ button {
     width: calc(100% - var(--page-gutter) * 2);
   }
 }
+
+/* experiment/card-motion — first pass, easy to revert */
+@media (prefers-reduced-motion: no-preference) {
+  .card-motion {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+    transition:
+      opacity 560ms cubic-bezier(0.22, 1, 0.36, 1) var(--card-delay, 0ms),
+      transform 560ms cubic-bezier(0.22, 1, 0.36, 1) var(--card-delay, 0ms),
+      box-shadow 180ms ease;
+  }
+
+  .card-motion.card-motion--in {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .card-motion.card-motion--in:hover {
+    transform: translate3d(0, -6px, 0);
+    box-shadow: 0 18px 40px color-mix(in srgb, #012fff 14%, transparent);
+  }
+
+  .card-motion .icon-btn {
+    transition: transform 180ms ease, background-color 180ms ease;
+  }
+
+  .card-motion.card-motion--in:hover .icon-btn {
+    transform: rotate(16deg);
+  }
+}
