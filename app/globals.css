@@ -918,9 +918,9 @@ button {
 }
 
 .story-circle {
-  z-index: 3;
-  width: min(345px, 100%);
-  min-width: 120px;
+  z-index: 30;
+  width: min(172px, 50%);
+  min-width: 72px;
   aspect-ratio: 1;
   justify-self: center;
   align-self: start;
@@ -962,9 +962,6 @@ button {
 .story-circle--left {
   grid-column: 1;
   grid-row: 2;
-  width: min(172px, 50%);
-  min-width: 72px;
-  z-index: 30;
 }
 
 .story-circle--right {
@@ -1751,11 +1748,6 @@ button {
 
   .story-circle:not(.story-circle--free) {
     position: relative;
-    width: min(180px, 72vw);
-    min-width: 96px;
-  }
-
-  .story-circle--left:not(.story-circle--free) {
     width: min(90px, 36vw);
     min-width: 64px;
   }
@@ -1910,38 +1902,54 @@ button {
   }
 
   .experience__it--play .blob--enter-left {
-    animation: blob-enter-left 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: blob-enter-left 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
   .experience__it--play .blob--target-left {
-    animation: blob-recoil-right 0.45s 0.8s both;
+    animation: blob-recoil-right 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.6s both;
   }
 
   .experience__it--play .blob--enter-right {
-    animation: blob-enter-right 0.75s cubic-bezier(0.16, 1, 0.3, 1) 1.25s both;
+    animation: blob-enter-right 0.9s cubic-bezier(0.22, 1, 0.36, 1) 1.35s both;
   }
 
   .experience__it--play .blob--target-right {
-    animation: blob-recoil-left 0.5s 2s both;
+    animation: blob-recoil-left 0.55s cubic-bezier(0.22, 1, 0.36, 1) 1.95s both;
   }
 }
 
 @keyframes blob-enter-left {
-  from {
+  0% {
     transform: translate3d(-120vw, 0, 0);
   }
 
-  to {
+  78% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  86% {
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  100% {
     transform: translate3d(0, 0, 0);
   }
 }
 
 @keyframes blob-enter-right {
-  from {
+  0% {
     transform: translate3d(120vw, 0, 0);
   }
 
-  to {
+  78% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  86% {
+    transform: translate3d(10px, 0, 0);
+  }
+
+  100% {
     transform: translate3d(0, 0, 0);
   }
 }
@@ -1949,12 +1957,10 @@ button {
 @keyframes blob-recoil-right {
   0% {
     transform: translate3d(0, 0, 0);
-    animation-timing-function: cubic-bezier(0.2, 0, 0.1, 1);
   }
 
-  24% {
+  22% {
     transform: translate3d(50px, 0, 0);
-    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   100% {
@@ -1965,12 +1971,10 @@ button {
 @keyframes blob-recoil-left {
   0% {
     transform: translate3d(0, 0, 0);
-    animation-timing-function: cubic-bezier(0.2, 0, 0.1, 1);
   }
 
-  24% {
+  22% {
     transform: translate3d(-50px, 0, 0);
-    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   100% {
