@@ -104,35 +104,70 @@ export function CardMotion() {
 
       if (card.classList.contains("player-stat")) {
         card.classList.add("card-motion--fade");
+        card.style.setProperty("--card-enter", "2000ms");
       } else if (slideCards.has(card)) {
         card.classList.add(`card-motion--slide-${slideSide(card)}`);
+        card.style.setProperty("--card-enter", `${1500 + (chaotic % 6) * 100}ms`);
       } else {
         card.classList.add("card-motion--in");
       }
     });
 
-    const reveal = (card: Element) => card.classList.add("card-motion--in");
-    const pending = cards.filter(
-      (card) => card.classList.contains("card-motion--fade") || card.className.includes("card-motion--slide-"),
+    const pending = new Set(
+      cards.filter(
+        (card) =>
+          card.classList.contains("card-motion--fade") ||
+          card.classList.contains("card-motion--slide-left") ||
+          card.classList.contains("card-motion--slide-right"),
+      ),
     );
 
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
-          reveal(entry.target);
-          io.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.18, rootMargin: "0px 0px -8% 0px" },
-    );
+    const triggerOffset = () => (window.innerWidth < 768 ? 80 : 200);
 
-    pending.forEach((card) => io.observe(card));
-    const fallback = window.setTimeout(() => pending.forEach(reveal), 2200);
+    const crossedLine = (card: HTMLElement) => {
+      const rect = card.getBoundingClientRect();
+      const line = window.innerHeight - triggerOffset();
+      return rect.top <= line && rect.bottom > 0;
+    };
+
+    const reveal = (card: HTMLElement) => {
+      card.classList.add("card-motion--in");
+      pending.delete(card);
+      const settle = (event: TransitionEvent) => {
+        if (event.target !== card) return;
+        if (event.propertyName !== "transform" && event.propertyName !== "opacity") return;
+        card.classList.add("card-motion--settled");
+        card.removeEventListener("transitionend", settle);
+      };
+      card.addEventListener("transitionend", settle);
+    };
+
+    let frame = 0;
+    const tick = () => {
+      frame = 0;
+      for (const card of [...pending]) {
+        if (crossedLine(card)) reveal(card);
+      }
+      if (pending.size === 0) teardown();
+    };
+
+    const onScrollOrResize = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(tick);
+    };
+
+    const teardown = () => {
+      window.removeEventListener("scroll", onScrollOrResize);
+      window.removeEventListener("resize", onScrollOrResize);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize);
+    if (window.scrollY > 0) onScrollOrResize();
 
     return () => {
-      window.clearTimeout(fallback);
-      io.disconnect();
+      teardown();
       cleanups.forEach((fn) => fn());
     };
   }, []);

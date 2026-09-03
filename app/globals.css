@@ -1816,20 +1816,20 @@ button {
   .card-motion--slide-left,
   .card-motion--slide-right {
     transition:
-      opacity 720ms cubic-bezier(0.22, 1, 0.36, 1),
-      transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+      opacity var(--card-enter, 1800ms) cubic-bezier(0.22, 1, 0.36, 1),
+      transform var(--card-enter, 1800ms) cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .card-motion--slide-left {
-    transform: translate3d(-56px, 0, 0);
+    transform: translate3d(-80px, 0, 0);
   }
 
   .card-motion--slide-right {
-    transform: translate3d(56px, 0, 0);
+    transform: translate3d(80px, 0, 0);
   }
 
   .card-motion--fade {
-    transition: opacity 2s ease;
+    transition: opacity 2000ms ease;
   }
 
   .card-motion--slide-left.card-motion--in,
@@ -1841,6 +1841,9 @@ button {
 
   .card-motion--tilt {
     transform-origin: center center;
+  }
+
+  .card-motion--tilt.card-motion--settled {
     transition: transform 220ms ease;
   }
 
@@ -1858,14 +1861,17 @@ button {
   .card-motion--gsap.card-motion--slide-left:not(.card-motion--in),
   .card-motion--gsap.card-motion--slide-right:not(.card-motion--in) {
     transform: translate3d(var(--slide-x, 0), 0, 0);
+    transition:
+      opacity var(--card-enter, 1800ms) cubic-bezier(0.22, 1, 0.36, 1),
+      transform var(--card-enter, 1800ms) cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .card-motion--gsap.card-motion--slide-left:not(.card-motion--in) {
-    --slide-x: -56px;
+    --slide-x: -80px;
   }
 
   .card-motion--gsap.card-motion--slide-right:not(.card-motion--in) {
-    --slide-x: 56px;
+    --slide-x: 80px;
   }
 
   .card-motion--gsap.card-motion--in {
