@@ -80,6 +80,7 @@ export function CardMotion() {
     const slideCards = pickSlideCards(cards);
 
     cards.forEach((card, index) => {
+      if (card.classList.contains("card-motion--locked")) return;
       card.classList.add("card-motion");
       const chaotic = (card.textContent?.length ?? 0) * 13 + index * 7;
 
@@ -103,7 +104,7 @@ export function CardMotion() {
       ),
     );
 
-    const triggerOffset = () => (window.innerWidth < 768 ? 180 : 400);
+    const triggerOffset = () => (window.innerWidth < 768 ? 150 : 300);
 
     const crossedLine = (card: HTMLElement) => {
       const rect = card.getBoundingClientRect();
@@ -112,7 +113,7 @@ export function CardMotion() {
     };
 
     const reveal = (card: HTMLElement) => {
-      card.classList.add("card-motion--in");
+      card.classList.add("card-motion--in", "card-motion--locked");
       pending.delete(card);
     };
 
@@ -138,7 +139,7 @@ export function CardMotion() {
 
     window.addEventListener("scroll", onScrollOrResize, { passive: true });
     window.addEventListener("resize", onScrollOrResize);
-    if (window.scrollY > 0) onScrollOrResize();
+    onScrollOrResize();
 
     return () => {
       teardown();

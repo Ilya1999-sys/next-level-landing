@@ -949,7 +949,7 @@ button {
   left: 0;
   top: 0;
   margin: 0;
-  z-index: 2;
+  z-index: 30;
   pointer-events: none;
   will-change: transform;
 }
@@ -962,6 +962,9 @@ button {
 .story-circle--left {
   grid-column: 1;
   grid-row: 2;
+  width: min(172px, 50%);
+  min-width: 72px;
+  z-index: 30;
 }
 
 .story-circle--right {
@@ -1161,29 +1164,13 @@ button {
   opacity: 0;
   filter: blur(7px);
   transition:
-    opacity 280ms ease,
-    filter 340ms ease;
+    opacity 186ms ease,
+    filter 226ms ease;
 }
 
 .type-ch--in {
   opacity: 1;
   filter: none;
-}
-
-.type-caret {
-  display: inline-block;
-  width: 0.06em;
-  height: 0.78em;
-  margin-left: 0.06em;
-  vertical-align: -0.04em;
-  background: currentColor;
-  animation: type-caret 0.9s steps(1) infinite;
-}
-
-@keyframes type-caret {
-  50% {
-    opacity: 0;
-  }
 }
 
 .moments-chip {
@@ -1768,6 +1755,11 @@ button {
     min-width: 96px;
   }
 
+  .story-circle--left:not(.story-circle--free) {
+    width: min(90px, 36vw);
+    min-width: 64px;
+  }
+
   .story-caption {
     border-radius: 24px;
   }
@@ -1896,8 +1888,13 @@ button {
   }
 
   .card-motion--slide-left.card-motion--in,
-  .card-motion--slide-right.card-motion--in {
+  .card-motion--slide-right.card-motion--in,
+  .card-motion--locked {
     transform: none;
+  }
+
+  .card-motion--locked {
+    transform: none !important;
   }
 
   .card-motion--fade.card-motion--in {
@@ -1913,19 +1910,19 @@ button {
   }
 
   .experience__it--play .blob--enter-left {
-    animation: blob-enter-left 1.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: blob-enter-left 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
   .experience__it--play .blob--target-left {
-    animation: blob-recoil-right 0.9s 1.6s both;
+    animation: blob-recoil-right 0.45s 0.8s both;
   }
 
   .experience__it--play .blob--enter-right {
-    animation: blob-enter-right 1.5s cubic-bezier(0.16, 1, 0.3, 1) 2.5s both;
+    animation: blob-enter-right 0.75s cubic-bezier(0.16, 1, 0.3, 1) 1.25s both;
   }
 
   .experience__it--play .blob--target-right {
-    animation: blob-recoil-left 1s 4s both;
+    animation: blob-recoil-left 0.5s 2s both;
   }
 }
 

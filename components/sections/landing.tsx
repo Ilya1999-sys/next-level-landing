@@ -72,7 +72,7 @@ export function HeroSection() {
       <div className="shell hero-collage">
         <div className="hero-block">
           <div className="hero-row hero-row--lead">
-            <YearCard year="/2006" title="The incredible Zidane">
+            <YearCard className="year-card--zidane" year="/2006" title="The incredible Zidane">
               <div className="circle-row">
                 <CircleStat value="3" label="Zidane goals" accent />
                 <CircleStat value="0" label="France defeats" />

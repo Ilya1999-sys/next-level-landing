@@ -2,14 +2,7 @@
 
 import { useEffect, useRef, type ReactNode } from "react";
 
-const OBSTACLE_SELECTOR = [
-  ".story-caption",
-  ".story-match-card",
-  ".hud",
-  ".view-mode",
-  ".smart-facts",
-].join(", ");
-
+const GOAL_SELECTOR = ".story-caption";
 const CRUISE = 34;
 const TOUCH = 1;
 
@@ -37,8 +30,8 @@ function bounceNormal(ball: Ball, nx: number, ny: number) {
   if (vn >= 0) return;
   ball.vx -= vn * nx;
   ball.vy -= vn * ny;
-  ball.vx += nx * 12;
-  ball.vy += ny * 12;
+  ball.vx += nx * 10;
+  ball.vy += ny * 10;
   setCruise(ball);
 }
 
@@ -94,19 +87,19 @@ export function StoryStage({ children }: { children: ReactNode }) {
     const stage = ref.current;
     if (!stage || prefersReducedMotion()) return;
 
-    const circleEls = Array.from(stage.querySelectorAll<HTMLElement>(".story-circle"));
-    if (circleEls.length < 2) return;
+    const ballEl = stage.querySelector<HTMLElement>(".story-circle--left");
+    if (!ballEl) return;
 
-    const triggerOffset = () => (window.innerWidth < 768 ? 180 : 400);
-    let balls: Ball[] = [];
+    const triggerOffset = () => (window.innerWidth < 768 ? 150 : 300);
+    let ball: Ball | null = null;
     let running = false;
     let frame = 0;
     let last = 0;
     let started = false;
 
-    const measureObstacles = () => {
+    const measureGoals = () => {
       const stageBox = stage.getBoundingClientRect();
-      return Array.from(stage.querySelectorAll<HTMLElement>(OBSTACLE_SELECTOR))
+      return Array.from(stage.querySelectorAll<HTMLElement>(GOAL_SELECTOR))
         .filter((el) => getComputedStyle(el).display !== "none")
         .map((el) => {
           const box = el.getBoundingClientRect();
@@ -119,101 +112,70 @@ export function StoryStage({ children }: { children: ReactNode }) {
         });
     };
 
-    const apply = (ball: Ball) => {
-      ball.el.style.transform = `translate3d(${ball.x - ball.r}px, ${ball.y - ball.r}px, 0)`;
+    const apply = (item: Ball) => {
+      item.el.style.transform = `translate3d(${item.x - item.r}px, ${item.y - item.r}px, 0)`;
     };
 
     const place = () => {
       const stageBox = stage.getBoundingClientRect();
       stage.style.minHeight = `${stageBox.height}px`;
-      const measured = circleEls.map((el) => el.getBoundingClientRect());
-      const r = Math.max(
-        60,
-        ...measured.map((box) => Math.min(box.width || 0, box.height || Infinity) / 2),
-      );
-
-      balls = circleEls.map((el, index) => {
-        const box = measured[index];
-        let x = box.left - stageBox.left + (box.width || r * 2) / 2;
-        let y = box.top - stageBox.top + (box.height || r * 2) / 2;
-        if (!box.width || !box.height) {
-          x = index === 0 ? r + 24 : stageBox.width - r - 24;
-          y = index === 0 ? r + 160 : stageBox.height / 2;
-        }
-        return {
-          el,
-          x,
-          y,
-          vx: index === 0 ? CRUISE : -CRUISE,
-          vy: index === 0 ? CRUISE * 0.55 : -CRUISE * 0.62,
-          r,
-        };
-      });
-
-      for (const ball of balls) {
-        setCruise(ball);
-        ball.el.classList.add("story-circle--free");
-        ball.el.style.width = `${r * 2}px`;
-        ball.el.style.height = `${r * 2}px`;
-        apply(ball);
+      const box = ballEl.getBoundingClientRect();
+      const r = Math.max(24, Math.min(box.width || 172, box.height || 172) / 2);
+      let x = box.left - stageBox.left + (box.width || r * 2) / 2;
+      let y = box.top - stageBox.top + (box.height || r * 2) / 2;
+      if (!box.width || !box.height) {
+        x = r + 24;
+        y = r + 160;
       }
+      ball = {
+        el: ballEl,
+        x,
+        y,
+        vx: CRUISE,
+        vy: CRUISE * 0.62,
+        r,
+      };
+      setCruise(ball);
+      ballEl.classList.add("story-circle--free");
+      ballEl.style.width = `${r * 2}px`;
+      ballEl.style.height = `${r * 2}px`;
+      apply(ball);
     };
 
     const step = (time: number) => {
+      if (!ball) return;
       const dt = Math.min(32, time - last) / 1000;
       last = time;
       const stageBox = stage.getBoundingClientRect();
       const width = stageBox.width;
       const height = stageBox.height;
-      const obstacles = measureObstacles();
+      const goals = measureGoals();
 
-      for (const ball of balls) {
-        ball.x += ball.vx * dt;
-        ball.y += ball.vy * dt;
+      ball.x += ball.vx * dt;
+      ball.y += ball.vy * dt;
 
-        if (ball.x < ball.r) {
-          ball.x = ball.r;
-          bounceNormal(ball, 1, 0);
-        } else if (ball.x > width - ball.r) {
-          ball.x = width - ball.r;
-          bounceNormal(ball, -1, 0);
-        }
-
-        if (ball.y < ball.r) {
-          ball.y = ball.r;
-          bounceNormal(ball, 0, 1);
-        } else if (ball.y > height - ball.r) {
-          ball.y = height - ball.r;
-          bounceNormal(ball, 0, -1);
-        }
-
-        for (const obstacle of obstacles) {
-          resolveCircleAabb(ball, obstacle.left, obstacle.top, obstacle.right, obstacle.bottom);
-        }
-
-        setCruise(ball);
-        apply(ball);
+      if (ball.x < ball.r) {
+        ball.x = ball.r;
+        bounceNormal(ball, 1, 0);
+      } else if (ball.x > width - ball.r) {
+        ball.x = width - ball.r;
+        bounceNormal(ball, -1, 0);
       }
 
-      if (balls.length === 2) {
-        const [a, b] = balls;
-        const dx = b.x - a.x;
-        const dy = b.y - a.y;
-        const dist = Math.hypot(dx, dy) || 0.001;
-        const min = a.r + b.r - TOUCH;
-        if (dist < min) {
-          const nx = dx / dist;
-          const ny = dy / dist;
-          const overlap = (min - dist) / 2;
-          a.x -= nx * overlap;
-          a.y -= ny * overlap;
-          b.x += nx * overlap;
-          b.y += ny * overlap;
-          bounceNormal(a, -nx, -ny);
-          bounceNormal(b, nx, ny);
-        }
+      if (ball.y < ball.r) {
+        ball.y = ball.r;
+        bounceNormal(ball, 0, 1);
+      } else if (ball.y > height - ball.r) {
+        ball.y = height - ball.r;
+        bounceNormal(ball, 0, -1);
       }
 
+      for (const goal of goals) {
+        resolveCircleAabb(ball, goal.left, goal.top, goal.right, goal.bottom);
+      }
+
+      setCruise(ball);
+      apply(ball);
       frame = window.requestAnimationFrame(step);
     };
 
@@ -235,12 +197,10 @@ export function StoryStage({ children }: { children: ReactNode }) {
     };
 
     const onResize = () => {
-      if (!running) return;
+      if (!running || !ball) return;
       const stageBox = stage.getBoundingClientRect();
-      for (const ball of balls) {
-        ball.x = Math.min(stageBox.width - ball.r, Math.max(ball.r, ball.x));
-        ball.y = Math.min(stageBox.height - ball.r, Math.max(ball.r, ball.y));
-      }
+      ball.x = Math.min(stageBox.width - ball.r, Math.max(ball.r, ball.x));
+      ball.y = Math.min(stageBox.height - ball.r, Math.max(ball.r, ball.y));
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });

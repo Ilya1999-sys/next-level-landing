@@ -8,7 +8,7 @@ function prefersReducedMotion() {
 
 function inView(node: HTMLElement) {
   const rect = node.getBoundingClientRect();
-  const offset = window.innerWidth < 768 ? 180 : 400;
+  const offset = window.innerWidth < 768 ? 150 : 300;
   return rect.top <= window.innerHeight - offset && rect.bottom > 0;
 }
 
@@ -17,8 +17,8 @@ export function TypeSequence({
   as: Tag = "div",
   className = "",
   lineClassName = "",
-  charMs = 150,
-  pauseMs = 360,
+  charMs = 100,
+  pauseMs = 240,
 }: {
   lines: string[];
   as?: ElementType;
@@ -30,14 +30,12 @@ export function TypeSequence({
   const rootRef = useRef<HTMLElement | null>(null);
   const total = lines.reduce((sum, line) => sum + line.length, 0);
   const [shown, setShown] = useState(0);
-  const [done, setDone] = useState(false);
 
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
     if (prefersReducedMotion()) {
       setShown(total);
-      setDone(true);
       return;
     }
 
@@ -57,10 +55,7 @@ export function TypeSequence({
       const tick = () => {
         index += 1;
         setShown(index);
-        if (index >= total) {
-          setDone(true);
-          return;
-        }
+        if (index >= total) return;
         const atWordEnd = ends.includes(index) && index < total;
         timer = window.setTimeout(tick, atWordEnd ? pauseMs : charMs);
       };
@@ -87,7 +82,6 @@ export function TypeSequence({
       {lines.map((line, lineIndex) => {
         const start = cursor;
         cursor += line.length;
-        const active = !done && shown >= start && shown < start + line.length;
         return (
           <span key={`${line}-${lineIndex}`} className={lineClassName}>
             {line.split("").map((char, charIndex) => (
@@ -98,7 +92,6 @@ export function TypeSequence({
                 {char}
               </span>
             ))}
-            {active ? <span className="type-caret" aria-hidden="true" /> : null}
           </span>
         );
       })}
@@ -115,5 +108,5 @@ export function TypeWord({
   as?: ElementType;
   className?: string;
 }) {
-  return <TypeSequence lines={[text]} as={as} className={className} charMs={160} pauseMs={280} />;
+  return <TypeSequence lines={[text]} as={as} className={className} charMs={107} pauseMs={187} />;
 }
