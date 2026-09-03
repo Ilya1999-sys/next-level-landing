@@ -1,17 +1,34 @@
 ---
-description: After landing changes, commit to Git and deploy to Vercel production without waiting for a separate request.
+description: After landing changes, commit, push, and deploy. Preview-only until the user explicitly asks for production.
 alwaysApply: true
 ---
 
 # Ship to Git and Vercel
 
-When landing work is done (layout, styles, assets, copy, or rules), ship it in the same turn:
+When landing work is done (layout, styles, assets, copy, or rules), ship it in the same turn.
+
+## Current target: motion preview only
+
+Work on `experiment/card-motion`. Do not change https://next-level-landing.vercel.app unless the user explicitly asks.
 
 1. Commit the relevant files to Git. Do not wait for “запушь” / “собери”.
 2. Push the current branch to `origin`.
-3. Deploy production with `npx vercel --prod --yes --scope next-level-1999`.
-4. Return the production URL: https://next-level-landing.vercel.app
+3. Deploy **preview** with `npx vercel --yes --scope next-level-1999` (never `--prod`).
+4. Point the public alias at that deployment:
+   `npx vercel alias set <preview-url> next-level-landing-motion.vercel.app --scope next-level-1999`
+5. Return https://next-level-landing-motion.vercel.app/ plus the existing `_vercel_share` query (preview URLs are SSO-gated without it).
 
-Do not commit `tsconfig.tsbuildinfo`, `.env`, or other generated/secret files.
-Do not amend a pushed commit. Create a new commit instead.
-Do not force-push `main`.
+## Production (only if the user asks)
+
+If the user explicitly asks to update https://next-level-landing.vercel.app:
+
+1. Commit and push as above (usually on `main`).
+2. Deploy with `npx vercel --prod --yes --scope next-level-1999`.
+3. Return https://next-level-landing.vercel.app
+
+## Do not
+
+- Do not commit `tsconfig.tsbuildinfo`, `.env`, or other generated/secret files.
+- Do not amend a pushed commit. Create a new commit instead.
+- Do not force-push `main`.
+- Do not alias the experiment over `next-level-landing.vercel.app`.
