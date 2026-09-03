@@ -959,6 +959,13 @@ button {
   height: 100%;
 }
 
+.story-circle--left,
+.story-circle--right {
+  width: min(172px, 50%);
+  min-width: 72px;
+  aspect-ratio: 1;
+}
+
 .story-circle--left {
   grid-column: 1;
   grid-row: 2;
@@ -1902,33 +1909,31 @@ button {
   }
 
   .experience__it--play .blob--enter-left {
-    animation: blob-enter-left 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: blob-enter-left 1.8s both;
   }
 
   .experience__it--play .blob--target-left {
-    animation: blob-recoil-right 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.6s both;
+    animation: blob-recoil-right 0.85s 1.48s both;
   }
 
   .experience__it--play .blob--enter-right {
-    animation: blob-enter-right 0.9s cubic-bezier(0.22, 1, 0.36, 1) 1.35s both;
+    animation: blob-enter-right 1.8s 2.55s both;
   }
 
   .experience__it--play .blob--target-right {
-    animation: blob-recoil-left 0.55s cubic-bezier(0.22, 1, 0.36, 1) 1.95s both;
+    animation: blob-recoil-left 0.85s 4.03s both;
   }
 }
 
 @keyframes blob-enter-left {
   0% {
     transform: translate3d(-120vw, 0, 0);
+    animation-timing-function: cubic-bezier(0.22, 0.72, 0.28, 1);
   }
 
-  78% {
-    transform: translate3d(0, 0, 0);
-  }
-
-  86% {
-    transform: translate3d(-10px, 0, 0);
+  88% {
+    transform: translate3d(6px, 0, 0);
+    animation-timing-function: cubic-bezier(0.2, 0.8, 0.28, 1);
   }
 
   100% {
@@ -1939,14 +1944,12 @@ button {
 @keyframes blob-enter-right {
   0% {
     transform: translate3d(120vw, 0, 0);
+    animation-timing-function: cubic-bezier(0.22, 0.72, 0.28, 1);
   }
 
-  78% {
-    transform: translate3d(0, 0, 0);
-  }
-
-  86% {
-    transform: translate3d(10px, 0, 0);
+  88% {
+    transform: translate3d(-6px, 0, 0);
+    animation-timing-function: cubic-bezier(0.2, 0.8, 0.28, 1);
   }
 
   100% {
@@ -1957,10 +1960,12 @@ button {
 @keyframes blob-recoil-right {
   0% {
     transform: translate3d(0, 0, 0);
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.3, 1);
   }
 
-  22% {
+  18% {
     transform: translate3d(50px, 0, 0);
+    animation-timing-function: cubic-bezier(0.33, 0, 0.2, 1);
   }
 
   100% {
@@ -1971,10 +1976,12 @@ button {
 @keyframes blob-recoil-left {
   0% {
     transform: translate3d(0, 0, 0);
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.3, 1);
   }
 
-  22% {
+  18% {
     transform: translate3d(-50px, 0, 0);
+    animation-timing-function: cubic-bezier(0.33, 0, 0.2, 1);
   }
 
   100% {

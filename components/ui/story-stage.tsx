@@ -5,7 +5,7 @@ import { useEffect, useRef, type ReactNode } from "react";
 const GOAL_SELECTOR = ".story-caption";
 const CRUISE = 88;
 const TOUCH = 1;
-const FIELD_RADIUS = 80;
+const EDGE = 1;
 
 function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -36,12 +36,17 @@ function bounceNormal(ball: Ball, nx: number, ny: number) {
   setCruise(ball);
 }
 
-function clampToField(ball: Ball, width: number, height: number) {
-  const r = ball.r;
+function clampToField(
+  ball: Ball,
+  width: number,
+  height: number,
+  fieldRadius: number,
+) {
+  const r = ball.r + EDGE;
   ball.x = Math.min(width - r, Math.max(r, ball.x));
   ball.y = Math.min(height - r, Math.max(r, ball.y));
 
-  const corner = FIELD_RADIUS;
+  const corner = fieldRadius;
   const corners: Array<[number, number, boolean, boolean]> = [
     [corner, corner, true, true],
     [width - corner, corner, false, true],
@@ -77,6 +82,11 @@ function clampToField(ball: Ball, width: number, height: number) {
 
   ball.x = Math.min(width - r, Math.max(r, ball.x));
   ball.y = Math.min(height - r, Math.max(r, ball.y));
+}
+
+function fieldRadiusOf(stage: HTMLElement) {
+  const radius = parseFloat(getComputedStyle(stage).borderTopLeftRadius);
+  return Number.isFinite(radius) && radius > 0 ? radius : 80;
 }
 
 function resolveCircleAabb(
@@ -186,7 +196,7 @@ export function StoryStage({ children }: { children: ReactNode }) {
           r,
         };
         setCruise(item);
-        clampToField(item, stageBox.width, stageBox.height);
+        clampToField(item, stageBox.width, stageBox.height, fieldRadiusOf(stage));
         el.classList.add("story-circle--free");
         el.style.width = `${r * 2}px`;
         el.style.height = `${r * 2}px`;
@@ -201,25 +211,27 @@ export function StoryStage({ children }: { children: ReactNode }) {
       const stageBox = stage.getBoundingClientRect();
       const width = stageBox.width;
       const height = stageBox.height;
+      const fieldRadius = fieldRadiusOf(stage);
       const goals = measureGoals();
 
       for (const ball of balls) {
         ball.x += ball.vx * dt;
         ball.y += ball.vy * dt;
 
-        if (ball.x <= ball.r) {
-          ball.x = ball.r;
+        const edge = ball.r + EDGE;
+        if (ball.x <= edge) {
+          ball.x = edge;
           bounceNormal(ball, 1, 0);
-        } else if (ball.x >= width - ball.r) {
-          ball.x = width - ball.r;
+        } else if (ball.x >= width - edge) {
+          ball.x = width - edge;
           bounceNormal(ball, -1, 0);
         }
 
-        if (ball.y <= ball.r) {
-          ball.y = ball.r;
+        if (ball.y <= edge) {
+          ball.y = edge;
           bounceNormal(ball, 0, 1);
-        } else if (ball.y >= height - ball.r) {
-          ball.y = height - ball.r;
+        } else if (ball.y >= height - edge) {
+          ball.y = height - edge;
           bounceNormal(ball, 0, -1);
         }
 
@@ -228,7 +240,7 @@ export function StoryStage({ children }: { children: ReactNode }) {
         }
 
         setCruise(ball);
-        clampToField(ball, width, height);
+        clampToField(ball, width, height, fieldRadius);
         apply(ball);
       }
 
@@ -248,8 +260,8 @@ export function StoryStage({ children }: { children: ReactNode }) {
           b.y += ny * overlap;
           bounceNormal(a, -nx, -ny);
           bounceNormal(b, nx, ny);
-          clampToField(a, width, height);
-          clampToField(b, width, height);
+          clampToField(a, width, height, fieldRadius);
+          clampToField(b, width, height, fieldRadius);
           apply(a);
           apply(b);
         }
@@ -278,8 +290,9 @@ export function StoryStage({ children }: { children: ReactNode }) {
     const onResize = () => {
       if (!running) return;
       const stageBox = stage.getBoundingClientRect();
+      const fieldRadius = fieldRadiusOf(stage);
       for (const ball of balls) {
-        clampToField(ball, stageBox.width, stageBox.height);
+        clampToField(ball, stageBox.width, stageBox.height, fieldRadius);
       }
     };
 
