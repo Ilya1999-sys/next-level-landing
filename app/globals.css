@@ -919,12 +919,16 @@ button {
 
 .story-circle {
   z-index: 3;
+  width: min(345px, 100%);
+  min-width: 120px;
+  aspect-ratio: 1;
+  justify-self: center;
+  align-self: start;
 }
 
 .story-circle .circle-stat {
-  width: min(345px, 100%);
-  aspect-ratio: 1;
-  height: auto;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   container-type: size;
   overflow: hidden;
@@ -963,6 +967,8 @@ button {
 .story-circle--right {
   grid-column: 4;
   grid-row: 3;
+  justify-self: end;
+  align-self: center;
 }
 
 .story-match-card {
@@ -1149,18 +1155,35 @@ button {
 
 .type-word {
   position: relative;
-  display: grid;
-  justify-items: center;
 }
 
-.type-word__ghost {
-  visibility: hidden;
+.type-ch {
+  opacity: 0;
+  filter: blur(7px);
+  transition:
+    opacity 280ms ease,
+    filter 340ms ease;
 }
 
-.type-word__live {
-  position: absolute;
-  inset: 0;
-  text-align: center;
+.type-ch--in {
+  opacity: 1;
+  filter: none;
+}
+
+.type-caret {
+  display: inline-block;
+  width: 0.06em;
+  height: 0.78em;
+  margin-left: 0.06em;
+  vertical-align: -0.04em;
+  background: currentColor;
+  animation: type-caret 0.9s steps(1) infinite;
+}
+
+@keyframes type-caret {
+  50% {
+    opacity: 0;
+  }
 }
 
 .moments-chip {
@@ -1551,8 +1574,7 @@ button {
 
   .story-circle .circle-stat {
     width: 100%;
-    height: auto;
-    aspect-ratio: 1 / 1;
+    height: 100%;
   }
 
   .player-facts {
@@ -1742,8 +1764,8 @@ button {
 
   .story-circle:not(.story-circle--free) {
     position: relative;
-    width: min(148px, 100%);
-    height: auto;
+    width: min(180px, 72vw);
+    min-width: 96px;
   }
 
   .story-caption {
@@ -1751,9 +1773,8 @@ button {
   }
 
   .story-circle .circle-stat {
-    width: min(148px, 100%);
-    height: auto;
-    aspect-ratio: 1;
+    width: 100%;
+    height: 100%;
   }
 
   .hud {

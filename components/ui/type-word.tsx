@@ -1,41 +1,74 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ElementType } from "react";
 
 function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
-export function TypeWord({ text }: { text: string }) {
-  const rootRef = useRef<HTMLParagraphElement>(null);
-  const [shown, setShown] = useState("");
+function inView(node: HTMLElement) {
+  const rect = node.getBoundingClientRect();
+  const offset = window.innerWidth < 768 ? 180 : 400;
+  return rect.top <= window.innerHeight - offset && rect.bottom > 0;
+}
+
+export function TypeSequence({
+  lines,
+  as: Tag = "div",
+  className = "",
+  lineClassName = "",
+  charMs = 150,
+  pauseMs = 360,
+}: {
+  lines: string[];
+  as?: ElementType;
+  className?: string;
+  lineClassName?: string;
+  charMs?: number;
+  pauseMs?: number;
+}) {
+  const rootRef = useRef<HTMLElement | null>(null);
+  const total = lines.reduce((sum, line) => sum + line.length, 0);
+  const [shown, setShown] = useState(0);
+  const [done, setDone] = useState(false);
 
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
     if (prefersReducedMotion()) {
-      setShown(text);
+      setShown(total);
+      setDone(true);
       return;
     }
 
     let started = false;
     let timer = 0;
-    const triggerOffset = () => (window.innerWidth < 768 ? 180 : 400);
+    const ends: number[] = [];
+    let acc = 0;
+    for (const line of lines) {
+      acc += line.length;
+      ends.push(acc);
+    }
 
     const start = () => {
       if (started) return;
       started = true;
       let index = 0;
-      timer = window.setInterval(() => {
+      const tick = () => {
         index += 1;
-        setShown(text.slice(0, index));
-        if (index >= text.length) window.clearInterval(timer);
-      }, Math.max(70, Math.round(1800 / text.length)));
+        setShown(index);
+        if (index >= total) {
+          setDone(true);
+          return;
+        }
+        const atWordEnd = ends.includes(index) && index < total;
+        timer = window.setTimeout(tick, atWordEnd ? pauseMs : charMs);
+      };
+      timer = window.setTimeout(tick, 80);
     };
 
     const onScroll = () => {
-      const rect = root.getBoundingClientRect();
-      if (rect.top <= window.innerHeight - triggerOffset() && rect.bottom > 0) start();
+      if (inView(root)) start();
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -43,16 +76,44 @@ export function TypeWord({ text }: { text: string }) {
 
     return () => {
       window.removeEventListener("scroll", onScroll);
-      window.clearInterval(timer);
+      window.clearTimeout(timer);
     };
-  }, [text]);
+  }, [charMs, pauseMs, total, lines]);
+
+  let cursor = 0;
 
   return (
-    <p ref={rootRef} className="display-word display-word--center type-word">
-      <span className="type-word__ghost" aria-hidden="true">
-        {text}
-      </span>
-      <span className="type-word__live">{shown}</span>
-    </p>
+    <Tag ref={rootRef} className={className} aria-label={lines.join(" ")}>
+      {lines.map((line, lineIndex) => {
+        const start = cursor;
+        cursor += line.length;
+        const active = !done && shown >= start && shown < start + line.length;
+        return (
+          <span key={`${line}-${lineIndex}`} className={lineClassName}>
+            {line.split("").map((char, charIndex) => (
+              <span
+                key={`${char}-${charIndex}`}
+                className={`type-ch${start + charIndex < shown ? " type-ch--in" : ""}`}
+              >
+                {char}
+              </span>
+            ))}
+            {active ? <span className="type-caret" aria-hidden="true" /> : null}
+          </span>
+        );
+      })}
+    </Tag>
   );
+}
+
+export function TypeWord({
+  text,
+  as,
+  className,
+}: {
+  text: string;
+  as?: ElementType;
+  className?: string;
+}) {
+  return <TypeSequence lines={[text]} as={as} className={className} charMs={160} pauseMs={280} />;
 }

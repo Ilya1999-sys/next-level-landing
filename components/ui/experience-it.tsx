@@ -6,6 +6,11 @@ function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
+function reachedPageEnd() {
+  const doc = document.documentElement;
+  return window.innerHeight + window.scrollY >= doc.scrollHeight - 72;
+}
+
 export function ExperienceIt() {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -13,7 +18,6 @@ export function ExperienceIt() {
     const node = ref.current;
     if (!node || prefersReducedMotion()) return;
 
-    const triggerOffset = () => (window.innerWidth < 768 ? 180 : 400);
     let started = false;
 
     const start = () => {
@@ -21,17 +25,21 @@ export function ExperienceIt() {
       started = true;
       node.classList.add("experience__it--play");
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
     };
 
     const onScroll = () => {
-      const rect = node.getBoundingClientRect();
-      if (rect.top <= window.innerHeight - triggerOffset() && rect.bottom > 0) start();
+      if (reachedPageEnd()) start();
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
     onScroll();
 
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
   return (

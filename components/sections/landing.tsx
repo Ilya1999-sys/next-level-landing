@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/cards";
 import { ExperienceIt } from "@/components/ui/experience-it";
 import { StoryStage } from "@/components/ui/story-stage";
-import { TypeWord } from "@/components/ui/type-word";
+import { TypeSequence, TypeWord } from "@/components/ui/type-word";
 import { concept, matchView, modes, playerFacts, site, story } from "@/lib/content";
 
 const DOT_PATTERN: Array<"accent" | "muted"> = [
@@ -114,12 +114,11 @@ export function HeroSection() {
         </div>
 
         <div className="hero-block hero-block--verbs">
-          <div className="hero-verbs">
-            <p className="display-word">Choose</p>
-            <p className="display-word">control</p>
-            <p className="display-word">discover</p>
-            <p className="display-word">Change</p>
-          </div>
+          <TypeSequence
+            className="hero-verbs"
+            lineClassName="display-word"
+            lines={["Choose", "control", "discover", "Change"]}
+          />
           <article className="year-card year-card--accent">
             <header className="year-card__top">
               <div>
@@ -289,7 +288,11 @@ export function ModesSection() {
   return (
     <section id={modes.id} className="section">
       <div className="shell">
-        <h2 className="section-title section-title--center section-title--display">{modes.title}</h2>
+        <TypeSequence
+          as="h2"
+          className="section-title section-title--center section-title--display"
+          lines={[modes.title]}
+        />
         <div className="mode-grid">
           {modes.items.map((item) => (
             <article key={item.name} className={`mode-col mode-col--${item.theme}`} style={{ ["--mode-accent" as string]: item.accent }}>
@@ -394,7 +397,7 @@ export function MomentsSection() {
             <p className="display-kicker">the</p>
             <p className="display-word">match</p>
           </div>
-          <TypeWord text="Understand" />
+          <TypeWord text="Understand" className="display-word display-word--center" />
           <div className="moments-row">
             <i className="pill pill--accent" />
             <p className="display-kicker">the</p>
@@ -467,7 +470,11 @@ export function PlayerFactsSection() {
   return (
     <section id={playerFacts.id} className="section section--player">
       <div className="player-facts">
-        <h2 className="section-title section-title--center section-title--display">{playerFacts.title}</h2>
+        <TypeSequence
+          as="h2"
+          className="section-title section-title--center section-title--display"
+          lines={[playerFacts.title]}
+        />
         <img className="player-facts__photo" src="/figma/landing/ronaldo.png" alt="Cristiano Ronaldo" />
         <article className="player-note player-note--career">
           <p className="fact-card__tag">
