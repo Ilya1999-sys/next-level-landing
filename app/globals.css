@@ -921,6 +921,40 @@ button {
   z-index: 3;
 }
 
+.story-circle .circle-stat {
+  width: min(345px, 100%);
+  aspect-ratio: 1;
+  height: auto;
+  border-radius: 50%;
+  container-type: size;
+  overflow: hidden;
+}
+
+.story-circle .circle-stat b {
+  font-size: 24cqmin;
+  line-height: 0.9;
+}
+
+.story-circle .circle-stat span {
+  font-size: 10.4cqmin;
+  line-height: 1.15;
+}
+
+.story-circle--free {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
+  z-index: 2;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.story-circle--free .circle-stat {
+  width: 100%;
+  height: 100%;
+}
+
 .story-circle--left {
   grid-column: 1;
   grid-row: 2;
@@ -929,12 +963,6 @@ button {
 .story-circle--right {
   grid-column: 4;
   grid-row: 3;
-}
-
-.story-circle .circle-stat {
-  width: min(345px, 100%);
-  height: min(345px, 100%);
-  margin: auto;
 }
 
 .story-match-card {
@@ -1116,6 +1144,22 @@ button {
 }
 
 .display-word--center {
+  text-align: center;
+}
+
+.type-word {
+  position: relative;
+  display: grid;
+  justify-items: center;
+}
+
+.type-word__ghost {
+  visibility: hidden;
+}
+
+.type-word__live {
+  position: absolute;
+  inset: 0;
   text-align: center;
 }
 
@@ -1685,7 +1729,6 @@ button {
   .hud,
   .view-mode,
   .smart-facts,
-  .story-circle,
   .story-match-card {
     position: relative;
     top: auto;
@@ -1697,13 +1740,20 @@ button {
     height: auto;
   }
 
+  .story-circle:not(.story-circle--free) {
+    position: relative;
+    width: min(148px, 100%);
+    height: auto;
+  }
+
   .story-caption {
     border-radius: 24px;
   }
 
   .story-circle .circle-stat {
     width: min(148px, 100%);
-    height: min(148px, 100%);
+    height: auto;
+    aspect-ratio: 1;
   }
 
   .hud {
@@ -1804,49 +1854,108 @@ button {
   }
 }
 
-/* experiment/card-motion — second pass */
+/* experiment/card-motion */
 @media (prefers-reduced-motion: no-preference) {
   .card-motion--slide-left,
-  .card-motion--slide-right,
-  .card-motion--fade {
-    opacity: 0;
-  }
-
-  .card-motion--slide-left,
   .card-motion--slide-right {
-    transition:
-      opacity var(--card-enter, 1800ms) cubic-bezier(0.22, 1, 0.36, 1),
-      transform var(--card-enter, 1800ms) cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform var(--card-enter, 1800ms) cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .card-motion--slide-left {
-    transform: translate3d(-80px, 0, 0);
+    transform: translate3d(-110vw, 0, 0);
   }
 
   .card-motion--slide-right {
-    transform: translate3d(80px, 0, 0);
+    transform: translate3d(110vw, 0, 0);
   }
 
   .card-motion--fade {
+    opacity: 0;
     transition: opacity 2000ms ease;
   }
 
   .card-motion--slide-left.card-motion--in,
-  .card-motion--slide-right.card-motion--in,
-  .card-motion--fade.card-motion--in {
-    opacity: 1;
+  .card-motion--slide-right.card-motion--in {
     transform: none;
   }
 
-  .card-motion--tilt {
-    transform-origin: center center;
+  .card-motion--fade.card-motion--in {
+    opacity: 1;
   }
 
-  .card-motion--tilt.card-motion--settled {
-    transition: transform 220ms ease;
+  .blob--enter-left {
+    transform: translate3d(-120vw, 0, 0);
   }
 
-  .card-motion--tilt.card-motion--in:hover {
-    transform: rotate(var(--card-tilt, 0deg));
+  .blob--enter-right {
+    transform: translate3d(120vw, 0, 0);
+  }
+
+  .experience__it--play .blob--enter-left {
+    animation: blob-enter-left 1.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .experience__it--play .blob--target-left {
+    animation: blob-recoil-right 0.9s 1.6s both;
+  }
+
+  .experience__it--play .blob--enter-right {
+    animation: blob-enter-right 1.5s cubic-bezier(0.16, 1, 0.3, 1) 2.5s both;
+  }
+
+  .experience__it--play .blob--target-right {
+    animation: blob-recoil-left 1s 4s both;
+  }
+}
+
+@keyframes blob-enter-left {
+  from {
+    transform: translate3d(-120vw, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes blob-enter-right {
+  from {
+    transform: translate3d(120vw, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes blob-recoil-right {
+  0% {
+    transform: translate3d(0, 0, 0);
+    animation-timing-function: cubic-bezier(0.2, 0, 0.1, 1);
+  }
+
+  24% {
+    transform: translate3d(50px, 0, 0);
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes blob-recoil-left {
+  0% {
+    transform: translate3d(0, 0, 0);
+    animation-timing-function: cubic-bezier(0.2, 0, 0.1, 1);
+  }
+
+  24% {
+    transform: translate3d(-50px, 0, 0);
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
   }
 }

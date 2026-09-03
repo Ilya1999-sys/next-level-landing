@@ -6,6 +6,9 @@ import {
   FactCard,
   YearCard,
 } from "@/components/ui/cards";
+import { ExperienceIt } from "@/components/ui/experience-it";
+import { StoryStage } from "@/components/ui/story-stage";
+import { TypeWord } from "@/components/ui/type-word";
 import { concept, matchView, modes, playerFacts, site, story } from "@/lib/content";
 
 const DOT_PATTERN: Array<"accent" | "muted"> = [
@@ -306,7 +309,7 @@ export function StorySection() {
   return (
     <section id={story.id} className="section">
       <div className="shell">
-        <div className="story-stage">
+        <StoryStage>
           <p className="story-caption story-caption--top">{story.title}</p>
           <div className="story-circle story-circle--left">
             <CircleStat value="31" label="goals scored" accent />
@@ -367,7 +370,7 @@ export function StorySection() {
             <small>mode</small>
           </article>
           <p className="story-caption story-caption--bottom">{story.footer}</p>
-        </div>
+        </StoryStage>
       </div>
     </section>
   );
@@ -391,7 +394,7 @@ export function MomentsSection() {
             <p className="display-kicker">the</p>
             <p className="display-word">match</p>
           </div>
-          <p className="display-word display-word--center">Understand</p>
+          <TypeWord text="Understand" />
           <div className="moments-row">
             <i className="pill pill--accent" />
             <p className="display-kicker">the</p>
@@ -519,13 +522,7 @@ export function ExperienceSection() {
             <p className="display-word">experience</p>
           </div>
         </div>
-        <div className="experience__it">
-          <i className="blob" />
-          <i className="blob blob--accent" />
-          <p className="display-word">it.</p>
-          <i className="blob" />
-          <i className="blob blob--accent" />
-        </div>
+        <ExperienceIt />
         <p className="sr-only">
           Open the prototype at {site.productUrl}
         </p>

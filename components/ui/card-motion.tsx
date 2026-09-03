@@ -12,7 +12,7 @@ const CARD_SELECTOR = [
   ".smart-facts",
 ].join(", ");
 
-const TILTS = [-5, -4, -3, 3, 4, 5] as const;
+const STORY_SLIDE = ".view-mode, .smart-facts, .story-match-card";
 
 function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -40,7 +40,14 @@ function pickSlideCards(cards: HTMLElement[]) {
 
   const picked = new Set<HTMLElement>();
 
-  for (const group of bySection.values()) {
+  for (const [section, group] of bySection) {
+    if (section.id === "story" || section.querySelector(".story-stage")) {
+      for (const card of group) {
+        if (card.matches(STORY_SLIDE)) picked.add(card);
+      }
+      continue;
+    }
+
     if (group.length === 0) continue;
     group.sort((a, b) => a.getBoundingClientRect().left - b.getBoundingClientRect().left);
     picked.add(group[0]);
@@ -51,6 +58,10 @@ function pickSlideCards(cards: HTMLElement[]) {
 }
 
 function slideSide(card: HTMLElement) {
+  if (card.classList.contains("view-mode") || card.classList.contains("smart-facts")) return "right";
+  if (card.classList.contains("story-match-card") || card.classList.contains("mode-col--legends")) return "left";
+  if (card.classList.contains("mode-col--drama")) return "right";
+
   const section = sectionOf(card);
   const sectionBox = section.getBoundingClientRect();
   const cardBox = card.getBoundingClientRect();
@@ -69,9 +80,8 @@ export function CardMotion() {
     const slideCards = pickSlideCards(cards);
 
     cards.forEach((card, index) => {
-      card.classList.add("card-motion", "card-motion--tilt");
+      card.classList.add("card-motion");
       const chaotic = (card.textContent?.length ?? 0) * 13 + index * 7;
-      card.style.setProperty("--card-tilt", `${TILTS[chaotic % TILTS.length]}deg`);
 
       if (card.classList.contains("player-stat")) {
         card.classList.add("card-motion--fade");
@@ -104,13 +114,6 @@ export function CardMotion() {
     const reveal = (card: HTMLElement) => {
       card.classList.add("card-motion--in");
       pending.delete(card);
-      const settle = (event: TransitionEvent) => {
-        if (event.target !== card) return;
-        if (event.propertyName !== "transform" && event.propertyName !== "opacity") return;
-        card.classList.add("card-motion--settled");
-        card.removeEventListener("transitionend", settle);
-      };
-      card.addEventListener("transitionend", settle);
     };
 
     let frame = 0;
