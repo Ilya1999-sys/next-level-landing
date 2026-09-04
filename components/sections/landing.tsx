@@ -6,9 +6,6 @@ import {
   FactCard,
   YearCard,
 } from "@/components/ui/cards";
-import { ExperienceIt } from "@/components/ui/experience-it";
-import { StoryStage } from "@/components/ui/story-stage";
-import { TypeSequence, TypeWord } from "@/components/ui/type-word";
 import { concept, matchView, modes, playerFacts, site, story } from "@/lib/content";
 
 const DOT_PATTERN: Array<"accent" | "muted"> = [
@@ -114,11 +111,12 @@ export function HeroSection() {
         </div>
 
         <div className="hero-block hero-block--verbs">
-          <TypeSequence
-            className="hero-verbs"
-            lineClassName="display-word"
-            lines={["Choose", "control", "discover", "Change"]}
-          />
+          <div className="hero-verbs">
+            <p className="display-word">Choose</p>
+            <p className="display-word">control</p>
+            <p className="display-word">discover</p>
+            <p className="display-word">Change</p>
+          </div>
           <article className="year-card year-card--accent">
             <header className="year-card__top">
               <div>
@@ -288,11 +286,7 @@ export function ModesSection() {
   return (
     <section id={modes.id} className="section">
       <div className="shell">
-        <TypeSequence
-          as="h2"
-          className="section-title section-title--center section-title--display"
-          lines={[modes.title]}
-        />
+        <h2 className="section-title section-title--center section-title--display">{modes.title}</h2>
         <div className="mode-grid">
           {modes.items.map((item) => (
             <div key={item.name} className={`mode-col-wrap mode-col-wrap--${item.theme}`}>
@@ -315,7 +309,7 @@ export function StorySection() {
   return (
     <section id={story.id} className="section">
       <div className="shell">
-        <StoryStage>
+        <div className="story-stage">
           <p className="story-caption story-caption--top">{story.title}</p>
           <div className="story-circle story-circle--left">
             <CircleStat value="31" label="goals scored" accent />
@@ -376,7 +370,7 @@ export function StorySection() {
             <small>mode</small>
           </article>
           <p className="story-caption story-caption--bottom">{story.footer}</p>
-        </StoryStage>
+        </div>
       </div>
     </section>
   );
@@ -400,7 +394,7 @@ export function MomentsSection() {
             <p className="display-kicker">the</p>
             <p className="display-word">match</p>
           </div>
-          <TypeWord text="Understand" className="display-word display-word--center" />
+          <p className="display-word display-word--center">Understand</p>
           <div className="moments-row">
             <i className="pill pill--accent" />
             <p className="display-kicker">the</p>
@@ -473,11 +467,7 @@ export function PlayerFactsSection() {
   return (
     <section id={playerFacts.id} className="section section--player">
       <div className="player-facts">
-        <TypeSequence
-          as="h2"
-          className="section-title section-title--center section-title--display"
-          lines={[playerFacts.title]}
-        />
+        <h2 className="section-title section-title--center section-title--display">{playerFacts.title}</h2>
         <img className="player-facts__photo" src="/figma/landing/ronaldo.png" alt="Cristiano Ronaldo" />
         <article className="player-note player-note--career">
           <p className="fact-card__tag">
@@ -532,7 +522,13 @@ export function ExperienceSection() {
             <p className="display-word">experience</p>
           </div>
         </div>
-        <ExperienceIt />
+        <div className="experience__it">
+          <i className="blob" />
+          <i className="blob blob--accent" />
+          <p className="display-word">it.</p>
+          <i className="blob" />
+          <i className="blob blob--accent" />
+        </div>
         <p className="sr-only">
           Open the prototype at {site.productUrl}
         </p>
