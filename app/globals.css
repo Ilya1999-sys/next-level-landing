@@ -1888,29 +1888,36 @@ button {
 @media (prefers-reduced-motion: no-preference) {
   .player-facts--motion .player-note,
   .player-facts--motion .player-stat {
-    --x: 0%;
-    --y: 0%;
-    --rot: 0deg;
-    --from-rot: 8deg;
     --i: 0;
-    transform: translate3d(0, 150%, 0) rotate(var(--from-rot));
-    transition: transform 1.05s cubic-bezier(0.22, 1.7, 0.36, 1);
-    transition-delay: calc(var(--i) * 88ms);
-    will-change: transform;
+    --tilt: 2.4deg;
+    rotate: 0deg;
+    transform: translate3d(0, 150%, 0);
+    transition:
+      transform 1.05s cubic-bezier(0.22, 1.7, 0.36, 1),
+      rotate 0.35s cubic-bezier(0.34, 1.57, 0.64, 1);
+    transition-delay: calc(var(--i) * 88ms), 0s;
+    will-change: transform, rotate;
   }
+
+  .player-facts--motion .player-note--career { --tilt: -2.1deg; }
+  .player-facts--motion .player-note--life { --tilt: 2.4deg; }
+  .player-facts--motion .player-stat--goals { --tilt: 2.1deg; }
+  .player-facts--motion .player-stat--facts { --tilt: -1.8deg; }
+  .player-facts--motion .player-stat--matches { --tilt: 2.4deg; }
+  .player-facts--motion .player-stat--events { --tilt: -2.1deg; }
 
   .player-facts--in .player-note,
   .player-facts--in .player-stat {
-    transform: translate3d(var(--x), var(--y), 0) rotate(var(--rot));
+    transform: none;
   }
 }
 
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .player-facts--in .player-note:hover,
-  .player-facts--in .player-stat:hover {
+  .player-facts--in .player-note:is(:hover, :focus-within),
+  .player-facts--in .player-stat:is(:hover, :focus-within) {
     z-index: 4;
-    transform: translate3d(0, 0, 0) rotate(0deg) scale(1.075);
-    transition: transform 0.85s cubic-bezier(0.22, 1.7, 0.36, 1);
+    rotate: var(--tilt, 2.4deg);
+    transition: rotate 0.35s 0.1s cubic-bezier(0.34, 1.57, 0.64, 1);
   }
 }
 

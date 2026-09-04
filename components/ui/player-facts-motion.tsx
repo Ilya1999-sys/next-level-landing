@@ -16,10 +16,6 @@ export function PlayerFactsMotion() {
     const cards = Array.from(root.querySelectorAll<HTMLElement>(CARD));
     cards.forEach((card, index) => {
       card.style.setProperty("--i", String(index));
-      card.style.setProperty("--x", `${(Math.random() - 0.5) * 10}%`);
-      card.style.setProperty("--y", `${(Math.random() - 0.5) * 10}%`);
-      card.style.setProperty("--rot", `${(Math.random() - 0.5) * 15}deg`);
-      card.style.setProperty("--from-rot", `${(Math.random() - 0.5) * 15}deg`);
     });
 
     const reveal = () => root.classList.add("player-facts--in");
