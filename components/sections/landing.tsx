@@ -6,6 +6,7 @@ import {
   FactCard,
   YearCard,
 } from "@/components/ui/cards";
+import { PlayerFactsMotion } from "@/components/ui/player-facts-motion";
 import { concept, matchView, modes, playerFacts, site, story } from "@/lib/content";
 
 const DOT_PATTERN: Array<"accent" | "muted"> = [
@@ -466,7 +467,8 @@ export function MatchViewSection() {
 export function PlayerFactsSection() {
   return (
     <section id={playerFacts.id} className="section section--player">
-      <div className="player-facts">
+      <PlayerFactsMotion />
+      <div className="player-facts player-facts--motion">
         <h2 className="section-title section-title--center section-title--display">{playerFacts.title}</h2>
         <img className="player-facts__photo" src="/figma/landing/ronaldo.png" alt="Cristiano Ronaldo" />
         <article className="player-note player-note--career">
