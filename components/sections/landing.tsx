@@ -295,12 +295,15 @@ export function ModesSection() {
         />
         <div className="mode-grid">
           {modes.items.map((item) => (
-            <article key={item.name} className={`mode-col mode-col--${item.theme}`} style={{ ["--mode-accent" as string]: item.accent }}>
-              <h3>{item.name}</h3>
-              <div className="mode-col__cards">
-                <ModeStack />
-              </div>
-            </article>
+            <div key={item.name} className={`mode-col-wrap mode-col-wrap--${item.theme}`}>
+              <i className="mode-col__blob" aria-hidden="true" />
+              <article className={`mode-col mode-col--${item.theme}`} style={{ ["--mode-accent" as string]: item.accent }}>
+                <h3>{item.name}</h3>
+                <div className="mode-col__cards">
+                  <ModeStack />
+                </div>
+              </article>
+            </div>
           ))}
         </div>
       </div>
