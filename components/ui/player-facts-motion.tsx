@@ -14,9 +14,17 @@ export function PlayerFactsMotion() {
     if (!root || prefersReducedMotion()) return;
 
     const cards = Array.from(root.querySelectorAll<HTMLElement>(CARD));
+    if (cards.length === 0) return;
+
     cards.forEach((card, index) => {
       card.style.setProperty("--i", String(index));
     });
+
+    const topCard =
+      root.querySelector<HTMLElement>(".player-stat--goals") || cards[0];
+
+    const vh = window.innerHeight;
+    const offsetPx = Math.min(280, Math.max(120, Math.round(vh * 0.25)));
 
     const reveal = () => root.classList.add("player-facts--in");
     const io = new IntersectionObserver(
@@ -25,9 +33,13 @@ export function PlayerFactsMotion() {
         reveal();
         io.disconnect();
       },
-      { threshold: 0, rootMargin: "0px 0px -15% 0px" },
+      {
+        threshold: 0,
+        rootMargin: `0px 0px -${offsetPx}px 0px`,
+      }
     );
-    io.observe(root);
+
+    io.observe(topCard);
 
     return () => io.disconnect();
   }, []);
