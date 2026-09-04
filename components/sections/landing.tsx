@@ -309,43 +309,45 @@ export function ModesSection() {
 export function StorySection() {
   return (
     <section id={story.id} className="section section--story">
-      <div className="shell story-shell">
-        <div className="story-card-badge story-card-badge--top">
-          <p>{story.title}</p>
-        </div>
-        <div className="story-grid">
-          <FactCard tall label="Nostalgia fact" value="15" text="Champions League Cups won by Real Madrid">
-            <Dots items={DOT_PATTERN} />
-          </FactCard>
-          <div className="story-stack">
-            <FactCard
-              label="Nostalgia fact"
-              value="18"
-              text="years ago, you watched your first Switzerland — Turkey match"
-              tag="EURO—2008"
-            />
-            <FactCard label="Favorite player fact" value="976" text="Cristiano Ronaldo has scored the most goals in his career so far" />
+      <div className="shell">
+        <div className="story-container">
+          <div className="story-badge story-badge--top">
+            <p>{story.title}</p>
           </div>
-          <article className="year-card year-card--wide">
-            <header className="year-card__top">
-              <div>
-                <p className="fact-card__tag">
-                  <i className="status-dot" />
-                  Live
-                </p>
-                <p className="year-card__title">Barcelona</p>
-              </div>
-              <ArrowLink />
-            </header>
-            <div className="chip-row">
-              <p className="moments-chip">The Benzema Extravaganza in 2021</p>
-              <p className="moments-chip">How Germany went to the championship in 2014</p>
-              <p className="fact-card__tag">324 fans discussions</p>
+          <div className="story-grid">
+            <FactCard tall label="Nostalgia fact" value="15" text="Champions League Cups won by Real Madrid">
+              <Dots items={DOT_PATTERN} />
+            </FactCard>
+            <div className="story-stack">
+              <FactCard
+                label="Nostalgia fact"
+                value="18"
+                text="years ago, you watched your first Switzerland — Turkey match"
+                tag="EURO—2008"
+              />
+              <FactCard label="Favorite player fact" value="976" text="Cristiano Ronaldo has scored the most goals in his career so far" />
             </div>
-          </article>
-        </div>
-        <div className="story-card-badge story-card-badge--bottom">
-          <p>{story.footer}</p>
+            <article className="year-card year-card--wide">
+              <header className="year-card__top">
+                <div>
+                  <p className="fact-card__tag">
+                    <i className="status-dot" />
+                    Live
+                  </p>
+                  <p className="year-card__title">Barcelona</p>
+                </div>
+                <ArrowLink />
+              </header>
+              <div className="chip-row">
+                <p className="moments-chip">The Benzema Extravaganza in 2021</p>
+                <p className="moments-chip">How Germany went to the championship in 2014</p>
+                <p className="fact-card__tag">324 fans discussions</p>
+              </div>
+            </article>
+          </div>
+          <div className="story-badge story-badge--bottom">
+            <p>{story.footer}</p>
+          </div>
         </div>
       </div>
     </section>
