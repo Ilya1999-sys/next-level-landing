@@ -814,7 +814,7 @@ button {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
-  padding-bottom: 96px;
+  padding-top: 96px;
   overflow: visible;
 }
 
@@ -832,11 +832,11 @@ button {
   background: var(--bg-accent);
   pointer-events: none;
   left: 50%;
-  top: 100%;
+  bottom: 100%;
   margin-left: -110px;
-  margin-top: -44px;
+  margin-bottom: -44px;
   transform: scale(0);
-  transform-origin: 50% 0%;
+  transform-origin: 50% 100%;
 }
 
 .mode-col {
