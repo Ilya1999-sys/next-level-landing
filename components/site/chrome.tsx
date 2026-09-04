@@ -28,19 +28,21 @@ export function SiteHeader() {
             </a>
           ))}
         </nav>
-        <a className="btn btn--primary site-header__cta" href={site.productUrl} target="_blank" rel="noreferrer">
-          See project
-        </a>
-        <button
-          className="menu-toggle"
-          type="button"
-          aria-expanded={open}
-          aria-controls={menuId}
-          aria-label={open ? "Close menu" : "Open menu"}
-          onClick={() => setOpen((value) => !value)}
-        >
-          <img src="/figma/landing/icon-burger.svg" alt="" width={40} height={40} />
-        </button>
+        <div className="site-header__actions">
+          <a className="btn btn--primary site-header__cta" href={site.productUrl} target="_blank" rel="noreferrer">
+            See project
+          </a>
+          <button
+            className="menu-toggle"
+            type="button"
+            aria-expanded={open}
+            aria-controls={menuId}
+            aria-label={open ? "Close menu" : "Open menu"}
+            onClick={() => setOpen((value) => !value)}
+          >
+            <img src="/figma/landing/icon-burger.svg" alt="" width={40} height={40} />
+          </button>
+        </div>
       </div>
       {open ? (
         <nav id={menuId} className="site-nav-mobile" aria-label="Page">

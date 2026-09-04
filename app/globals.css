@@ -206,6 +206,12 @@ button {
   padding-block: 10px;
 }
 
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .brand img {
   width: 46px;
   height: 60px;
@@ -1185,15 +1191,55 @@ button {
   grid-column: 1 / -1;
 }
 
+.story-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+
+.story-card-badge {
+  width: min(100%, 700px);
+  padding: 24px 32px;
+  background: var(--bg-muted);
+  border-radius: var(--radius-l);
+  text-align: center;
+}
+
+.story-card-badge p {
+  font-family: var(--font-display);
+  font-size: var(--size-h3);
+  line-height: var(--leading-h3);
+  text-transform: uppercase;
+  color: var(--text-main);
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+
+.story-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.story-grid .year-card--wide {
+  grid-column: 1 / -1;
+}
+
 .camera-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
 }
 
 .camera-grid figure {
   position: relative;
-  min-height: 360px;
+  min-height: 400px;
   overflow: hidden;
   border-radius: var(--radius-l);
 }
@@ -1201,7 +1247,7 @@ button {
 .camera-grid img {
   width: 100%;
   height: 100%;
-  min-height: 360px;
+  min-height: 400px;
   object-fit: cover;
 }
 
@@ -1209,13 +1255,14 @@ button {
   position: absolute;
   left: 16px;
   bottom: 16px;
-  padding: 20px;
-  border-radius: var(--radius-l);
-  background: color-mix(in srgb, var(--bg-ink) 72%, transparent);
-  color: var(--text-on-dark);
+  padding: 16px 24px;
+  border-radius: var(--radius-xl);
+  background: var(--bg-muted);
+  color: var(--text-main);
   font-family: var(--font-ui);
   font-size: var(--size-lede);
   line-height: var(--leading-lede);
+  font-weight: var(--weight-medium);
 }
 
 .player-facts {
@@ -1546,12 +1593,13 @@ button {
   }
 
   .concept-grid,
-  .moments-grid {
+  .moments-grid,
+  .story-grid {
     grid-template-columns: 1fr;
   }
 
   .camera-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .story-stage {
@@ -1707,8 +1755,25 @@ button {
     font-size: var(--size-t1);
   }
 
-  .mode-grid {
+  .mode-grid,
+  .camera-grid {
     grid-template-columns: 1fr;
+  }
+
+  .camera-grid figure,
+  .camera-grid img {
+    min-height: 320px;
+  }
+
+  .story-card-badge {
+    width: 100%;
+    padding: 16px 20px;
+    border-radius: var(--radius-m);
+  }
+
+  .story-card-badge p {
+    font-size: var(--size-t1);
+    line-height: var(--leading-t1);
   }
 
   .hero-row,
@@ -1918,6 +1983,12 @@ button {
     z-index: 4;
     rotate: var(--tilt, 2.4deg);
     transition: rotate 0.35s 0.1s cubic-bezier(0.34, 1.57, 0.64, 1);
+  }
+}
+
+@media (max-width: 479px) {
+  .icon-pills .icon-pill:nth-child(n+3) {
+    display: none;
   }
 }
 
