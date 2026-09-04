@@ -7,6 +7,7 @@ import {
   YearCard,
 } from "@/components/ui/cards";
 import { PlayerFactsMotion } from "@/components/ui/player-facts-motion";
+import { StatCounter } from "@/components/ui/stat-counter";
 import { concept, matchView, modes, playerFacts, site, story } from "@/lib/content";
 
 const DOT_PATTERN: Array<"accent" | "muted"> = [
@@ -253,10 +254,10 @@ export function ConceptSection() {
     <section className="section" data-block="concept">
       <div className="shell">
         <header className="concept-head">
-          <h2 className="section-title">{concept.title}</h2>
-          <p className="section-body">{concept.body}</p>
+          <h2 className="section-title reveal-title"><span>{concept.title}</span></h2>
+          <p className="section-body reveal-text"><span>{concept.body}</span></p>
         </header>
-        <div className="concept-grid">
+        <div className="concept-grid reveal-group">
           <FactCard tall label="Wins fact" value="1" text="regular-time victory over Wales in the entire tournament">
             <Bars pairs={[[24, 24], [72, 72], [24, 24]]} />
           </FactCard>
@@ -287,10 +288,10 @@ export function ModesSection() {
   return (
     <section id={modes.id} className="section">
       <div className="shell">
-        <h2 className="section-title section-title--center section-title--display">{modes.title}</h2>
-        <div className="mode-grid">
+        <h2 className="section-title section-title--center section-title--display reveal-title"><span>{modes.title}</span></h2>
+        <div className="mode-grid reveal-group">
           {modes.items.map((item) => (
-            <div key={item.name} className={`mode-col-wrap mode-col-wrap--${item.theme}`}>
+            <div key={item.name} className={`mode-col-wrap mode-col-wrap--${item.theme} reveal-card`}>
               <i className="mode-col__blob" aria-hidden="true" />
               <article className={`mode-col mode-col--${item.theme}`} style={{ ["--mode-accent" as string]: item.accent }}>
                 <h3>{item.name}</h3>
@@ -427,10 +428,10 @@ export function MatchViewSection() {
   return (
     <section id={matchView.id} className="section">
       <div className="shell">
-        <h2 className="section-title section-title--center">{matchView.title}</h2>
-        <div className="camera-grid">
+        <h2 className="section-title section-title--center reveal-title"><span>{matchView.title}</span></h2>
+        <div className="camera-grid reveal-group">
           {matchView.cameras.map((camera) => (
-            <figure key={camera.label}>
+            <figure key={camera.label} className="reveal-card">
               <img src={camera.src} alt="" />
               <figcaption>{camera.label}</figcaption>
             </figure>
@@ -446,7 +447,7 @@ export function PlayerFactsSection() {
     <section id={playerFacts.id} className="section section--player">
       <PlayerFactsMotion />
       <div className="player-facts player-facts--motion">
-        <h2 className="section-title section-title--center section-title--display">{playerFacts.title}</h2>
+        <h2 className="section-title section-title--center section-title--display reveal-title"><span>{playerFacts.title}</span></h2>
         <img className="player-facts__photo" src="/figma/landing/ronaldo.png" alt="Cristiano Ronaldo" />
         <article className="player-note player-note--career">
           <p className="fact-card__tag">
@@ -466,7 +467,7 @@ export function PlayerFactsSection() {
         </article>
         {playerFacts.stats.map((stat) => (
           <article key={stat.label} className={`player-stat player-stat--${stat.label}`}>
-            <b>{stat.value}</b>
+            <StatCounter value={stat.value} />
             <span>{stat.label}</span>
           </article>
         ))}
