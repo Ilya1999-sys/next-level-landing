@@ -11,9 +11,16 @@ export function ScrollReveal() {
     if (prefersReducedMotion()) return;
 
     // Set stagger index (--i) for children of groups/grids
-    const groups = Array.from(document.querySelectorAll<HTMLElement>(".reveal-group, .mode-grid, .camera-grid, .concept-grid, .story-grid"));
+    const groups = Array.from(
+      document.querySelectorAll<HTMLElement>(
+        ".reveal-group, .hero-collage, .hero-block, .concept-grid, .mode-grid, .story-grid, .moments-grid, .camera-grid, .experience"
+      )
+    );
+
     groups.forEach((group) => {
-      const children = Array.from(group.querySelectorAll<HTMLElement>(".reveal-card, .mode-col-wrap, figure"));
+      const children = Array.from(
+        group.querySelectorAll<HTMLElement>(".reveal-card, .mode-col-wrap, figure, .player-note")
+      );
       children.forEach((child, index) => {
         child.style.setProperty("--i", String(index));
       });
@@ -34,8 +41,8 @@ export function ScrollReveal() {
         });
       },
       {
-        threshold: 0.1,
-        rootMargin: "0px 0px -10% 0px",
+        threshold: 0.05,
+        rootMargin: "0px 0px -5% 0px",
       }
     );
 

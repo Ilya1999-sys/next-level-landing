@@ -254,7 +254,7 @@ button {
 .hero-collage {
   display: flex;
   flex-direction: column;
-  gap: 80px;
+  gap: var(--space-s);
 }
 
 .hero-block,

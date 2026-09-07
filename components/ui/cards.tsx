@@ -63,6 +63,7 @@ export function FactCard({
   tag,
   children,
   tall = false,
+  className = "",
 }: {
   label: string;
   value: string;
@@ -70,9 +71,10 @@ export function FactCard({
   tag?: string;
   children?: ReactNode;
   tall?: boolean;
+  className?: string;
 }) {
   return (
-    <article className={`fact-card${tall ? " fact-card--tall" : ""}`}>
+    <article className={`fact-card${tall ? " fact-card--tall" : ""} ${className}`.trim()}>
       <header className="fact-card__top">
         <p className="fact-card__label">{label}</p>
         {tag ? (

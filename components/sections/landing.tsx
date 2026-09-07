@@ -71,7 +71,7 @@ export function HeroSection() {
       <div className="shell hero-collage">
         <div className="hero-block">
           <div className="hero-row hero-row--lead">
-            <YearCard className="year-card--zidane" year="/2006" title="The incredible Zidane">
+            <YearCard className="year-card--zidane reveal-card" year="/2006" title="The incredible Zidane">
               <div className="circle-row">
                 <CircleStat value="3" label="Zidane goals" accent />
                 <CircleStat value="0" label="France defeats" />
@@ -81,7 +81,7 @@ export function HeroSection() {
               <p className="display-word">Football</p>
               <div className="hero-row hero-row--tight">
                 <p className="display-word">is</p>
-                <FactCard label="Favorite player fact" value="5" text="Killian Mbappe scored goals in one match" />
+                <FactCard className="reveal-card" label="Favorite player fact" value="5" text="Killian Mbappe scored goals in one match" />
               </div>
             </div>
           </div>
@@ -108,7 +108,7 @@ export function HeroSection() {
             <i className="blob blob--accent" />
             <i className="blob blob--light" />
             <p className="display-word">match</p>
-            <FactCard label="Nostalgia fact" value="18" text="years ago, you watched your first match" tag="EURO—2008" />
+            <FactCard className="reveal-card" label="Nostalgia fact" value="18" text="years ago, you watched your first match" tag="EURO—2008" />
           </div>
         </div>
 
@@ -119,7 +119,7 @@ export function HeroSection() {
             <p className="display-word">discover</p>
             <p className="display-word">Change</p>
           </div>
-          <article className="year-card year-card--accent">
+          <article className="year-card year-card--accent reveal-card">
             <header className="year-card__top">
               <div>
                 <p className="fact-card__label">Match review</p>
@@ -156,7 +156,7 @@ export function HeroSection() {
         </div>
 
         <div className="hero-block hero-block--story">
-          <YearCard className="year-card--accent year-card--chart" year="/2016" title="Portugal’s first victory in a major tournament.">
+          <YearCard className="year-card--accent year-card--chart reveal-card" year="/2016" title="Portugal’s first victory in a major tournament.">
             <div className="victory-graph" aria-hidden="true">
               <div className="victory-graph__axis-y">
                 {["13", "12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1"].map((value) => (
@@ -202,7 +202,7 @@ export function HeroSection() {
             <p className="display-word">moment</p>
           </div>
           <div className="hero-stack">
-            <article className="year-card year-card--xl-only">
+            <article className="year-card year-card--xl-only reveal-card">
               <header className="year-card__top">
                 <div>
                   <p className="fact-card__label">Match review</p>
@@ -228,7 +228,7 @@ export function HeroSection() {
                 </li>
               </ul>
             </article>
-            <article className="year-card">
+            <article className="year-card reveal-card">
               <header className="year-card__top">
                 <div>
                   <p className="fact-card__label">Match review</p>
@@ -258,21 +258,21 @@ export function ConceptSection() {
           <p className="section-body reveal-text"><span>{concept.body}</span></p>
         </header>
         <div className="concept-grid reveal-group">
-          <FactCard tall label="Wins fact" value="1" text="regular-time victory over Wales in the entire tournament">
+          <FactCard className="reveal-card" tall label="Wins fact" value="1" text="regular-time victory over Wales in the entire tournament">
             <Bars pairs={[[24, 24], [72, 72], [24, 24]]} />
           </FactCard>
           <div className="concept-stack">
-            <FactCard label="Final fact" value="109" text="Eder’s extra-time goal beat host nation France in the final." />
-            <FactCard
+            <FactCard className="reveal-card" label="Final fact" value="109" text="Eder’s extra-time goal beat host nation France in the final." />
+            <FactCard className="reveal-card"
               label="Ronaldo fact"
               value="25"
               text="Cristiano Ronaldo played for a few minutes in the final of the tournament and then watched the match from the sidelines"
             />
           </div>
-          <FactCard tall label="Goals scored and missed" value="9—5" text="The total difference between goals scored and conceded by the Portuguese national team">
+          <FactCard className="reveal-card" tall label="Goals scored and missed" value="9—5" text="The total difference between goals scored and conceded by the Portuguese national team">
             <Dots items={DOT_PATTERN} />
           </FactCard>
-          <YearCard year="Match review" title="2:0 Wales">
+          <YearCard className="reveal-card" year="Match review" title="2:0 Wales">
             <div className="circle-row">
               <CircleStat value="17" label="shots on goal" accent />
               <CircleStat value="46%" label="ball possession" />
@@ -313,22 +313,22 @@ export function StorySection() {
       <div className="shell">
         <div className="story-container">
           <div className="story-badge story-badge--top">
-            <p>{story.title}</p>
+            <p className="reveal-title"><span>{story.title}</span></p>
           </div>
-          <div className="story-grid">
-            <FactCard tall label="Nostalgia fact" value="15" text="Champions League Cups won by Real Madrid">
+          <div className="story-grid reveal-group">
+            <FactCard className="reveal-card" tall label="Nostalgia fact" value="15" text="Champions League Cups won by Real Madrid">
               <Dots items={DOT_PATTERN} />
             </FactCard>
             <div className="story-stack">
-              <FactCard
+              <FactCard className="reveal-card"
                 label="Nostalgia fact"
                 value="18"
                 text="years ago, you watched your first Switzerland — Turkey match"
                 tag="EURO—2008"
               />
-              <FactCard label="Favorite player fact" value="976" text="Cristiano Ronaldo has scored the most goals in his career so far" />
+              <FactCard className="reveal-card" label="Favorite player fact" value="976" text="Cristiano Ronaldo has scored the most goals in his career so far" />
             </div>
-            <article className="year-card year-card--wide">
+            <article className="year-card year-card--wide reveal-card">
               <header className="year-card__top">
                 <div>
                   <p className="fact-card__tag">
@@ -347,7 +347,7 @@ export function StorySection() {
             </article>
           </div>
           <div className="story-badge story-badge--bottom">
-            <p>{story.footer}</p>
+            <p className="reveal-title"><span>{story.footer}</span></p>
           </div>
         </div>
       </div>
@@ -373,7 +373,7 @@ export function MomentsSection() {
             <p className="display-kicker">the</p>
             <p className="display-word">match</p>
           </div>
-          <p className="display-word display-word--center">Understand</p>
+          <p className="display-word display-word--center reveal-title"><span>Understand</span></p>
           <div className="moments-row">
             <i className="pill pill--accent" />
             <p className="display-kicker">the</p>
@@ -381,20 +381,20 @@ export function MomentsSection() {
             <p className="moments-chip">How Germany went to the championship in 2014</p>
           </div>
         </div>
-        <div className="moments-grid">
-          <FactCard tall label="Nostalgia fact" value="15" text="Champions League Cups won by Real Madrid">
+        <div className="moments-grid reveal-group">
+          <FactCard className="reveal-card" tall label="Nostalgia fact" value="15" text="Champions League Cups won by Real Madrid">
             <Dots items={DOT_PATTERN} />
           </FactCard>
           <div className="concept-stack">
-            <FactCard
+            <FactCard className="reveal-card"
               label="Nostalgia fact"
               value="18"
               text="years ago, you watched your first Switzerland — Turkey match"
               tag="EURO—2008"
             />
-            <FactCard label="Favorite player fact" value="976" text="Cristiano Ronaldo has scored the most goals in his career so far" />
+            <FactCard className="reveal-card" label="Favorite player fact" value="976" text="Cristiano Ronaldo has scored the most goals in his career so far" />
           </div>
-          <article className="year-card year-card--wide">
+          <article className="year-card year-card--wide reveal-card">
             <header className="year-card__top">
               <div>
                 <p className="fact-card__tag">
@@ -411,7 +411,7 @@ export function MomentsSection() {
               <p className="fact-card__tag">324 fans discussions</p>
             </div>
           </article>
-          <YearCard className="year-card--wide" year="/2008" title="Russia, incredible comebacks and golden Spain">
+          <YearCard className="year-card--wide reveal-card" year="/2008" title="Russia, incredible comebacks and golden Spain">
             <div className="circle-row">
               <CircleStat value="77" label="goals scored" accent />
               <CircleStat value="31" label="matches played" />
@@ -449,7 +449,7 @@ export function PlayerFactsSection() {
       <div className="player-facts player-facts--motion">
         <h2 className="section-title section-title--center section-title--display reveal-title"><span>{playerFacts.title}</span></h2>
         <img className="player-facts__photo" src="/figma/landing/ronaldo.png" alt="Cristiano Ronaldo" />
-        <article className="player-note player-note--career">
+        <article className="player-note player-note--career reveal-card">
           <p className="fact-card__tag">
             <i className="status-dot" />
             {playerFacts.career.label}
@@ -457,7 +457,7 @@ export function PlayerFactsSection() {
           <h3>{playerFacts.career.title}</h3>
           <p>{playerFacts.career.body}</p>
         </article>
-        <article className="player-note player-note--life">
+        <article className="player-note player-note--life reveal-card">
           <p className="fact-card__tag">
             <i className="status-dot" />
             {playerFacts.life.label}
@@ -479,13 +479,13 @@ export function PlayerFactsSection() {
 export function ExperienceSection() {
   return (
     <section className="section section--experience">
-      <div className="shell experience">
+      <div className="shell experience reveal-group">
         <div className="experience__row experience__row--choose">
           <div className="hero-verbs hero-verbs--end">
             <p className="display-word">Choose</p>
             <p className="display-word">how</p>
           </div>
-          <FactCard
+          <FactCard className="reveal-card"
             label="Goals scored and missed"
             value="9—5"
             text="The total difference between goals scored and conceded by the Portuguese national team"
@@ -494,7 +494,7 @@ export function ExperienceSection() {
           </FactCard>
         </div>
         <div className="experience__row experience__row--you">
-          <FactCard label="Wins fact" value="1" text="regular-time victory over Wales in the entire tournament">
+          <FactCard className="reveal-card" label="Wins fact" value="1" text="regular-time victory over Wales in the entire tournament">
             <Bars pairs={[[24, 24], [72, 72], [24, 24]]} />
           </FactCard>
           <div className="hero-verbs">
