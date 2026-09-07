@@ -1640,14 +1640,61 @@ button {
     order: -1;
   }
 
-  .concept-grid,
-  .moments-grid,
+  .concept-grid {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .concept-grid > .fact-card:first-child {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .concept-grid > .concept-stack {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .concept-grid > .fact-card:nth-child(3) {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .concept-grid > .year-card {
+    grid-column: 1 / -1;
+    grid-row: 3;
+  }
+
   .story-grid {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .story-grid > .fact-card:first-child {
+    grid-column: 1;
+  }
+
+  .story-grid > .story-stack {
+    grid-column: 2;
+  }
+
+  .story-grid .year-card--wide {
+    grid-column: 1 / -1;
+  }
+
+  .mode-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .moments-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .camera-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
   }
 
   .story-stage {
@@ -1715,8 +1762,8 @@ button {
     grid-row: 2;
     top: auto;
     left: auto;
-    width: 317px;
-    justify-self: start;
+    width: 100%;
+    max-width: 317px;
   }
 
   .player-stat--facts {
@@ -1725,8 +1772,9 @@ button {
     top: auto;
     left: auto;
     right: auto;
-    width: 238px;
-    justify-self: start;
+    width: 100%;
+    max-width: 238px;
+    justify-self: end;
   }
 
   .player-stat--matches {
@@ -1734,8 +1782,9 @@ button {
     grid-row: 4;
     top: auto;
     left: auto;
-    width: 277px;
-    justify-self: start;
+    width: 100%;
+    max-width: 277px;
+    justify-self: end;
   }
 
   .player-stat--events {
@@ -1744,8 +1793,8 @@ button {
     top: auto;
     left: auto;
     right: auto;
-    width: 238px;
-    justify-self: start;
+    width: 100%;
+    max-width: 238px;
   }
 
   .year-card--chart {
@@ -1757,7 +1806,7 @@ button {
   }
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 767px) {
   .site-nav {
     display: none;
   }
@@ -1768,23 +1817,6 @@ button {
     width: 40px;
     height: 40px;
   }
-
-  .site-nav-mobile {
-    display: grid;
-    gap: 8px;
-    padding: 12px var(--page-gutter) 20px;
-  }
-
-  .site-nav-mobile a {
-    padding: 16px 20px;
-    border-radius: 16px;
-    background: var(--bg-surface);
-    font-size: var(--size-t1);
-    white-space: nowrap;
-  }
-}
-
-@media (max-width: 767px) {
 
   .site-header__cta {
     min-height: 50px;
@@ -1804,9 +1836,24 @@ button {
     font-size: var(--size-t1);
   }
 
+  .concept-grid,
+  .story-grid,
   .mode-grid,
+  .moments-grid,
   .camera-grid {
     grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .concept-grid > .fact-card:first-child,
+  .concept-grid > .concept-stack,
+  .concept-grid > .fact-card:nth-child(3),
+  .concept-grid > .year-card,
+  .story-grid > .fact-card:first-child,
+  .story-grid > .story-stack,
+  .story-grid .year-card--wide {
+    grid-column: auto;
+    grid-row: auto;
   }
 
   .camera-grid figure,
@@ -1908,7 +1955,8 @@ button {
 
   .player-facts {
     width: calc(100% - var(--page-gutter) * 2);
-    gap: 24px;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
   }
 
   .player-facts__photo {
@@ -1923,6 +1971,8 @@ button {
   }
 
   .player-note--career {
+    grid-column: 1 / -1;
+    grid-row: 4;
     width: 100%;
   }
 
@@ -1931,19 +1981,31 @@ button {
   }
 
   .player-stat--goals {
-    width: min(317px, calc(50% - var(--page-gutter) - 10px));
+    grid-column: 1;
+    grid-row: 2;
+    width: 100%;
+    max-width: none;
   }
 
   .player-stat--facts {
-    width: min(238px, calc(50% - var(--page-gutter) - 10px));
+    grid-column: 2;
+    grid-row: 2;
+    width: 100%;
+    max-width: none;
   }
 
   .player-stat--events {
-    width: min(238px, calc(50% - var(--page-gutter) - 10px));
+    grid-column: 1;
+    grid-row: 3;
+    width: 100%;
+    max-width: none;
   }
 
   .player-stat--matches {
-    width: min(277px, calc(50% - var(--page-gutter) - 10px));
+    grid-column: 2;
+    grid-row: 3;
+    width: 100%;
+    max-width: none;
   }
 
   .year-card--chart {
@@ -1965,6 +2027,10 @@ button {
 }
 
 @media (max-width: 449px) {
+  .site-header__cta {
+    display: none;
+  }
+
   .circle-stat {
     width: 96px;
     height: 96px;
