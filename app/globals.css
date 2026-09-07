@@ -1336,14 +1336,15 @@ button {
 .player-facts__photo {
   position: absolute;
   left: 50%;
-  top: 0;
+  bottom: 0;
+  top: auto;
   z-index: 2;
   max-height: 100%;
   width: auto;
   max-width: 90%;
   height: auto;
   object-fit: contain;
-  object-position: top center;
+  object-position: bottom center;
   transform: translateX(-50%);
   pointer-events: none;
 }
@@ -1567,7 +1568,9 @@ button {
     max-height: 100%;
     width: auto;
     max-width: 95%;
-    top: 0;
+    bottom: 0;
+    top: auto;
+    object-position: bottom center;
   }
 
   .year-card--chart {
@@ -1613,6 +1616,30 @@ button {
     display: grid;
   }
 
+  .hero-block--verbs > .year-card {
+    display: none;
+  }
+
+  .hero-block--verbs .hero-verbs {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .hero-verbs--left {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-inline: auto;
+    justify-self: center;
+  }
+
+  .hero-verbs--left .hero-row--kicker {
+    justify-content: center;
+  }
+
   .hero-block--story > .year-card--chart,
   .hero-block--story > .hero-verbs,
   .hero-block--story > .hero-stack {
@@ -1634,6 +1661,17 @@ button {
     grid-template-columns: 1fr;
     justify-content: stretch;
     gap: 20px;
+  }
+
+  .experience__row .hero-verbs {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .experience__row .hero-verbs .hero-row {
+    justify-content: center;
   }
 
   .experience__row--you .hero-verbs {
@@ -1678,8 +1716,9 @@ button {
     grid-column: 2;
   }
 
-  .story-grid .year-card--wide {
-    grid-column: 1 / -1;
+  .story-grid .year-card--wide,
+  .moments-grid .year-card--wide {
+    display: none;
   }
 
   .mode-grid {
@@ -1728,13 +1767,14 @@ button {
   .player-facts__photo {
     position: absolute;
     left: 50%;
-    top: 0;
+    bottom: 0;
+    top: auto;
     max-height: 100%;
     width: auto;
     max-width: 90%;
     height: auto;
     object-fit: contain;
-    object-position: top center;
+    object-position: bottom center;
     transform: translateX(-50%);
     z-index: 2;
   }
@@ -1798,11 +1838,23 @@ button {
   }
 
   .year-card--chart {
+    width: min(100%, 460px);
+    max-width: 460px;
+    margin-inline: auto;
+    justify-self: center;
     min-height: 596px;
   }
 
   .year-card--chart .victory-graph {
     min-height: 454px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1139px) {
+  .mode-grid {
+    width: 704px;
+    max-width: 100%;
+    margin-inline: auto;
   }
 }
 
@@ -1960,10 +2012,12 @@ button {
   }
 
   .player-facts__photo {
-    top: 0;
+    bottom: 0;
+    top: auto;
     max-height: 100%;
     width: auto;
     max-width: 95%;
+    object-position: bottom center;
   }
 
   .hud {
