@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/cards";
 import { PlayerFactsMotion } from "@/components/ui/player-facts-motion";
 import { StatCounter } from "@/components/ui/stat-counter";
+import { StoryCursor } from "@/components/ui/story-cursor";
 import { concept, matchView, modes, playerFacts, site, story } from "@/lib/content";
 
 const DOT_PATTERN: Array<"accent" | "muted"> = [
@@ -312,6 +313,7 @@ export function StorySection() {
     <section id={story.id} className="section section--story">
       <div className="shell">
         <div className="story-container">
+          <StoryCursor />
           <div className="story-badge story-badge--top">
             <p className="reveal-title"><span>{story.title}</span></p>
           </div>
