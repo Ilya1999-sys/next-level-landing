@@ -6,6 +6,8 @@ import {
   FactCard,
   YearCard,
 } from "@/components/ui/cards";
+import { MatchViewHorizontalScroll } from "@/components/ui/match-view-scroll";
+import { ModesStackingScroll } from "@/components/ui/modes-stacking";
 import { PlayerFactsMotion } from "@/components/ui/player-facts-motion";
 import { StatCounter } from "@/components/ui/stat-counter";
 import { StoryCursor } from "@/components/ui/story-cursor";
@@ -285,28 +287,7 @@ export function ConceptSection() {
   );
 }
 
-export function ModesSection() {
-  return (
-    <section id={modes.id} className="section">
-      <div className="shell">
-        <h2 className="section-title section-title--center section-title--display reveal-title"><span>{modes.title}</span></h2>
-        <div className="mode-grid reveal-group">
-          {modes.items.map((item) => (
-            <div key={item.name} className={`mode-col-wrap mode-col-wrap--${item.theme} reveal-card`}>
-              <i className="mode-col__blob" aria-hidden="true" />
-              <article className={`mode-col mode-col--${item.theme}`} style={{ ["--mode-accent" as string]: item.accent }}>
-                <h3>{item.name}</h3>
-                <div className="mode-col__cards">
-                  <ModeStack />
-                </div>
-              </article>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
+export const ModesSection = ModesStackingScroll;
 
 export function StorySection() {
   return (
@@ -426,23 +407,7 @@ export function MomentsSection() {
   );
 }
 
-export function MatchViewSection() {
-  return (
-    <section id={matchView.id} className="section">
-      <div className="shell">
-        <h2 className="section-title section-title--center reveal-title"><span>{matchView.title}</span></h2>
-        <div className="camera-grid reveal-group">
-          {matchView.cameras.map((camera) => (
-            <figure key={camera.label} className="reveal-card">
-              <img src={camera.src} alt="" />
-              <figcaption>{camera.label}</figcaption>
-            </figure>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
+export const MatchViewSection = MatchViewHorizontalScroll;
 
 export function PlayerFactsSection() {
   return (
