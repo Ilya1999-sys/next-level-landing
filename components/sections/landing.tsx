@@ -322,9 +322,14 @@ export function StorySection() {
                 <ArrowLink />
               </header>
               <div className="chip-row">
-                <p className="moments-chip">The Benzema Extravaganza in 2021</p>
-                <p className="moments-chip">How Germany went to the championship in 2014</p>
-                <p className="fact-card__tag">324 fans discussions</p>
+                <div className="chip-group">
+                  <p className="moments-chip">The Benzema Extravaganza in 2021</p>
+                  <p className="moments-chip">How Germany went to the championship in 2014</p>
+                </div>
+                <p className="story-discussions">
+                  <i className="status-dot" />
+                  324 fans discussions
+                </p>
               </div>
             </article>
           </div>
@@ -388,9 +393,14 @@ export function MomentsSection() {
               <ArrowLink />
             </header>
             <div className="chip-row">
-              <p className="moments-chip">The Benzema Extravaganza in 2021</p>
-              <p className="moments-chip">How Germany went to the championship in 2014</p>
-              <p className="fact-card__tag">324 fans discussions</p>
+              <div className="chip-group">
+                <p className="moments-chip">The Benzema Extravaganza in 2021</p>
+                <p className="moments-chip">How Germany went to the championship in 2014</p>
+              </div>
+              <p className="story-discussions">
+                <i className="status-dot" />
+                324 fans discussions
+              </p>
             </div>
           </article>
           <YearCard className="year-card--wide reveal-card" year="/2008" title="Russia, incredible comebacks and golden Spain">
