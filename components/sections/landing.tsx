@@ -6,7 +6,6 @@ import {
   FactCard,
   YearCard,
 } from "@/components/ui/cards";
-import { MatchViewHorizontalScroll } from "@/components/ui/match-view-scroll";
 import { ModesStackingScroll } from "@/components/ui/modes-stacking";
 import { PlayerFactsMotion } from "@/components/ui/player-facts-motion";
 import { StatCounter } from "@/components/ui/stat-counter";
@@ -407,7 +406,23 @@ export function MomentsSection() {
   );
 }
 
-export const MatchViewSection = MatchViewHorizontalScroll;
+export function MatchViewSection() {
+  return (
+    <section id={matchView.id} className="section">
+      <div className="shell">
+        <h2 className="section-title section-title--center reveal-title"><span>{matchView.title}</span></h2>
+        <div className="camera-grid reveal-group">
+          {matchView.cameras.map((camera) => (
+            <figure key={camera.label} className="reveal-card">
+              <img src={camera.src} alt="" />
+              <figcaption>{camera.label}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export function PlayerFactsSection() {
   return (

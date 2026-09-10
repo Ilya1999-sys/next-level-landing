@@ -64,7 +64,6 @@ export function ModesStackingScroll() {
     const cards = cardsRef.current.filter(Boolean) as HTMLDivElement[];
     if (cards.length < 2) return;
 
-    // Media query check for desktop/tablet stacking
     const mm = gsap.matchMedia();
 
     mm.add("(min-width: 768px)", () => {
@@ -85,12 +84,13 @@ export function ModesStackingScroll() {
         }
       });
 
+      // Pin and start stacking when the bottom of Card 0 is 130px above the bottom of the viewport
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: section,
-          start: "top top+=60",
-          end: "+=180%",
-          pin: true,
+          trigger: cards[0],
+          start: "bottom bottom-=130px",
+          end: "+=160%",
+          pin: section,
           scrub: 0.8,
           anticipatePin: 1,
           invalidateOnRefresh: true,
@@ -101,8 +101,8 @@ export function ModesStackingScroll() {
       tl.to(
         cards[0],
         {
-          scale: 0.93,
-          filter: "brightness(0.75)",
+          scale: 0.94,
+          filter: "brightness(0.78)",
           ease: "power2.inOut",
           duration: 1,
         },
@@ -122,8 +122,8 @@ export function ModesStackingScroll() {
         tl.to(
           cards[0],
           {
-            scale: 0.86,
-            filter: "brightness(0.55)",
+            scale: 0.88,
+            filter: "brightness(0.58)",
             ease: "power2.inOut",
             duration: 1,
           },
@@ -132,8 +132,8 @@ export function ModesStackingScroll() {
           .to(
             cards[1],
             {
-              scale: 0.93,
-              filter: "brightness(0.75)",
+              scale: 0.94,
+              filter: "brightness(0.78)",
               ease: "power2.inOut",
               duration: 1,
             },
