@@ -11,6 +11,7 @@ import { PlayerFactsMotion } from "@/components/ui/player-facts-motion";
 import { StatCounter } from "@/components/ui/stat-counter";
 import { StoryCursor } from "@/components/ui/story-cursor";
 import { TextScramble } from "@/components/ui/text-scramble";
+import { DiscussionsTicker } from "@/components/ui/discussions-ticker";
 import { concept, matchView, playerFacts, site, story } from "@/lib/content";
 
 const DOT_PATTERN: Array<"accent" | "muted"> = [
@@ -279,7 +280,7 @@ export function StorySection() {
         <div className="story-container">
           <StoryCursor />
           <div className="story-badge story-badge--top">
-            <p className="reveal-title"><span><TextScramble text={story.title} /></span></p>
+            <p className="reveal-title"><span>{story.title}</span></p>
           </div>
           <div className="story-grid reveal-group">
             <FactCard className="reveal-card" tall label="Nostalgia fact" value="15" text="Champions League Cups won by Real Madrid">
@@ -305,20 +306,19 @@ export function StorySection() {
                 </div>
                 <ArrowLink />
               </header>
-              <div className="chip-row">
-                <div className="chip-group">
-                  <p className="moments-chip">The Benzema Extravaganza in 2021</p>
-                  <p className="moments-chip">How Germany went to the championship in 2014</p>
-                </div>
-                <p className="story-discussions">
-                  <i className="status-dot" />
-                  324 fans discussions
-                </p>
-              </div>
+              <DiscussionsTicker
+                items={[
+                  "The Benzema Extravaganza in 2021",
+                  "How Germany went to the championship in 2014",
+                  "Eder’s extra-time goal in 2016",
+                  "Messi masterclass vs Madrid 2011",
+                ]}
+                discussionsCount="324 fans discussions"
+              />
             </article>
           </div>
           <div className="story-badge story-badge--bottom">
-            <p className="reveal-title"><span><TextScramble text={story.footer} /></span></p>
+            <p className="reveal-title"><span>{story.footer}</span></p>
           </div>
         </div>
       </div>
@@ -376,16 +376,15 @@ export function MomentsSection() {
               </div>
               <ArrowLink />
             </header>
-            <div className="chip-row">
-              <div className="chip-group">
-                <p className="moments-chip">The Benzema Extravaganza in 2021</p>
-                <p className="moments-chip">How Germany went to the championship in 2014</p>
-              </div>
-              <p className="story-discussions">
-                <i className="status-dot" />
-                324 fans discussions
-              </p>
-            </div>
+            <DiscussionsTicker
+              items={[
+                "The Benzema Extravaganza in 2021",
+                "How Germany went to the championship in 2014",
+                "Spain 2008 golden generation",
+                "EURO 2008 Swiss dramatic comeback",
+              ]}
+              discussionsCount="512 live discussions"
+            />
           </article>
           <YearCard className="year-card--wide reveal-card" year="/2008" title="Russia, incredible comebacks and golden Spain">
             <div className="circle-row">
@@ -423,7 +422,7 @@ export function PlayerFactsSection() {
     <section id={playerFacts.id} className="section section--player">
       <PlayerFactsMotion />
       <div className="player-facts player-facts--motion">
-        <h2 className="section-title section-title--center section-title--display reveal-title"><span><TextScramble text={playerFacts.title} /></span></h2>
+        <h2 className="section-title section-title--center section-title--display reveal-title"><span>{playerFacts.title}</span></h2>
         <img className="player-facts__photo" src="/figma/landing/ronaldo.png" alt="Cristiano Ronaldo" />
         <article className="player-note player-note--career reveal-card">
           <p className="fact-card__tag">
