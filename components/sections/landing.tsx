@@ -10,7 +10,8 @@ import { ModesStackingScroll } from "@/components/ui/modes-stacking";
 import { PlayerFactsMotion } from "@/components/ui/player-facts-motion";
 import { StatCounter } from "@/components/ui/stat-counter";
 import { StoryCursor } from "@/components/ui/story-cursor";
-import { concept, matchView, modes, playerFacts, site, story } from "@/lib/content";
+import { TextScramble } from "@/components/ui/text-scramble";
+import { concept, matchView, playerFacts, site, story } from "@/lib/content";
 
 const DOT_PATTERN: Array<"accent" | "muted"> = [
   "accent",
@@ -49,23 +50,6 @@ const BAR_PAIRS: Array<[number, number]> = [
 const MATCH_REVIEW_MINUTES = ["120", "105", "90", "75", "60", "45", "30", "15", "1"];
 const MATCH_REVIEW_FRANCE = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 const MATCH_REVIEW_PORTUGAL = [0, 1, 4, 5, 6, 7, 8];
-
-function ModeStack() {
-  return (
-    <>
-      <YearCard year="/2009" title="Path to the final: “Barcelona”.">
-        <Bars pairs={BAR_PAIRS} />
-      </YearCard>
-      <YearCard year="/2006" title="The incredible Zidane at the World Cup and the tragedy in the final.">
-        <div className="circle-row">
-          <CircleStat value="3" label="Zidane goals" accent />
-          <CircleStat value="0" label="France defeats" />
-        </div>
-      </YearCard>
-      <FactCard label="Favorite player fact" value="5" text="Killian Mbappe scored goals in one match" />
-    </>
-  );
-}
 
 export function HeroSection() {
   return (
@@ -256,7 +240,7 @@ export function ConceptSection() {
     <section className="section" data-block="concept">
       <div className="shell">
         <header className="concept-head">
-          <h2 className="section-title reveal-title"><span>{concept.title}</span></h2>
+          <h2 className="section-title reveal-title"><span><TextScramble text={concept.title} /></span></h2>
           <p className="section-body reveal-text"><span>{concept.body}</span></p>
         </header>
         <div className="concept-grid reveal-group">
@@ -295,7 +279,7 @@ export function StorySection() {
         <div className="story-container">
           <StoryCursor />
           <div className="story-badge story-badge--top">
-            <p className="reveal-title"><span>{story.title}</span></p>
+            <p className="reveal-title"><span><TextScramble text={story.title} /></span></p>
           </div>
           <div className="story-grid reveal-group">
             <FactCard className="reveal-card" tall label="Nostalgia fact" value="15" text="Champions League Cups won by Real Madrid">
@@ -334,7 +318,7 @@ export function StorySection() {
             </article>
           </div>
           <div className="story-badge story-badge--bottom">
-            <p className="reveal-title"><span>{story.footer}</span></p>
+            <p className="reveal-title"><span><TextScramble text={story.footer} /></span></p>
           </div>
         </div>
       </div>
@@ -420,7 +404,7 @@ export function MatchViewSection() {
   return (
     <section id={matchView.id} className="section">
       <div className="shell">
-        <h2 className="section-title section-title--center reveal-title"><span>{matchView.title}</span></h2>
+        <h2 className="section-title section-title--center reveal-title"><span><TextScramble text={matchView.title} /></span></h2>
         <div className="camera-grid reveal-group">
           {matchView.cameras.map((camera) => (
             <figure key={camera.label} className="reveal-card">
@@ -439,7 +423,7 @@ export function PlayerFactsSection() {
     <section id={playerFacts.id} className="section section--player">
       <PlayerFactsMotion />
       <div className="player-facts player-facts--motion">
-        <h2 className="section-title section-title--center section-title--display reveal-title"><span>{playerFacts.title}</span></h2>
+        <h2 className="section-title section-title--center section-title--display reveal-title"><span><TextScramble text={playerFacts.title} /></span></h2>
         <img className="player-facts__photo" src="/figma/landing/ronaldo.png" alt="Cristiano Ronaldo" />
         <article className="player-note player-note--career reveal-card">
           <p className="fact-card__tag">

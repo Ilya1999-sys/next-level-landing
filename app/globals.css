@@ -2344,5 +2344,12 @@ button {
   }
 }
 
+.text-scramble {
+  font-variant-numeric: tabular-nums;
+  cursor: default;
+  will-change: contents;
+}
+
+
 
 

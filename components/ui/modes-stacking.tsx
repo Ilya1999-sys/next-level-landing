@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { modes } from "@/lib/content";
 import { CircleStat, FactCard, YearCard } from "@/components/ui/cards";
+import { TextScramble } from "@/components/ui/text-scramble";
 
 const BAR_PAIRS: [number, number][] = [
   [12, 12],
@@ -165,7 +166,7 @@ export function ModesStackingScroll() {
       <div ref={stickyRef} className="modes-stacking-sticky">
         <div className="shell">
           <h2 className="section-title section-title--center section-title--display reveal-title">
-            <span>{modes.title}</span>
+            <span><TextScramble text={modes.title} /></span>
           </h2>
           <div className="modes-stacking-viewport">
             {modes.items.map((item, index) => (
