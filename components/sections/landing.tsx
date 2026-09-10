@@ -11,7 +11,7 @@ import { PlayerFactsMotion } from "@/components/ui/player-facts-motion";
 import { StatCounter } from "@/components/ui/stat-counter";
 import { StoryCursor } from "@/components/ui/story-cursor";
 import { TextScramble } from "@/components/ui/text-scramble";
-import { DiscussionsTicker } from "@/components/ui/discussions-ticker";
+import { ParallaxContainer } from "@/components/ui/parallax-container";
 import { concept, matchView, playerFacts, site, story } from "@/lib/content";
 
 const DOT_PATTERN: Array<"accent" | "muted"> = [
@@ -277,7 +277,7 @@ export function StorySection() {
   return (
     <section id={story.id} className="section section--story">
       <div className="shell">
-        <div className="story-container">
+        <ParallaxContainer className="story-container">
           <StoryCursor />
           <div className="story-badge story-badge--top">
             <p className="reveal-title"><span>{story.title}</span></p>
@@ -306,21 +306,22 @@ export function StorySection() {
                 </div>
                 <ArrowLink />
               </header>
-              <DiscussionsTicker
-                items={[
-                  "The Benzema Extravaganza in 2021",
-                  "How Germany went to the championship in 2014",
-                  "Eder’s extra-time goal in 2016",
-                  "Messi masterclass vs Madrid 2011",
-                ]}
-                discussionsCount="324 fans discussions"
-              />
+              <div className="chip-row">
+                <div className="chip-group">
+                  <p className="moments-chip">The Benzema Extravaganza in 2021</p>
+                  <p className="moments-chip">How Germany went to the championship in 2014</p>
+                </div>
+                <p className="story-discussions">
+                  <i className="status-dot" />
+                  324 fans discussions
+                </p>
+              </div>
             </article>
           </div>
           <div className="story-badge story-badge--bottom">
             <p className="reveal-title"><span>{story.footer}</span></p>
           </div>
-        </div>
+        </ParallaxContainer>
       </div>
     </section>
   );
@@ -376,15 +377,16 @@ export function MomentsSection() {
               </div>
               <ArrowLink />
             </header>
-            <DiscussionsTicker
-              items={[
-                "The Benzema Extravaganza in 2021",
-                "How Germany went to the championship in 2014",
-                "Spain 2008 golden generation",
-                "EURO 2008 Swiss dramatic comeback",
-              ]}
-              discussionsCount="512 live discussions"
-            />
+            <div className="chip-row">
+              <div className="chip-group">
+                <p className="moments-chip">The Benzema Extravaganza in 2021</p>
+                <p className="moments-chip">How Germany went to the championship in 2014</p>
+              </div>
+              <p className="story-discussions">
+                <i className="status-dot" />
+                324 fans discussions
+              </p>
+            </div>
           </article>
           <YearCard className="year-card--wide reveal-card" year="/2008" title="Russia, incredible comebacks and golden Spain">
             <div className="circle-row">
@@ -454,7 +456,7 @@ export function PlayerFactsSection() {
 export function ExperienceSection() {
   return (
     <section className="section section--experience">
-      <div className="shell experience reveal-group">
+      <ParallaxContainer className="shell experience reveal-group">
         <div className="experience__row experience__row--choose">
           <div className="hero-verbs hero-verbs--end">
             <p className="display-word">Choose</p>
@@ -487,7 +489,7 @@ export function ExperienceSection() {
         <p className="sr-only">
           Open the prototype at {site.productUrl}
         </p>
-      </div>
+      </ParallaxContainer>
     </section>
   );
 }
