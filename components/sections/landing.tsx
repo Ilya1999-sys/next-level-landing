@@ -481,8 +481,8 @@ export function ExperienceSection() {
     if (!g1 || !b1 || !g2 || !b2 || !sec) return;
 
     const trigger = ScrollTrigger.create({
-      trigger: sec,
-      start: "bottom bottom", // when bottom of section reaches bottom of viewport
+      trigger: ".site-footer",
+      start: "bottom bottom", // triggers when bottom of footer reaches bottom of viewport (when user scrolls to very bottom)
       once: true,
       onEnter: () => {
         setAnimating(true);
