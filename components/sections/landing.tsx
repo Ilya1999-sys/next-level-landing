@@ -359,47 +359,55 @@ export function MomentsSection() {
           </div>
         </div>
         <ParallaxContainer className="moments-grid reveal-group">
-          <FactCard className="reveal-card" tall label="Nostalgia fact" value="15" text="Champions League Cups won by Real Madrid">
-            <Dots items={DOT_PATTERN} />
-          </FactCard>
-          <div className="concept-stack">
-            <FactCard className="reveal-card"
-              label="Nostalgia fact"
-              value="18"
-              text="years ago, you watched your first Switzerland — Turkey match"
-              tag="EURO—2008"
-            />
-            <FactCard className="reveal-card" label="Favorite player fact" value="976" text="Cristiano Ronaldo has scored the most goals in his career so far" />
+          <div className="float-layer float-layer--1">
+            <FactCard className="reveal-card" tall label="Nostalgia fact" value="15" text="Champions League Cups won by Real Madrid">
+              <Dots items={DOT_PATTERN} />
+            </FactCard>
           </div>
-          <article className="year-card year-card--wide reveal-card">
-            <header className="year-card__top">
-              <div>
-                <p className="fact-card__tag">
+          <div className="float-layer float-layer--2">
+            <div className="concept-stack">
+              <FactCard className="reveal-card"
+                label="Nostalgia fact"
+                value="18"
+                text="years ago, you watched your first Switzerland — Turkey match"
+                tag="EURO—2008"
+              />
+              <FactCard className="reveal-card" label="Favorite player fact" value="976" text="Cristiano Ronaldo has scored the most goals in his career so far" />
+            </div>
+          </div>
+          <div className="float-layer float-layer--3 float-layer--wide">
+            <article className="year-card year-card--wide reveal-card">
+              <header className="year-card__top">
+                <div>
+                  <p className="fact-card__tag">
+                    <i className="status-dot" />
+                    Live
+                  </p>
+                  <p className="year-card__title">Barcelona</p>
+                </div>
+                <ArrowLink />
+              </header>
+              <div className="chip-row">
+                <div className="chip-group">
+                  <p className="moments-chip">The Benzema Extravaganza in 2021</p>
+                  <p className="moments-chip">How Germany went to the championship in 2014</p>
+                </div>
+                <p className="story-discussions">
                   <i className="status-dot" />
-                  Live
+                  324 fans discussions
                 </p>
-                <p className="year-card__title">Barcelona</p>
               </div>
-              <ArrowLink />
-            </header>
-            <div className="chip-row">
-              <div className="chip-group">
-                <p className="moments-chip">The Benzema Extravaganza in 2021</p>
-                <p className="moments-chip">How Germany went to the championship in 2014</p>
+            </article>
+          </div>
+          <div className="float-layer float-layer--4 float-layer--wide">
+            <YearCard className="year-card--wide reveal-card" year="/2008" title="Russia, incredible comebacks and golden Spain">
+              <div className="circle-row">
+                <CircleStat value="77" label="goals scored" accent />
+                <CircleStat value="31" label="matches played" />
+                <CircleStat value="12" label="Spain scored" />
               </div>
-              <p className="story-discussions">
-                <i className="status-dot" />
-                324 fans discussions
-              </p>
-            </div>
-          </article>
-          <YearCard className="year-card--wide reveal-card" year="/2008" title="Russia, incredible comebacks and golden Spain">
-            <div className="circle-row">
-              <CircleStat value="77" label="goals scored" accent />
-              <CircleStat value="31" label="matches played" />
-              <CircleStat value="12" label="Spain scored" />
-            </div>
-          </YearCard>
+            </YearCard>
+          </div>
         </ParallaxContainer>
       </div>
     </section>
