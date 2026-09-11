@@ -6,12 +6,14 @@ interface ParallaxContainerProps {
   children: React.ReactNode;
   className?: string;
   intensity?: number;
+  disabled?: boolean;
 }
 
 export function ParallaxContainer({
   children,
   className = "",
   intensity = 20,
+  disabled = false,
 }: ParallaxContainerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -20,9 +22,12 @@ export function ParallaxContainer({
     if (!el) return;
 
     if (
+      disabled ||
       window.matchMedia("(pointer: coarse)").matches ||
       window.matchMedia("(prefers-reduced-motion: reduce)").matches
     ) {
+      el.style.setProperty("--px", "0px");
+      el.style.setProperty("--py", "0px");
       return;
     }
 
@@ -65,7 +70,7 @@ export function ParallaxContainer({
       el.removeEventListener("mouseleave", handleMouseLeave);
       cancelAnimationFrame(animationFrameId);
     };
-  }, [intensity]);
+  }, [intensity, disabled]);
 
   return (
     <div ref={containerRef} className={`parallax-container ${className}`.trim()}>

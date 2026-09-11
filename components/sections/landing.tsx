@@ -1,3 +1,8 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   ArrowLink,
   Bars,
@@ -454,9 +459,135 @@ export function PlayerFactsSection() {
 }
 
 export function ExperienceSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const gray1Ref = useRef<HTMLElement>(null);
+  const blue1Ref = useRef<HTMLElement>(null);
+  const gray2Ref = useRef<HTMLElement>(null);
+  const blue2Ref = useRef<HTMLElement>(null);
+  const [animating, setAnimating] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const g1 = gray1Ref.current;
+    const b1 = blue1Ref.current;
+    const g2 = gray2Ref.current;
+    const b2 = blue2Ref.current;
+    const sec = sectionRef.current;
+
+    if (!g1 || !b1 || !g2 || !b2 || !sec) return;
+
+    const trigger = ScrollTrigger.create({
+      trigger: sec,
+      start: "bottom bottom", // when bottom of section reaches bottom of viewport
+      once: true,
+      onEnter: () => {
+        setAnimating(true);
+        const tl = gsap.timeline({
+          onComplete: () => {
+            setAnimating(false);
+          },
+        });
+
+        // Set initial positions
+        gsap.set(g1, { x: -100 });
+        gsap.set(b2, { x: 100 });
+        gsap.set([b1, g2], { x: 0 });
+
+        // Sec 1 (0s-1s): g1 moves from -100 to 0 hitting b1, b2 moves from +100 to 0 hitting g2
+        tl.to(
+          g1,
+          {
+            x: 0,
+            duration: 1,
+            ease: "power2.in",
+          },
+          0
+        ).to(
+          b2,
+          {
+            x: 0,
+            duration: 1,
+            ease: "power2.in",
+          },
+          0
+        );
+
+        // Sec 2 (1s-2s): b1 and g2 collide into each other (b1 -> +12px, g2 -> -12px then back to 0),
+        // while g1 bounces back to -100 and b2 bounces back to +100
+        tl.to(
+          b1,
+          {
+            x: 12,
+            duration: 0.4,
+            yoyo: true,
+            repeat: 1,
+            ease: "power1.out",
+          },
+          1
+        )
+          .to(
+            g2,
+            {
+              x: -12,
+              duration: 0.4,
+              yoyo: true,
+              repeat: 1,
+              ease: "power1.out",
+            },
+            1
+          )
+          .to(
+            g1,
+            {
+              x: -100,
+              duration: 1,
+              ease: "power2.out",
+            },
+            1
+          )
+          .to(
+            b2,
+            {
+              x: 100,
+              duration: 1,
+              ease: "power2.out",
+            },
+            1
+          );
+
+        // Sec 3 (2s-3s): g1 and b2 return to 0 (all 4 in original positions)
+        tl.to(
+          g1,
+          {
+            x: 0,
+            duration: 1,
+            ease: "power2.inOut",
+          },
+          2
+        ).to(
+          b2,
+          {
+            x: 0,
+            duration: 1,
+            ease: "power2.inOut",
+          },
+          2
+        );
+      },
+    });
+
+    return () => {
+      trigger.kill();
+    };
+  }, []);
+
   return (
-    <section className="section section--experience">
-      <ParallaxContainer className="shell experience reveal-group">
+    <section ref={sectionRef} className="section section--experience">
+      <ParallaxContainer className="shell experience reveal-group" disabled={animating}>
         <div className="experience__row experience__row--choose">
           <div className="hero-verbs hero-verbs--end">
             <p className="display-word">Choose</p>
@@ -480,11 +611,11 @@ export function ExperienceSection() {
           </div>
         </div>
         <div className="experience__it">
-          <i className="blob" />
-          <i className="blob blob--accent" />
+          <i ref={gray1Ref} className="blob" />
+          <i ref={blue1Ref} className="blob blob--accent" />
           <p className="display-word">it.</p>
-          <i className="blob" />
-          <i className="blob blob--accent" />
+          <i ref={gray2Ref} className="blob" />
+          <i ref={blue2Ref} className="blob blob--accent" />
         </div>
         <p className="sr-only">
           Open the prototype at {site.productUrl}
