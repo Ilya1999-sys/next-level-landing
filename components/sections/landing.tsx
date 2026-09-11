@@ -523,13 +523,13 @@ export function ExperienceSection() {
           },
         });
 
-        // Sec 1 (0s-1s): g1 flies from leftOffscreen to 0 hitting b1, b2 flies from rightOffscreen to 0 hitting g2
+        // Sec 1 (0s-1s): gray-1 and blue-2 fly in fast, then slow into impact
         tl.to(
           g1,
           {
             x: 0,
             duration: 1,
-            ease: "power2.in",
+            ease: "power3.out",
           },
           0
         ).to(
@@ -537,57 +537,71 @@ export function ExperienceSection() {
           {
             x: 0,
             duration: 1,
-            ease: "power2.in",
+            ease: "power3.out",
           },
           0
         );
 
-        // Sec 2 (1s-2s): b1 and g2 collide into each other (b1 -> +12px, g2 -> -12px then back to 0),
-        // while g1 bounces back to -100px and b2 bounces back to +100px
+        // Sec 2 (1s-2s): blue-1 and gray-2 spring toward each other and collide.
+        // In the same second gray-1 and blue-2 bounce 50px out and return.
         tl.to(
           b1,
           {
-            x: 12,
-            duration: 0.4,
-            yoyo: true,
-            repeat: 1,
-            ease: "power1.out",
+            x: 28,
+            duration: 1,
+            ease: "power3.out",
           },
           1
         )
           .to(
             g2,
             {
-              x: -12,
-              duration: 0.4,
-              yoyo: true,
-              repeat: 1,
-              ease: "power1.out",
+              x: -28,
+              duration: 1,
+              ease: "power3.out",
             },
             1
           )
           .to(
             g1,
             {
-              x: -100,
-              duration: 1,
-              ease: "power2.out",
+              x: -50,
+              duration: 0.35,
+              ease: "power3.out",
             },
-            1
+            1.08
           )
           .to(
             b2,
             {
-              x: 100,
-              duration: 1,
-              ease: "power2.out",
+              x: 50,
+              duration: 0.35,
+              ease: "power3.out",
             },
-            1
+            1.08
+          )
+          .to(
+            g1,
+            {
+              x: 0,
+              duration: 0.57,
+              ease: "power2.inOut",
+            },
+            1.43
+          )
+          .to(
+            b2,
+            {
+              x: 0,
+              duration: 0.57,
+              ease: "power2.inOut",
+            },
+            1.43
           );
 
-        // Sec 3 (2s-3s): g1 and b2 return to 0 (all 4 in original positions)
+        // Sec 3 (2s-3s): blue-1 and gray-2 ease back to rest
         tl.to(
-          g1,
+          b1,
           {
             x: 0,
             duration: 1,
@@ -595,7 +609,7 @@ export function ExperienceSection() {
           },
           2
         ).to(
-          b2,
+          g2,
           {
             x: 0,
             duration: 1,
