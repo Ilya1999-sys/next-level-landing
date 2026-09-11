@@ -358,7 +358,7 @@ export function MomentsSection() {
             <p className="moments-chip">How Germany went to the championship in 2014</p>
           </div>
         </div>
-        <div className="moments-grid reveal-group">
+        <ParallaxContainer className="moments-grid reveal-group">
           <FactCard className="reveal-card" tall label="Nostalgia fact" value="15" text="Champions League Cups won by Real Madrid">
             <Dots items={DOT_PATTERN} />
           </FactCard>
@@ -400,7 +400,7 @@ export function MomentsSection() {
               <CircleStat value="12" label="Spain scored" />
             </div>
           </YearCard>
-        </div>
+        </ParallaxContainer>
       </div>
     </section>
   );
