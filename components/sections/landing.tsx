@@ -512,6 +512,8 @@ export function ExperienceSection() {
     gsap.set(b2, { x: initialOffsets.rightOffscreen });
     gsap.set([b1, g2], { x: 0 });
 
+    let motionTl: gsap.core.Timeline | undefined;
+
     const trigger = ScrollTrigger.create({
       trigger: sec,
       start: "top 80%", // triggers when circles block enters 80% of viewport
@@ -522,114 +524,70 @@ export function ExperienceSection() {
         gsap.set(b2, { x: rightOffscreen });
 
         const tl = gsap.timeline({
-          delay: 2, // wait 2 seconds after circles become visible in viewport
+          delay: 2,
+          defaults: { overwrite: "auto" },
           onStart: () => {
             setAnimating(true);
           },
           onComplete: () => {
+            gsap.set([g1, b1, g2, b2], { x: 0, scale: 1 });
             setAnimating(false);
           },
         });
+        motionTl = tl;
 
-        // Sec 1 (0s-1s): gray-1 and blue-2 fly in fast, then slow into impact
-        tl.to(
-          g1,
-          {
-            x: 0,
-            duration: 1,
-            ease: "power3.out",
-          },
-          0
-        ).to(
-          b2,
-          {
-            x: 0,
-            duration: 1,
-            ease: "power3.out",
-          },
-          0
-        );
-
-        // Sec 2 (1s-2s): blue-1 and gray-2 spring toward each other and collide.
-        // In the same second gray-1 and blue-2 bounce 50px out and return.
-        tl.to(
-          b1,
-          {
-            x: 28,
-            duration: 1,
-            ease: "power3.out",
-          },
-          1
-        )
-          .to(
-            g2,
+        const bump = (el: HTMLElement, at: number) => {
+          tl.fromTo(
+            el,
+            { scale: 1 },
             {
-              x: -28,
-              duration: 1,
-              ease: "power3.out",
+              scale: 1.07,
+              duration: 0.05,
+              ease: "power1.out",
+              yoyo: true,
+              repeat: 1,
             },
-            1
-          )
-          .to(
-            g1,
-            {
-              x: -50,
-              duration: 0.35,
-              ease: "power3.out",
-            },
-            1.08
-          )
-          .to(
-            b2,
-            {
-              x: 50,
-              duration: 0.35,
-              ease: "power3.out",
-            },
-            1.08
-          )
-          .to(
-            g1,
-            {
-              x: 0,
-              duration: 0.57,
-              ease: "power2.inOut",
-            },
-            1.43
-          )
-          .to(
-            b2,
-            {
-              x: 0,
-              duration: 0.57,
-              ease: "power2.inOut",
-            },
-            1.43
+            at
           );
+        };
 
-        // Sec 3 (2s-3s): blue-1 and gray-2 ease back to rest
-        tl.to(
-          b1,
-          {
-            x: 0,
-            duration: 1,
-            ease: "power2.inOut",
-          },
-          2
-        ).to(
-          g2,
-          {
-            x: 0,
-            duration: 1,
-            ease: "power2.inOut",
-          },
-          2
-        );
+        // 0–1s: outer balls accelerate into the hit, then stop dead (mass transfer)
+        tl.to(g1, { x: 0, duration: 1, ease: "circ.in" }, 0);
+        tl.to(b2, { x: 0, duration: 1, ease: "circ.in" }, 0);
+        bump(g1, 1);
+        bump(b1, 1);
+        bump(g2, 1);
+        bump(b2, 1);
+
+        // 1.00–1.42: inner balls take the impulse and fly toward each other at near-constant speed
+        tl.to(b1, { x: 30, duration: 0.42, ease: "none" }, 1);
+        tl.to(g2, { x: -30, duration: 0.42, ease: "none" }, 1);
+
+        // 1.42: inner collision — reverse immediately
+        bump(b1, 1.42);
+        bump(g2, 1.42);
+        tl.to(b1, { x: 0, duration: 0.42, ease: "none" }, 1.42);
+        tl.to(g2, { x: 0, duration: 0.42, ease: "none" }, 1.42);
+
+        // 1.84: inner balls hit the outers; outers swing out like a pendulum
+        bump(g1, 1.84);
+        bump(b1, 1.84);
+        bump(g2, 1.84);
+        bump(b2, 1.84);
+        tl.to(g1, { x: -50, duration: 0.38, ease: "sine.out" }, 1.84);
+        tl.to(b2, { x: 50, duration: 0.38, ease: "sine.out" }, 1.84);
+
+        // Apex → rest: accelerate back (gravity), then a short damped overshoot
+        tl.to(g1, { x: 5, duration: 0.5, ease: "sine.in" }, 2.22);
+        tl.to(b2, { x: -5, duration: 0.5, ease: "sine.in" }, 2.22);
+        tl.to(g1, { x: 0, duration: 0.28, ease: "sine.out" }, 2.72);
+        tl.to(b2, { x: 0, duration: 0.28, ease: "sine.out" }, 2.72);
       },
     });
 
     return () => {
       trigger.kill();
+      motionTl?.kill();
     };
   }, []);
 
