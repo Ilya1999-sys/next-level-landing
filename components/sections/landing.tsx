@@ -480,9 +480,28 @@ export function ExperienceSection() {
 
     if (!g1 || !b1 || !g2 || !b2 || !sec) return;
 
-    // Set initial positions immediately so they are offset before entering viewport
-    gsap.set(g1, { x: -100 });
-    gsap.set(b2, { x: 100 });
+    // Helper to calculate exact off-screen offsets (100px past left/right viewport edges)
+    const getOffscreenOffsets = () => {
+      const g1X = (gsap.getProperty(g1, "x") as number) || 0;
+      const b2X = (gsap.getProperty(b2, "x") as number) || 0;
+      gsap.set(g1, { x: 0 });
+      gsap.set(b2, { x: 0 });
+
+      const g1Rect = g1.getBoundingClientRect();
+      const b2Rect = b2.getBoundingClientRect();
+      const leftOffscreen = -g1Rect.left - g1Rect.width - 100;
+      const rightOffscreen = window.innerWidth - b2Rect.left + 100;
+
+      gsap.set(g1, { x: g1X });
+      gsap.set(b2, { x: b2X });
+
+      return { leftOffscreen, rightOffscreen };
+    };
+
+    // Set initial offscreen positions immediately
+    const initialOffsets = getOffscreenOffsets();
+    gsap.set(g1, { x: initialOffsets.leftOffscreen });
+    gsap.set(b2, { x: initialOffsets.rightOffscreen });
     gsap.set([b1, g2], { x: 0 });
 
     const trigger = ScrollTrigger.create({
@@ -490,6 +509,10 @@ export function ExperienceSection() {
       start: "top 80%", // triggers when circles block enters 80% of viewport
       once: true,
       onEnter: () => {
+        const { leftOffscreen, rightOffscreen } = getOffscreenOffsets();
+        gsap.set(g1, { x: leftOffscreen });
+        gsap.set(b2, { x: rightOffscreen });
+
         const tl = gsap.timeline({
           delay: 2, // wait 2 seconds after circles become visible in viewport
           onStart: () => {
@@ -500,7 +523,7 @@ export function ExperienceSection() {
           },
         });
 
-        // Sec 1 (0s-1s): g1 moves from -100 to 0 hitting b1, b2 moves from +100 to 0 hitting g2
+        // Sec 1 (0s-1s): g1 flies from leftOffscreen to 0 hitting b1, b2 flies from rightOffscreen to 0 hitting g2
         tl.to(
           g1,
           {
@@ -520,7 +543,7 @@ export function ExperienceSection() {
         );
 
         // Sec 2 (1s-2s): b1 and g2 collide into each other (b1 -> +12px, g2 -> -12px then back to 0),
-        // while g1 bounces back to -100 and b2 bounces back to +100
+        // while g1 bounces back to -100px and b2 bounces back to +100px
         tl.to(
           b1,
           {
