@@ -480,22 +480,25 @@ export function ExperienceSection() {
 
     if (!g1 || !b1 || !g2 || !b2 || !sec) return;
 
+    // Set initial positions immediately so they are offset before entering viewport
+    gsap.set(g1, { x: -100 });
+    gsap.set(b2, { x: 100 });
+    gsap.set([b1, g2], { x: 0 });
+
     const trigger = ScrollTrigger.create({
-      trigger: ".site-footer",
-      start: "bottom bottom", // triggers when bottom of footer reaches bottom of viewport (when user scrolls to very bottom)
+      trigger: sec,
+      start: "top 80%", // triggers when circles block enters 80% of viewport
       once: true,
       onEnter: () => {
-        setAnimating(true);
         const tl = gsap.timeline({
+          delay: 2, // wait 2 seconds after circles become visible in viewport
+          onStart: () => {
+            setAnimating(true);
+          },
           onComplete: () => {
             setAnimating(false);
           },
         });
-
-        // Set initial positions
-        gsap.set(g1, { x: -100 });
-        gsap.set(b2, { x: 100 });
-        gsap.set([b1, g2], { x: 0 });
 
         // Sec 1 (0s-1s): g1 moves from -100 to 0 hitting b1, b2 moves from +100 to 0 hitting g2
         tl.to(
