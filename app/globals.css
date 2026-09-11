@@ -323,8 +323,14 @@ button {
 }
 
 .hero-block--story {
-  grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr) minmax(260px, 0.8fr);
+  grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.3fr) minmax(220px, 0.65fr);
+  gap: var(--space-s);
   align-items: stretch;
+}
+
+.hero-block--story > .hero-stack {
+  max-width: 310px;
+  width: 100%;
 }
 
 .hero-verbs {
@@ -2437,7 +2443,12 @@ button {
 }
 
 /* Barcelona Year Card Exact Figma Styles (Node 449:7277) */
-.story-grid .year-card--wide,
+.story-grid .year-card--wide {
+  background: var(--bg-muted);
+  border-radius: var(--radius-l, 24px);
+  padding: 28px;
+}
+
 .moments-grid .year-card--wide {
   background: var(--bg-surface, #111118);
   border-radius: var(--radius-l, 24px);
