@@ -20,3 +20,10 @@
   --mode-legends: #ff9e01;
   --mode-drama: #ff0901;
 }
+
+.band--white,
+.section--experience,
+.site-footer {
+  --bg-surface: #dedede;
+  --bg-muted: #dedede;
+}

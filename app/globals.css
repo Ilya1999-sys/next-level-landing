@@ -79,6 +79,13 @@ button {
   margin-inline: auto;
 }
 
+.hero-collage,
+.experience,
+.moments-type {
+  max-width: var(--compose-max);
+  margin-inline: auto;
+}
+
 .section {
   padding-block: var(--section-y);
   scroll-margin-top: var(--header-h);
@@ -103,8 +110,8 @@ button {
   position: relative;
   z-index: 1;
   background: var(--bg-white);
-  padding-top: 160px;
-  padding-bottom: 40px;
+  padding-top: calc(var(--rhythm) * 20);
+  padding-bottom: calc(var(--rhythm) * 5);
 }
 
 .display-word {
@@ -857,7 +864,7 @@ button {
   display: flex;
   justify-content: space-between;
   gap: 40px;
-  margin-bottom: 80px;
+  margin-bottom: var(--space-3xl);
 }
 
 .concept-head .section-title {
@@ -872,12 +879,12 @@ button {
 .moments-grid {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
-  gap: 12px;
+  gap: var(--rhythm);
 }
 
 .concept-stack {
   display: grid;
-  gap: 12px;
+  gap: var(--rhythm);
 }
 
 #modes .section-title {
@@ -1210,8 +1217,8 @@ button {
 
 .moments-type {
   display: grid;
-  gap: 20px;
-  margin-bottom: 80px;
+  gap: calc(var(--rhythm) * 2);
+  margin-bottom: var(--space-3xl);
 }
 
 .moments-row {
@@ -1355,7 +1362,7 @@ button {
 .camera-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 20px;
+  gap: calc(var(--rhythm) * 2);
 }
 
 .camera-grid figure {
@@ -1493,7 +1500,7 @@ button {
 
 .player-stat {
   display: grid;
-  gap: 20px;
+  gap: calc(var(--rhythm) * 2);
   padding: 40px;
   border-radius: var(--radius-s);
   background: var(--bg-accent);
@@ -1509,7 +1516,7 @@ button {
 
 .experience {
   display: grid;
-  gap: 20px;
+  gap: calc(var(--rhythm) * 2);
 }
 
 .experience__row {
@@ -1519,12 +1526,12 @@ button {
 
 .experience__row--choose {
   grid-template-columns: max-content minmax(280px, 1fr);
-  gap: 20px;
+  gap: calc(var(--rhythm) * 2);
 }
 
 .experience__row--you {
   grid-template-columns: minmax(220px, 1fr) max-content;
-  gap: 20px;
+  gap: calc(var(--rhythm) * 2);
 }
 
 .experience__row .fact-card {
@@ -1540,8 +1547,8 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding-bottom: 12px;
+  gap: var(--rhythm);
+  padding-bottom: var(--rhythm);
   overflow: visible;
 }
 
@@ -1549,14 +1556,14 @@ button {
   position: relative;
   z-index: 1;
   background: var(--bg-white);
-  padding-top: 80px;
-  padding-bottom: 40px;
+  padding-top: var(--space-3xl);
+  padding-bottom: var(--space-2xl);
 }
 
 .site-footer__grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
+  gap: var(--rhythm);
 }
 
 .site-footer__grid p,
@@ -2539,6 +2546,26 @@ button {
   font-size: var(--size-t3, 12px);
   color: rgba(255, 255, 255, 0.7);
   white-space: nowrap;
+}
+
+html.debug-grid body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      rgb(1 47 255 / 0.22) 0 1px,
+      transparent 1px 8px
+    ),
+    repeating-linear-gradient(
+      to right,
+      rgb(1 47 255 / 0.14) 0 8px,
+      transparent 8px 16px
+    );
+  background-position: 0 var(--rhythm);
 }
 
 

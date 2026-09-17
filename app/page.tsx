@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import {
   ConceptSection,
   ExperienceSection,
@@ -8,11 +9,15 @@ import {
   PlayerFactsSection,
   StorySection,
 } from "@/components/sections/landing";
+import { GridDebug } from "@/components/ui/grid-debug";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 export default function HomePage() {
   return (
     <main>
+      <Suspense>
+        <GridDebug />
+      </Suspense>
       <ScrollReveal />
       <HeroSection />
       <div className="band band--white">

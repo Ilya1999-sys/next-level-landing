@@ -16,10 +16,19 @@
 
   --blur-glass: 20px;
   --page-max: 1520px;
+  --compose-max: 1520px;
   --page-gutter: 40px;
   --section-y: 80px;
   --header-h: 80px;
   --hero-line: 126px;
+  --rhythm: 8px;
+}
+
+@media (min-width: 1600px) {
+  :root {
+    --page-gutter: 72px;
+    --compose-max: 1280px;
+  }
 }
 
 @media (max-width: 1599px) {
