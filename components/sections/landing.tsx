@@ -250,8 +250,8 @@ export function ConceptSection() {
           <p className="section-body reveal-text"><span>{concept.body}</span></p>
         </header>
         <div className="concept-grid reveal-group">
-          <FactCard className="reveal-card" tall label="Wins fact" value="1" text="regular-time victory over Wales in the entire tournament">
-            <Bars pairs={[[24, 24], [72, 72], [24, 24]]} />
+          <FactCard className="reveal-card fact-card--packed" tall label="Wins fact" value="1" text="regular-time victory over Wales in the entire tournament">
+            <Bars pairs={[[24, 24], [72, 72]]} />
           </FactCard>
           <div className="concept-stack">
             <FactCard className="reveal-card" label="Final fact" value="109" text="Eder’s extra-time goal beat host nation France in the final." />
@@ -658,8 +658,8 @@ export function ExperienceSection() {
           </FactCard>
         </div>
         <div className="experience__row experience__row--you">
-          <FactCard className="reveal-card" label="Wins fact" value="1" text="regular-time victory over Wales in the entire tournament">
-            <Bars pairs={[[24, 24], [48, 48], [24, 24]]} />
+          <FactCard className="reveal-card fact-card--packed" label="Wins fact" value="1" text="regular-time victory over Wales in the entire tournament">
+            <Bars pairs={[[24, 24], [72, 72]]} />
           </FactCard>
           <div className="hero-verbs">
             <p className="display-word">you</p>
