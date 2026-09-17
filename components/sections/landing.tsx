@@ -156,7 +156,7 @@ export function HeroSection() {
                 ))}
               </div>
               <div className="victory-graph__plot">
-                <svg viewBox="0 0 340 340" preserveAspectRatio="none">
+                <svg viewBox="0 0 340 340" preserveAspectRatio="xMidYMid meet">
                   <polyline points="20,300 70,250 120,250 170,210 220,170 270,60 320,60" className="victory-line victory-line--faded" />
                   <polyline points="20,320 70,320 120,250 170,230 220,210 270,170 320,150" className="victory-line victory-line--main" />
                   {[["20", "320"], ["70", "320"], ["120", "250"], ["170", "230"], ["220", "210"], ["270", "170"], ["320", "150"]].map(([x, y]) => (
@@ -229,8 +229,8 @@ export function HeroSection() {
                 <ArrowLink />
               </header>
               <div className="circle-row">
-                <CircleStat value="19" label="shots on goal" accent />
-                <CircleStat value="90%" label="pass accuracy" />
+                <CircleStat value="19" label="shots" accent />
+                <CircleStat value="90%" label="pass" />
                 <CircleStat value="9" label="corners" />
               </div>
             </article>
@@ -338,27 +338,65 @@ export function MomentsSection() {
       <div className="shell">
         <div className="moments-type">
           <div className="moments-row">
-            <i className="pill pill--photo">
-              <img src="/figma/landing/camera-referee.png" alt="" />
-            </i>
+            <a
+              className="moments-app-card"
+              href={site.playerStatsUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <p className="fact-card__label">Favorite player fact</p>
+              <p className="fact-card__stat">
+                <b>5</b>
+                <span>Mbappe in one match</span>
+              </p>
+            </a>
             <p className="display-word">Watch</p>
-            <i className="pill pill--photo">
-              <img src="/figma/landing/camera-player.png" alt="" />
-            </i>
+            <a
+              className="moments-app-card"
+              href={site.playerStatsUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <p className="fact-card__label">Speed fact</p>
+              <p className="fact-card__stat">
+                <b>37 km/h</b>
+                <span>Mbappe sprint</span>
+              </p>
+            </a>
           </div>
           <div className="moments-row moments-row--end">
-            <span className="icon-pill icon-pill--wide">
-              <img src="/figma/landing/icon-games.svg" alt="" width={40} height={40} />
-              <b>2</b>
-            </span>
+            <a
+              className="moments-app-card moments-app-card--accent moments-app-card--wide"
+              href={site.playerStatsUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div>
+                <p className="fact-card__label">/2016</p>
+                <p className="year-card__title">Open Portugal Euro archive</p>
+              </div>
+              <div className="circle-row">
+                <CircleStat value="9" label="Portugal goals" />
+                <CircleStat value="1" label="regular-time win" accent />
+              </div>
+            </a>
             <p className="display-kicker">the</p>
             <p className="display-word">match</p>
           </div>
           <p className="display-word display-word--center reveal-title"><span>Understand</span></p>
           <div className="moments-row">
-            <i className="pill pill--photo pill--accent">
-              <img src="/figma/landing/camera-behind-goal.png" alt="" />
-            </i>
+            <a
+              className="moments-app-card"
+              href={site.playerStatsUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <p className="fact-card__label">Club fact</p>
+              <p className="fact-card__stat">
+                <b>15</b>
+                <span>Madrid UCL</span>
+              </p>
+            </a>
             <p className="display-kicker">the</p>
             <p className="display-word">moment</p>
             <p className="moments-chip">How Germany went to the championship in 2014</p>
@@ -621,7 +659,7 @@ export function ExperienceSection() {
         </div>
         <div className="experience__row experience__row--you">
           <FactCard className="reveal-card" label="Wins fact" value="1" text="regular-time victory over Wales in the entire tournament">
-            <Bars pairs={[[24, 24], [72, 72], [24, 24]]} />
+            <Bars pairs={[[24, 24], [48, 48], [24, 24]]} />
           </FactCard>
           <div className="hero-verbs">
             <p className="display-word">you</p>

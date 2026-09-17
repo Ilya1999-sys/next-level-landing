@@ -1,6 +1,7 @@
 export const site = {
   name: "Next Level",
   productUrl: "https://next-level-git-cursor-home-player-figma-layout-next-level-1999.vercel.app/",
+  playerStatsUrl: "https://next-level-git-cursor-responsive-experiment-next-level-1999.vercel.app/player-stats",
   telegramUrl: "https://t.me/ilya_uxui_design",
 };
 

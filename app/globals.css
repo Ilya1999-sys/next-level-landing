@@ -330,15 +330,25 @@ button {
 }
 
 .hero-block--story {
-  grid-template-columns: minmax(280px, 1fr) auto minmax(260px, 1.2fr);
+  grid-template-columns: minmax(0, 1.8fr) minmax(0, 0.7fr) minmax(0, 0.95fr);
   gap: var(--space-s);
   align-items: stretch;
 }
 
+.hero-block--story > .year-card--chart {
+  min-width: 0;
+  width: 100%;
+}
+
 .hero-block--story > .hero-stack {
+  min-width: 0;
   margin-left: calc(var(--space-xs) - var(--space-s));
   max-width: none;
   width: calc(100% + var(--space-s) - var(--space-xs));
+}
+
+.hero-block--story > .hero-verbs {
+  min-width: 0;
 }
 
 .hero-verbs {
@@ -644,8 +654,17 @@ button {
 }
 
 .bar-chart {
-  gap: 40px;
-  min-height: 144px;
+  justify-content: space-between;
+  gap: var(--space-m);
+  width: 100%;
+  height: 80px;
+  min-height: 0;
+  overflow: hidden;
+  flex: 0 1 auto;
+}
+
+.bar-chart__pair {
+  flex: 0 0 auto;
 }
 
 .bar {
@@ -1263,6 +1282,77 @@ button {
   object-position: center;
 }
 
+.moments-app-card {
+  flex: 1 1 0;
+  min-width: 0;
+  height: var(--hero-line);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--rhythm);
+  padding: var(--space-s) var(--space-m);
+  border-radius: var(--radius-m);
+  background: var(--bg-surface);
+  color: var(--text);
+  overflow: hidden;
+}
+
+.moments-app-card .fact-card__stat b {
+  font-size: var(--size-h2);
+  line-height: var(--leading-h2);
+}
+
+.moments-app-card--accent {
+  background: var(--bg-accent);
+  color: #fff;
+  --card-text: #fff;
+}
+
+.moments-app-card--accent .fact-card__label,
+.moments-app-card--accent .year-card__title {
+  color: #fff;
+}
+
+.moments-app-card--wide {
+  flex: 1.6 1 0;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-m);
+}
+
+.moments-app-card--wide .circle-row {
+  width: auto;
+  flex: none;
+  gap: var(--rhythm);
+}
+
+.moments-app-card--wide .circle-stat {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
+  max-width: 56px;
+  padding: 4px;
+  gap: 2px;
+}
+
+.moments-app-card--wide .circle-stat b {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.moments-app-card--wide .circle-stat span {
+  font-size: 8px;
+  line-height: 1.1;
+  max-width: 64px;
+}
+
+.moments-app-card--wide .circle-stat:not(.circle-stat--accent) {
+  background: #fff;
+  color: var(--bg-accent);
+}
+
 .display-word--center {
   text-align: center;
 }
@@ -1432,14 +1522,15 @@ button {
 
 .player-facts__photo {
   position: absolute;
-  inset: 0;
+  left: 50%;
+  bottom: 0;
   z-index: 2;
-  width: 100%;
+  width: 64%;
   height: 100%;
-  max-width: none;
-  max-height: none;
-  object-fit: cover;
+  max-width: 720px;
+  object-fit: contain;
   object-position: center bottom;
+  transform: translateX(-50%);
   pointer-events: none;
 }
 
@@ -1556,6 +1647,14 @@ button {
   min-height: 272px;
 }
 
+.experience__row .bar-chart {
+  height: 48px;
+}
+
+.experience__row .bar {
+  max-height: 48px;
+}
+
 .experience__row .hero-verbs {
   min-width: 0;
 }
@@ -1620,7 +1719,7 @@ button {
   }
 
   .hero-block--story {
-    grid-template-columns: minmax(300px, 0.9fr) minmax(0, 1.1fr);
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
     align-items: stretch;
   }
 
@@ -1695,6 +1794,17 @@ button {
   .hero-row,
   .moments-row {
     flex-wrap: wrap;
+  }
+
+  .moments-app-card {
+    height: auto;
+    min-height: 80px;
+    flex: 1 1 220px;
+  }
+
+  .moments-app-card--wide {
+    flex: 1 1 100%;
+    min-height: 96px;
   }
 
   .hero-row--icons {
