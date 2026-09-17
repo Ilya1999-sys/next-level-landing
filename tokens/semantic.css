@@ -26,4 +26,5 @@
 .section--experience,
 .site-footer {
   --card-bg: #dedede;
+  --bg-muted: #bcbcbc;
 }

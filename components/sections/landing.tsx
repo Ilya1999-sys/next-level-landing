@@ -338,9 +338,13 @@ export function MomentsSection() {
       <div className="shell">
         <div className="moments-type">
           <div className="moments-row">
-            <i className="pill" />
+            <i className="pill pill--photo">
+              <img src="/figma/landing/camera-referee.png" alt="" />
+            </i>
             <p className="display-word">Watch</p>
-            <i className="pill pill--accent" />
+            <i className="pill pill--photo">
+              <img src="/figma/landing/camera-player.png" alt="" />
+            </i>
           </div>
           <div className="moments-row moments-row--end">
             <span className="icon-pill icon-pill--wide">
@@ -352,7 +356,9 @@ export function MomentsSection() {
           </div>
           <p className="display-word display-word--center reveal-title"><span>Understand</span></p>
           <div className="moments-row">
-            <i className="pill pill--accent" />
+            <i className="pill pill--photo pill--accent">
+              <img src="/figma/landing/camera-behind-goal.png" alt="" />
+            </i>
             <p className="display-kicker">the</p>
             <p className="display-word">moment</p>
             <p className="moments-chip">How Germany went to the championship in 2014</p>
@@ -438,7 +444,13 @@ export function PlayerFactsSection() {
       <PlayerFactsMotion />
       <div className="player-facts player-facts--motion">
         <h2 className="section-title section-title--center section-title--display reveal-title"><span>{playerFacts.title}</span></h2>
-        <img className="player-facts__photo" src="/figma/landing/ronaldo.png" alt="Cristiano Ronaldo" />
+        <img
+          className="player-facts__photo"
+          src="/figma/landing/ronaldo.png"
+          alt="Cristiano Ronaldo"
+          width={3858}
+          height={3372}
+        />
         <article className="player-note player-note--career reveal-card">
           <p className="fact-card__tag">
             <i className="status-dot" />
