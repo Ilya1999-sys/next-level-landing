@@ -172,7 +172,7 @@ button {
   align-items: center;
   justify-content: center;
   min-height: 60px;
-  padding: 12px 20px;
+  padding: var(--space-s) var(--space-m);
   border-radius: var(--radius-xs);
   font-family: var(--font-display);
   font-size: var(--size-button);
@@ -210,13 +210,13 @@ button {
   flex-wrap: nowrap;
   gap: var(--space-l);
   min-height: var(--header-h);
-  padding-block: 10px;
+  padding-block: var(--space-s);
 }
 
 .site-header__actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--rhythm);
 }
 
 .brand img {
@@ -395,7 +395,7 @@ button {
 
 .icon-pill--wide b {
   position: absolute;
-  top: 12px;
+  top: var(--rhythm);
   left: 50%;
   display: grid;
   place-items: center;
@@ -432,8 +432,8 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 28px;
-  padding: 20px;
+  gap: var(--space-l);
+  padding: var(--space-m);
   background: var(--card-bg, var(--bg-surface));
   color: var(--card-text, var(--text));
   border-radius: var(--radius-m);
@@ -443,7 +443,7 @@ button {
 
 .fact-card--tall,
 .year-card {
-  min-height: 220px;
+  min-height: 224px;
 }
 
 .hero-row .fact-card,
@@ -457,14 +457,14 @@ button {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 12px;
+  gap: var(--rhythm);
 }
 
 .chip-group {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
+  gap: var(--rhythm);
 }
 
 .story-discussions {
@@ -582,7 +582,7 @@ button {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  gap: 12px;
+  gap: var(--rhythm);
   width: 100%;
 }
 
@@ -611,7 +611,7 @@ button {
 .dot-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: var(--rhythm);
 }
 
 .dot,
@@ -640,7 +640,7 @@ button {
 .bar-chart__pair {
   display: flex;
   align-items: flex-end;
-  gap: 12px;
+  gap: var(--rhythm);
 }
 
 .bar-chart {
@@ -690,7 +690,7 @@ button {
 
 .year-card--chart {
   min-height: 620px;
-  padding: 28px;
+  padding: var(--space-l);
   border-radius: 40px;
 }
 
@@ -705,7 +705,7 @@ button {
 .match-review-graph {
   display: grid;
   grid-template-columns: 46px 1fr;
-  gap: 20px;
+  gap: var(--space-m);
   min-height: 462px;
 }
 
@@ -713,7 +713,7 @@ button {
   display: grid;
   align-content: space-between;
   justify-items: center;
-  padding-block: 10px 30px;
+  padding-block: var(--space-s) var(--space-xl);
   font-family: var(--font-ui);
   font-size: var(--size-t2);
   line-height: var(--leading-t2);
@@ -761,8 +761,8 @@ button {
   display: grid;
   grid-template-columns: 22px 1fr;
   grid-template-rows: 1fr auto;
-  column-gap: 12px;
-  row-gap: 12px;
+  column-gap: var(--rhythm);
+  row-gap: var(--rhythm);
   width: 100%;
   min-height: 469px;
 }
@@ -850,7 +850,7 @@ button {
   padding: 0;
   list-style: none;
   display: grid;
-  gap: 12px;
+  gap: var(--rhythm);
 }
 
 .stat-rows li {
@@ -982,7 +982,7 @@ button {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-template-rows: 148px auto auto auto 148px;
-  gap: 20px;
+  gap: var(--space-m);
   background: var(--bg-page);
   overflow: hidden;
   border-radius: 80px;
@@ -1091,7 +1091,7 @@ button {
   display: flex;
   align-items: center;
   gap: 24px;
-  padding: 16px 28px;
+  padding: var(--space-m) var(--space-l);
   border-radius: var(--radius-l);
   background: var(--bg-glass);
   color: var(--text-on-dark);
@@ -1151,7 +1151,7 @@ button {
 .smart-facts {
   position: relative;
   z-index: 3;
-  padding: 20px;
+  padding: var(--space-m);
   border-radius: 24px;
   background: var(--bg-glass);
   color: var(--text-on-dark);
@@ -1164,7 +1164,7 @@ button {
   grid-row: 2;
   align-self: start;
   display: grid;
-  gap: 12px;
+  gap: var(--rhythm);
   text-align: center;
   text-transform: uppercase;
   width: 100%;
@@ -1173,7 +1173,7 @@ button {
 
 .view-mode span {
   min-height: 48px;
-  padding: 12px 20px;
+  padding: var(--space-s) var(--space-m);
   border-radius: 12px;
   background: var(--bg-surface);
   color: var(--text);
@@ -1195,14 +1195,14 @@ button {
   grid-row: 4;
   width: 100%;
   display: grid;
-  gap: 20px;
+  gap: var(--space-m);
   align-self: start;
   min-width: 0;
 }
 
 .smart-facts b {
   display: block;
-  margin-top: 12px;
+  margin-top: var(--rhythm);
   font-family: var(--font-display);
   text-transform: uppercase;
 }
@@ -1255,7 +1255,7 @@ button {
 }
 
 .moments-chip {
-  padding: 20px 32px;
+  padding: var(--space-m) var(--space-xl);
   border-radius: 16px;
   background: var(--bg-muted);
   font-family: var(--font-ui);
@@ -1351,7 +1351,7 @@ button {
 
 .story-grid .fact-card,
 .story-grid .year-card {
-  background: var(--bg-muted);
+  background: var(--card-bg, var(--bg-surface));
   border-radius: var(--radius-m);
 }
 
@@ -1474,28 +1474,28 @@ button {
   grid-column: 1;
   grid-row: 2;
   justify-self: start;
-  width: 317px;
+  width: 320px;
 }
 
 .player-stat--events {
   grid-column: 4;
   grid-row: 5;
   justify-self: end;
-  width: 238px;
+  width: 240px;
 }
 
 .player-stat--matches {
   grid-column: 2;
   grid-row: 5;
   justify-self: center;
-  width: 277px;
+  width: 280px;
 }
 
 .player-stat--facts {
   grid-column: 4;
   grid-row: 2;
   justify-self: end;
-  width: 238px;
+  width: 240px;
 }
 
 .player-stat {
@@ -1568,14 +1568,14 @@ button {
 
 .site-footer__grid p,
 .site-footer__grid .btn {
-  min-height: 77px;
+  min-height: 80px;
   margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: var(--space-m);
   border-radius: 16px;
-  background: var(--bg-surface);
+  background: var(--card-bg, var(--bg-surface));
   font-family: var(--font-ui);
   font-size: var(--size-lede);
   line-height: var(--leading-lede);
@@ -1743,7 +1743,7 @@ button {
   .experience__row--you {
     grid-template-columns: 1fr;
     justify-content: stretch;
-    gap: 20px;
+    gap: var(--space-m);
   }
 
   .experience__row .hero-verbs {
@@ -1807,7 +1807,7 @@ button {
 
   .mode-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: var(--space-m);
   }
 
   .moments-grid {
@@ -1962,11 +1962,11 @@ button {
   .site-nav-mobile {
     display: grid;
     gap: 8px;
-    padding: 12px var(--page-gutter) 20px;
+    padding: var(--space-s) var(--page-gutter) var(--space-m);
   }
 
   .site-nav-mobile a {
-    padding: 16px 20px;
+    padding: var(--space-m);
     border-radius: 16px;
     background: var(--bg-surface);
     font-size: var(--size-t1);
@@ -1978,7 +1978,7 @@ button {
   .moments-grid,
   .camera-grid {
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: var(--rhythm);
   }
 
   .concept-grid > .fact-card:first-child,
@@ -2005,7 +2005,7 @@ button {
 
   .story-badge {
     width: 100%;
-    padding: 16px 20px;
+    padding: var(--space-m);
   }
 
   .story-badge--top {
@@ -2043,7 +2043,7 @@ button {
     flex-direction: column;
     align-items: center;
     gap: 24px;
-    padding: 24px 12px 40px;
+    padding: var(--space-l) var(--space-m) var(--space-2xl);
   }
 
   .story-caption,
@@ -2328,8 +2328,8 @@ button {
 
 .modes-stack-card .mode-col {
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
-  padding: 24px 20px;
-  gap: 14px;
+  padding: var(--space-l);
+  gap: var(--space-m);
   border-radius: 48px;
 }
 
@@ -2338,12 +2338,12 @@ button {
 }
 
 .modes-stack-card .mode-col__cards {
-  gap: 6px;
+  gap: var(--rhythm);
 }
 
 .modes-stack-card .year-card,
 .modes-stack-card .fact-card {
-  padding: 16px 18px;
+  padding: var(--space-m);
   border-radius: 24px;
 }
 
@@ -2406,7 +2406,7 @@ button {
   .modes-stacking-viewport {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: var(--space-m);
     width: 100%;
   }
 
@@ -2508,26 +2508,33 @@ button {
 
 /* Barcelona Year Card Exact Figma Styles (Node 449:7277) */
 .story-grid .year-card--wide {
-  background: var(--bg-muted);
+  background: var(--card-bg, var(--bg-surface));
   border-radius: var(--radius-l, 24px);
-  padding: 28px;
+  padding: var(--space-l);
 }
 
 .moments-grid .year-card--wide {
   background: var(--bg-surface, #111118);
   border-radius: var(--radius-l, 24px);
-  padding: 28px;
+  padding: var(--space-l);
 }
 
 .story-grid .year-card--wide .icon-btn,
 .moments-grid .year-card--wide .icon-btn {
-  background: rgba(255, 255, 255, 0.15) !important;
   width: 72px;
   height: 72px;
   border-radius: 999px;
   display: grid;
   place-items: center;
   flex-shrink: 0;
+}
+
+.story-grid .year-card--wide .icon-btn {
+  background: var(--bg-muted) !important;
+}
+
+.moments-grid .year-card--wide .icon-btn {
+  background: rgba(255, 255, 255, 0.15) !important;
 }
 
 .story-grid .year-card--wide .icon-btn img,
@@ -2537,20 +2544,37 @@ button {
   filter: brightness(0) invert(1);
 }
 
-.story-grid .year-card--wide .moments-chip,
+.story-grid .year-card--wide .moments-chip {
+  background: var(--bg-muted);
+  color: var(--text);
+  padding: var(--space-s) var(--space-m);
+  border-radius: 8px;
+  font-family: var(--font-ui);
+  font-size: var(--size-t3, 12px);
+  white-space: nowrap;
+}
+
 .moments-grid .year-card--wide .moments-chip {
   background: rgba(255, 255, 255, 0.15);
-  padding: 12px 20px;
-  border-radius: 6px;
+  padding: var(--space-s) var(--space-m);
+  border-radius: 8px;
   font-family: var(--font-ui);
   font-size: var(--size-t3, 12px);
   color: rgba(255, 255, 255, 0.7);
   white-space: nowrap;
 }
 
+html.debug-grid {
+  position: relative;
+}
+
+html.debug-grid body {
+  position: relative;
+}
+
 html.debug-grid body::before {
   content: "";
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: 10000;
   pointer-events: none;
@@ -2565,7 +2589,7 @@ html.debug-grid body::before {
       rgb(1 47 255 / 0.14) 0 8px,
       transparent 8px 16px
     );
-  background-position: 0 var(--rhythm);
+  background-position: var(--rhythm) var(--rhythm);
 }
 
 

@@ -1,6 +1,7 @@
 :root {
   --bg-page: var(--color-page);
   --bg-surface: var(--color-cards);
+  --card-bg: var(--color-cards);
   --bg-muted: var(--color-cards-elements);
   --bg-glass: var(--color-cards-glass);
   --bg-ink: var(--color-accent-secondary);
@@ -24,6 +25,5 @@
 .band--white,
 .section--experience,
 .site-footer {
-  --bg-surface: #dedede;
-  --bg-muted: #dedede;
+  --card-bg: #dedede;
 }
