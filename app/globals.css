@@ -385,6 +385,14 @@ button {
   width: 100%;
 }
 
+.hero-collage .hero-row--icons {
+  flex-wrap: nowrap;
+}
+
+.hero-collage .hero-row--icons .display-word {
+  min-width: max-content;
+}
+
 .hero-row--kicker {
   align-items: flex-start;
   gap: var(--space-s);
@@ -507,15 +515,18 @@ button {
 
 .hero-collage .icon-pills {
   gap: var(--space-xs);
-  align-self: stretch;
-  align-items: stretch;
+  flex: none;
+  width: max-content;
+  align-self: center;
+  align-items: center;
 }
 
 .hero-collage .icon-pill,
 .hero-collage .blob {
-  width: auto;
-  height: auto;
-  align-self: stretch;
+  width: var(--hero-line);
+  height: var(--hero-line);
+  flex: none;
+  align-self: center;
   aspect-ratio: 1;
 }
 
