@@ -306,6 +306,19 @@ button {
   align-items: center;
   flex: none;
   height: var(--hero-line);
+  overflow: hidden;
+}
+
+.hero-collage .display-kicker {
+  overflow: hidden;
+}
+
+.hero-collage .hero-verbs {
+  min-width: 0;
+}
+
+.hero-collage .hero-verbs .display-word {
+  max-width: 100%;
 }
 
 .hero-row .display-kicker {
