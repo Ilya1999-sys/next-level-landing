@@ -97,7 +97,6 @@ export function HeroSection() {
           </div>
           <div className="hero-row">
             <p className="display-word">a</p>
-            <i className="blob blob--accent" />
             <i className="blob blob--light" />
             <p className="display-word">match</p>
             <FactCard className="reveal-card" label="Nostalgia fact" value="18" text="years ago, you watched your first match" tag="EURO—2008" />

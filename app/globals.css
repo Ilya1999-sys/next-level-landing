@@ -270,6 +270,7 @@ button {
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
+  --space-xs: 12px;
   --hero-stack-2: calc(var(--hero-line) * 2 + var(--space-xs));
   --hero-stack-4: calc(var(--hero-line) * 4 + var(--space-xs) * 3);
 }
@@ -304,16 +305,11 @@ button {
 .hero-collage .display-word {
   flex: none;
   height: auto;
-  line-height: 1;
   overflow: visible;
-  text-box-trim: trim-both;
-  text-box-edge: text text;
 }
 
 .hero-collage .display-kicker {
   overflow: visible;
-  text-box-trim: trim-both;
-  text-box-edge: text text;
 }
 
 .hero-collage .hero-verbs {
@@ -396,7 +392,7 @@ button {
 }
 
 .hero-collage .hero-row--kicker {
-  gap: var(--space-xs);
+  gap: var(--space-s);
 }
 
 .hero-block--verbs {
@@ -463,6 +459,10 @@ button {
   gap: var(--space-xs);
 }
 
+.hero-collage .hero-story-side .hero-verbs {
+  gap: 20px;
+}
+
 .hero-story-side .hero-verbs {
   flex: none;
 }
@@ -477,7 +477,7 @@ button {
 }
 
 .hero-collage .hero-matches {
-  gap: var(--space-xs);
+  gap: var(--space-s);
 }
 
 .hero-matches > .year-card {
