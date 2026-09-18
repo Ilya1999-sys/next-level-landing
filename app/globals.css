@@ -280,26 +280,31 @@ button {
   gap: var(--space-s);
 }
 
-.hero-row .display-word {
+.hero-collage .display-word {
   display: flex;
   align-items: center;
-  height: auto;
+  height: var(--hero-line);
 }
 
 .hero-row .display-kicker {
   align-self: flex-start;
 }
 
-.hero-row .fact-card,
-.hero-row--lead > .year-card {
-  align-self: stretch;
+.hero-row .fact-card {
+  height: var(--hero-line);
   min-height: var(--hero-line);
-  height: auto;
+  padding: var(--space-s) var(--space-m);
+  gap: var(--space-s);
+  overflow: hidden;
 }
 
-.hero-row--lead > .year-card {
+.year-card--zidane {
   flex: 1 1 0;
   min-width: 280px;
+  height: var(--hero-stack-2);
+  min-height: 0;
+  overflow: hidden;
+  gap: var(--space-s);
 }
 
 .hero-row--lead .hero-stack {
@@ -329,25 +334,56 @@ button {
   align-items: start;
 }
 
+.hero-block--verbs > .year-card {
+  height: var(--hero-stack-4);
+  min-height: 0;
+  overflow: hidden;
+}
+
+.hero-block--verbs .match-review-graph {
+  min-height: 0;
+  flex: 1 1 0;
+}
+
 .hero-block--story {
   grid-template-columns: minmax(0, 1.8fr) minmax(0, 0.7fr) minmax(0, 0.95fr);
   gap: var(--space-s);
-  align-items: stretch;
+  align-items: start;
 }
 
 .hero-block--story > .year-card--chart {
   min-width: 0;
   width: 100%;
+  height: var(--hero-stack-4);
+  min-height: 0;
+  overflow: hidden;
+}
+
+.hero-block--story > .year-card--chart .victory-graph {
+  min-height: 0;
+  flex: 1 1 0;
+  height: 100%;
 }
 
 .hero-block--story > .hero-stack {
   min-width: 0;
-  margin-left: calc(var(--space-xs) - var(--space-s));
-  max-width: none;
-  width: calc(100% + var(--space-s) - var(--space-xs));
+  margin-left: 0;
+  max-width: 100%;
+  width: 100%;
+  height: var(--hero-stack-4);
+  overflow: hidden;
+}
+
+.hero-block--story > .hero-stack > .year-card {
+  height: var(--hero-stack-2);
+  min-height: 0;
+  overflow: hidden;
+  flex: none;
 }
 
 .hero-block--story > .hero-verbs {
+  position: relative;
+  z-index: 1;
   min-width: 0;
 }
 
@@ -423,6 +459,7 @@ button {
   width: 72px;
   height: 72px;
   background: var(--bg-muted);
+  cursor: default;
 }
 
 .icon-btn img {
@@ -457,7 +494,8 @@ button {
 }
 
 .hero-row .fact-card,
-.hero-row .year-card {
+.hero-row .year-card,
+.year-card--zidane {
   min-height: 0;
 }
 
@@ -1328,38 +1366,58 @@ button {
 }
 
 .moments-app-card--wide {
+  display: grid;
   flex: 1.6 1 0;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-m);
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto 1fr auto;
+  align-items: stretch;
+  column-gap: var(--space-m);
+  row-gap: 0;
+}
+
+.moments-app-card--wide .fact-card__label {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: start;
+}
+
+.moments-app-card--wide .year-card__title {
+  grid-column: 1;
+  grid-row: 3;
+  align-self: end;
 }
 
 .moments-app-card--wide .circle-row {
+  grid-column: 2;
+  grid-row: 1 / -1;
   width: auto;
+  height: 100%;
   flex: none;
-  gap: var(--rhythm);
+  gap: var(--space-m);
+  align-self: stretch;
+  align-items: stretch;
 }
 
 .moments-app-card--wide .circle-stat {
   flex: none;
-  width: 56px;
-  height: 56px;
-  min-width: 56px;
-  max-width: 56px;
-  padding: 4px;
-  gap: 2px;
+  width: auto;
+  height: 100%;
+  min-width: 0;
+  max-width: none;
+  aspect-ratio: 1 / 1;
+  padding: var(--space-s);
+  gap: 4px;
 }
 
 .moments-app-card--wide .circle-stat b {
-  font-size: 16px;
+  font-size: var(--size-h3);
   line-height: 1;
 }
 
 .moments-app-card--wide .circle-stat span {
-  font-size: 8px;
-  line-height: 1.1;
-  max-width: 64px;
+  font-size: var(--size-t2);
+  line-height: 1.15;
+  max-width: 9ch;
 }
 
 .moments-app-card--wide .circle-stat:not(.circle-stat--accent) {
@@ -1377,6 +1435,10 @@ button {
   background: var(--bg-muted);
   font-family: var(--font-ui);
   font-size: var(--size-t3);
+}
+
+.moments-chip--card {
+  background: var(--card-bg, var(--bg-surface));
 }
 
 .year-card--wide {
@@ -1426,7 +1488,7 @@ button {
 .story-badge {
   width: min(100%, 900px);
   padding: 24px 48px;
-  background: var(--bg-muted);
+  background: #b1b1b1;
   text-align: center;
 }
 
@@ -1732,6 +1794,7 @@ button {
   .hero-block--story > .year-card--chart {
     grid-column: 1;
     grid-row: 1 / span 2;
+    height: auto;
   }
 
   .hero-block--story > .hero-verbs {
@@ -1742,6 +1805,11 @@ button {
   .hero-block--story > .hero-stack {
     grid-column: 2;
     grid-row: 2;
+    height: auto;
+  }
+
+  .hero-block--story > .hero-stack > .year-card {
+    height: auto;
   }
 
   .year-card--xl-only,
@@ -1810,7 +1878,7 @@ button {
 
   .moments-app-card--wide {
     flex: 1 1 100%;
-    min-height: 96px;
+    min-height: 112px;
   }
 
   .hero-row--icons {
@@ -1846,6 +1914,13 @@ button {
 
   .hero-verbs--left .hero-row--kicker {
     justify-content: center;
+  }
+
+  .year-card--zidane,
+  .hero-block--story > .year-card--chart,
+  .hero-block--story > .hero-stack,
+  .hero-block--story > .hero-stack > .year-card {
+    height: auto;
   }
 
   .hero-block--story > .year-card--chart,

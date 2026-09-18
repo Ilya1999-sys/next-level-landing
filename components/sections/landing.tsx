@@ -338,68 +338,46 @@ export function MomentsSection() {
       <div className="shell">
         <div className="moments-type">
           <div className="moments-row">
-            <a
-              className="moments-app-card"
-              href={site.playerStatsUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
+            <article className="moments-app-card">
               <p className="fact-card__label">Favorite player fact</p>
               <p className="fact-card__stat">
                 <b>5</b>
                 <span>Mbappe in one match</span>
               </p>
-            </a>
+            </article>
             <p className="display-word">Watch</p>
-            <a
-              className="moments-app-card"
-              href={site.playerStatsUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
+            <article className="moments-app-card">
               <p className="fact-card__label">Speed fact</p>
               <p className="fact-card__stat">
                 <b>37 km/h</b>
                 <span>Mbappe sprint</span>
               </p>
-            </a>
+            </article>
           </div>
           <div className="moments-row moments-row--end">
-            <a
-              className="moments-app-card moments-app-card--accent moments-app-card--wide"
-              href={site.playerStatsUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <div>
-                <p className="fact-card__label">/2016</p>
-                <p className="year-card__title">Open Portugal Euro archive</p>
-              </div>
+            <article className="moments-app-card moments-app-card--accent moments-app-card--wide">
+              <p className="fact-card__label">/2016</p>
+              <p className="year-card__title">Open Portugal Euro archive</p>
               <div className="circle-row">
                 <CircleStat value="9" label="Portugal goals" />
                 <CircleStat value="1" label="regular-time win" accent />
               </div>
-            </a>
+            </article>
             <p className="display-kicker">the</p>
             <p className="display-word">match</p>
           </div>
           <p className="display-word display-word--center reveal-title"><span>Understand</span></p>
           <div className="moments-row">
-            <a
-              className="moments-app-card"
-              href={site.playerStatsUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
+            <article className="moments-app-card">
               <p className="fact-card__label">Club fact</p>
               <p className="fact-card__stat">
                 <b>15</b>
                 <span>Madrid UCL</span>
               </p>
-            </a>
+            </article>
             <p className="display-kicker">the</p>
             <p className="display-word">moment</p>
-            <p className="moments-chip">How Germany went to the championship in 2014</p>
+            <p className="moments-chip moments-chip--card">How Germany went to the championship in 2014</p>
           </div>
         </div>
         <ParallaxContainer className="moments-grid reveal-group">

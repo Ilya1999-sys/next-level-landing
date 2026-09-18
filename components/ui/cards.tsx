@@ -1,14 +1,12 @@
 import type { ReactNode } from "react";
-import { site } from "@/lib/content";
 
 type DotKind = "accent" | "muted";
 
 export function ArrowLink({ className = "" }: { className?: string }) {
   return (
-    <a className={`icon-btn ${className}`.trim()} href={site.productUrl} target="_blank" rel="noreferrer">
+    <span className={`icon-btn ${className}`.trim()} aria-hidden="true">
       <img src="/figma/landing/icon-arrow.svg" alt="" width={32} height={32} />
-      <span className="sr-only">See project</span>
-    </a>
+    </span>
   );
 }
 

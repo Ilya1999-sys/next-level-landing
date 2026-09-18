@@ -21,6 +21,8 @@
   --section-y: 80px;
   --header-h: 80px;
   --hero-line: 126px;
+  --hero-stack-2: calc(var(--hero-line) * 2 + var(--space-s));
+  --hero-stack-4: calc(var(--hero-line) * 4 + var(--space-s) * 3);
   --rhythm: 8px;
 }
 
