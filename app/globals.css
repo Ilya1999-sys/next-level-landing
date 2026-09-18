@@ -302,15 +302,18 @@ button {
 }
 
 .hero-collage .display-word {
-  display: flex;
-  align-items: center;
   flex: none;
-  height: var(--hero-line);
-  overflow: hidden;
+  height: auto;
+  line-height: 1;
+  overflow: visible;
+  text-box-trim: trim-both;
+  text-box-edge: text text;
 }
 
 .hero-collage .display-kicker {
-  overflow: hidden;
+  overflow: visible;
+  text-box-trim: trim-both;
+  text-box-edge: text text;
 }
 
 .hero-collage .hero-verbs {
@@ -352,6 +355,11 @@ button {
   min-height: 0;
   overflow: hidden;
   gap: var(--space-m);
+}
+
+.hero-collage .year-card--zidane {
+  height: auto;
+  align-self: stretch;
 }
 
 .hero-row--lead {
@@ -400,12 +408,18 @@ button {
 
 .hero-collage .hero-block--verbs {
   gap: var(--space-xs);
+  align-items: stretch;
 }
 
 .hero-block--verbs > .year-card {
   height: var(--hero-stack-4);
   min-height: 0;
   overflow: hidden;
+}
+
+.hero-collage .hero-block--verbs > .year-card {
+  height: auto;
+  align-self: stretch;
 }
 
 .hero-block--verbs .match-review-graph {
@@ -493,6 +507,16 @@ button {
 
 .hero-collage .icon-pills {
   gap: var(--space-xs);
+  align-self: stretch;
+  align-items: stretch;
+}
+
+.hero-collage .icon-pill,
+.hero-collage .blob {
+  width: auto;
+  height: auto;
+  align-self: stretch;
+  aspect-ratio: 1;
 }
 
 .icon-pill,
@@ -1981,6 +2005,14 @@ button {
   .hero-collage .hero-matches > .year-card {
     height: auto;
     min-height: 0;
+  }
+
+  .hero-collage .icon-pill,
+  .hero-collage .blob {
+    width: var(--hero-line);
+    height: var(--hero-line);
+    align-self: auto;
+    aspect-ratio: auto;
   }
 
   .concept-head,
