@@ -79,11 +79,19 @@ button {
   margin-inline: auto;
 }
 
+.hero-collage {
+  max-width: var(--page-max);
+}
+
 .hero-collage,
 .experience,
 .moments-type {
-  max-width: var(--compose-max);
   margin-inline: auto;
+}
+
+.experience,
+.moments-type {
+  max-width: var(--compose-max);
 }
 
 .section {
@@ -283,15 +291,19 @@ button {
 .hero-collage .display-word {
   display: flex;
   align-items: center;
+  flex: none;
   height: var(--hero-line);
 }
 
 .hero-row .display-kicker {
+  flex: none;
   align-self: flex-start;
 }
 
 .hero-row .fact-card {
+  flex: 1 1 0;
   height: var(--hero-line);
+  min-width: 0;
   min-height: var(--hero-line);
   padding: var(--space-s) var(--space-m);
   gap: var(--space-s);
@@ -300,7 +312,7 @@ button {
 
 .year-card--zidane {
   flex: 1 1 0;
-  min-width: 280px;
+  min-width: 0;
   height: var(--hero-stack-2);
   min-height: 0;
   overflow: hidden;
@@ -312,7 +324,7 @@ button {
 }
 
 .hero-row--lead .hero-stack {
-  flex: 1.7 1 0;
+  flex: none;
   min-width: 0;
 }
 
@@ -321,8 +333,12 @@ button {
   width: 100%;
 }
 
+.hero-row--tight .fact-card {
+  flex: 1 1 0;
+}
+
 .hero-row--icons {
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 100%;
 }
 
@@ -334,7 +350,7 @@ button {
 
 .hero-block--verbs {
   display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
+  grid-template-columns: minmax(min-content, 1fr) minmax(280px, 406px);
   gap: var(--space-s);
   align-items: start;
 }
@@ -352,7 +368,7 @@ button {
 
 .hero-block--story {
   display: grid;
-  grid-template-columns: minmax(280px, 0.76fr) minmax(0, 1fr);
+  grid-template-columns: minmax(280px, 0.76fr) minmax(min-content, 1fr);
   gap: var(--space-s);
   align-items: stretch;
 }
@@ -412,7 +428,8 @@ button {
 
 .icon-pills {
   display: flex;
-  gap: 8px;
+  flex: none;
+  gap: var(--space-s);
 }
 
 .icon-pill,
@@ -1435,6 +1452,11 @@ button {
   color: var(--bg-accent);
 }
 
+.moments-app-card--wide .circle-stat--accent {
+  background: rgb(255 255 255 / 30%);
+  color: #fff;
+}
+
 .display-word--center {
   text-align: center;
 }
@@ -1448,7 +1470,15 @@ button {
 }
 
 .moments-chip--card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  height: var(--hero-line);
+  padding: var(--space-m);
+  text-align: center;
   background: var(--card-bg, var(--bg-surface));
+  border-radius: var(--radius-m);
 }
 
 .year-card--wide {
