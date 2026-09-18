@@ -184,56 +184,58 @@ export function HeroSection() {
               </div>
             </div>
           </YearCard>
-          <div className="hero-verbs hero-verbs--left">
-            <div className="hero-row hero-row--tight hero-row--kicker">
-              <p className="display-kicker">the</p>
-              <p className="display-word">story</p>
-            </div>
-            <p className="display-word">behind</p>
-            <p className="display-word">every</p>
-            <p className="display-word">moment</p>
-          </div>
-          <div className="hero-stack">
-            <article className="year-card year-card--xl-only reveal-card">
-              <header className="year-card__top">
-                <div>
-                  <p className="fact-card__label">Match review</p>
-                  <p className="year-card__title">2-1 Croatia</p>
-                </div>
-                <ArrowLink />
-              </header>
-              <ul className="stat-rows">
-                <li>
-                  <span>Passes</span>
-                  <b>676</b>
-                  <b>460</b>
-                </li>
-                <li>
-                  <span>Distance</span>
-                  <b>142km</b>
-                  <b>148km</b>
-                </li>
-                <li>
-                  <span>Possession</span>
-                  <b>59%</b>
-                  <b>41%</b>
-                </li>
-              </ul>
-            </article>
-            <article className="year-card reveal-card">
-              <header className="year-card__top">
-                <div>
-                  <p className="fact-card__label">Match review</p>
-                  <p className="year-card__title">3-3 Hungary</p>
-                </div>
-                <ArrowLink />
-              </header>
-              <div className="circle-row">
-                <CircleStat value="19" label="shots" accent />
-                <CircleStat value="90%" label="pass" />
-                <CircleStat value="9" label="corners" />
+          <div className="hero-story-side">
+            <div className="hero-verbs hero-verbs--left">
+              <div className="hero-row hero-row--tight hero-row--kicker">
+                <p className="display-kicker">the</p>
+                <p className="display-word">story</p>
               </div>
-            </article>
+              <p className="display-word">behind</p>
+              <p className="display-word">every</p>
+              <p className="display-word">moment</p>
+            </div>
+            <div className="hero-matches">
+              <article className="year-card reveal-card">
+                <header className="year-card__top">
+                  <div>
+                    <p className="fact-card__label">Match review</p>
+                    <p className="year-card__title">2-1 Croatia</p>
+                  </div>
+                  <ArrowLink />
+                </header>
+                <ul className="stat-rows">
+                  <li>
+                    <span>Passes</span>
+                    <b>676</b>
+                    <b>460</b>
+                  </li>
+                  <li>
+                    <span>Distance</span>
+                    <b>142km</b>
+                    <b>148km</b>
+                  </li>
+                  <li>
+                    <span>Possession</span>
+                    <b>59%</b>
+                    <b>41%</b>
+                  </li>
+                </ul>
+              </article>
+              <article className="year-card reveal-card">
+                <header className="year-card__top">
+                  <div>
+                    <p className="fact-card__label">Match review</p>
+                    <p className="year-card__title">3-3 Hungary</p>
+                  </div>
+                  <ArrowLink />
+                </header>
+                <div className="circle-row">
+                  <CircleStat value="19" label="shots" accent />
+                  <CircleStat value="90%" label="pass" />
+                  <CircleStat value="9" label="corners" />
+                </div>
+              </article>
+            </div>
           </div>
         </div>
       </div>
