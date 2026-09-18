@@ -269,7 +269,9 @@ button {
 .hero-collage {
   display: flex;
   flex-direction: column;
-  gap: var(--space-s);
+  gap: var(--space-xs);
+  --hero-stack-2: calc(var(--hero-line) * 2 + var(--space-xs));
+  --hero-stack-4: calc(var(--hero-line) * 4 + var(--space-xs) * 3);
 }
 
 .hero-block,
@@ -280,12 +282,23 @@ button {
   gap: var(--space-s);
 }
 
+.hero-collage .hero-block,
+.hero-collage .hero-stack,
+.hero-collage .hero-verbs {
+  gap: var(--space-xs);
+}
+
 .hero-row {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
   gap: var(--space-s);
+}
+
+.hero-collage .hero-row {
+  align-items: stretch;
+  gap: var(--space-xs);
 }
 
 .hero-collage .display-word {
@@ -300,13 +313,22 @@ button {
   align-self: flex-start;
 }
 
-.hero-row .fact-card {
+.hero-collage .hero-row .fact-card,
+.hero-collage .hero-row .year-card,
+.hero-collage .year-card--zidane,
+.hero-collage .hero-block--verbs > .year-card,
+.hero-collage .hero-block--story > .year-card,
+.hero-collage .hero-matches > .year-card {
+  padding: var(--space-m);
+}
+
+.hero-collage .hero-row .fact-card {
   flex: 1 1 0;
-  height: var(--hero-line);
+  height: auto;
   min-width: 0;
   min-height: var(--hero-line);
-  padding: var(--space-s) var(--space-m);
-  gap: var(--space-s);
+  align-self: stretch;
+  gap: var(--space-m);
   overflow: hidden;
 }
 
@@ -316,7 +338,7 @@ button {
   height: var(--hero-stack-2);
   min-height: 0;
   overflow: hidden;
-  gap: var(--space-s);
+  gap: var(--space-m);
 }
 
 .hero-row--lead {
@@ -331,6 +353,10 @@ button {
 .hero-row--tight {
   gap: var(--space-s);
   width: 100%;
+}
+
+.hero-collage .hero-row--tight {
+  gap: var(--space-xs);
 }
 
 .hero-row--tight .fact-card {
@@ -348,11 +374,19 @@ button {
   width: auto;
 }
 
+.hero-collage .hero-row--kicker {
+  gap: var(--space-xs);
+}
+
 .hero-block--verbs {
   display: grid;
   grid-template-columns: minmax(min-content, 1fr) minmax(280px, 406px);
   gap: var(--space-s);
   align-items: start;
+}
+
+.hero-collage .hero-block--verbs {
+  gap: var(--space-xs);
 }
 
 .hero-block--verbs > .year-card {
@@ -371,6 +405,10 @@ button {
   grid-template-columns: minmax(280px, 0.76fr) minmax(min-content, 1fr);
   gap: var(--space-s);
   align-items: stretch;
+}
+
+.hero-collage .hero-block--story {
+  gap: var(--space-xs);
 }
 
 .hero-block--story > .year-card--chart {
@@ -394,6 +432,10 @@ button {
   min-width: 0;
 }
 
+.hero-collage .hero-story-side {
+  gap: var(--space-xs);
+}
+
 .hero-story-side .hero-verbs {
   flex: none;
 }
@@ -405,6 +447,10 @@ button {
   flex: 1 0 auto;
   min-width: 0;
   min-height: calc(var(--hero-line) * 2 + var(--space-2xl));
+}
+
+.hero-collage .hero-matches {
+  gap: var(--space-xs);
 }
 
 .hero-matches > .year-card {
@@ -430,6 +476,10 @@ button {
   display: flex;
   flex: none;
   gap: var(--space-s);
+}
+
+.hero-collage .icon-pills {
+  gap: var(--space-xs);
 }
 
 .icon-pill,
@@ -1895,6 +1945,29 @@ button {
 
   .hero-row--icons {
     justify-content: flex-start;
+  }
+
+  .hero-collage,
+  .hero-collage .hero-block,
+  .hero-collage .hero-stack,
+  .hero-collage .hero-verbs,
+  .hero-collage .hero-row,
+  .hero-collage .hero-row--tight,
+  .hero-collage .hero-row--kicker,
+  .hero-collage .icon-pills,
+  .hero-collage .hero-block--verbs,
+  .hero-collage .hero-block--story,
+  .hero-collage .hero-story-side,
+  .hero-collage .hero-matches {
+    gap: var(--space-s);
+  }
+
+  .hero-collage .year-card--zidane,
+  .hero-collage .hero-row .fact-card,
+  .hero-collage .hero-block--verbs > .year-card,
+  .hero-collage .hero-matches > .year-card {
+    height: auto;
+    min-height: 0;
   }
 
   .concept-head,
